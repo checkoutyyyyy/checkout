@@ -1,0 +1,142 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Checkout</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/consumer/cart_logo.png' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/order.css' %}" rel="stylesheet" />
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="{% static '/functionJS/utility.js' %}"></script>
+  <script src="{% static '/functionJS/qrcode_scanner.js' %}"></script>
+  <script src="{% static '/functionJS/instascan.js' %}"></script>
+  <script src="{% static '/functionJS/spinner.js' %}"></script>
+
+</head>
+
+<style>
+    .loading-spinner {
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%,-50%) translateZ(0);
+        top: 50%;
+        width: 90px;
+        height: 90px;
+        z-index: 1;
+        background: url("{% static 'img/consumer/favicon.png' %}") center no-repeat;
+        background-size: contain;
+        /*animation: spinning 1.5s infinite ease-in-out;*/
+    }
+
+    .loading-spinner:after {
+        content:"";
+        position:absolute;
+        width:120px;
+        height:120px;
+        background-color:rgba(0,0,0,0);
+        border-radius:100%;
+        margin:-15px;
+        box-shadow: 0 4px 0 0 #ff6c20;
+        transition: all 1s linear;
+        animation: lds-eclipse 1s linear infinite;
+    }
+
+
+
+    @keyframes spinning {
+        0% { transform: translate(-50%,-50%) scale(1) translateZ(0);}
+        50% { transform: translate(-50%,-50%) scale(1.1) translateZ(0);}
+        100% { transform: translate(-50%,-50%) scale(1) translateZ(0);}
+    }
+
+    @keyframes lds-eclipse {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+    }
+
+</style>
+<body>
+     <main id="main" style=" padding-top: 60px !important; ">
+        <!-- ======= Hero Section ======= -->
+        <section class="section dashboard emercado_background_color_3 p-0">
+            <div class="loading-spinner" id="spinner-container">
+            </div>
+        </section>
+    </main><!-- End #main -->
+
+    <script src="{% static 'js/store.js' %}"></script>
+
+    <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/glightbox/js/glightbox.min..js' %}"></script>
+    <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min..js' %}"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min..js' %}"></script>
+    <script src="{% static 'vendor/php-email-form/validate..js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Template Main JS File -->
+
+    <script>
+        // Example function that uses the spinner
+        function loadDataFromServer() {
+          // Show the spinner while the data is being loaded
+          showSpinner();
+  
+          // Make an asynchronous request to the server to load the data
+          // ...
+  
+          // Hide the spinner when the data is loaded
+          hideSpinner();
+        }
+      </script>
+
+
+
+
+</body>
+
+</html>

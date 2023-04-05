@@ -1,0 +1,1241 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+  <title>Checkout-My Orders</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Favicons -->
+  <link href="{% static 'img/consumer/cart_logo.png' %}" rel="icon">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/user_profile.css' %}" rel="stylesheet" />
+
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="{% static '/functionJS/utility.js' %}"></script>
+  <script src="{% static '/functionJS/spinner.js' %}"></script>
+
+
+<style>
+
+.purch-link {
+  display: block;
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  font-size: var(--bs-nav-link-font-size);
+  font-weight: var(--bs-nav-link-font-weight);
+  color: #000000;
+  text-decoration: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+.purch-link:hover{
+  color: #9688FE;
+}
+
+a:focus {
+  outline: none !important;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: #9688FE;
+    cursor: default;
+    background-color: #fff;
+    outline: none;
+}
+
+ .nav-tabs .purch-link.active {
+    border-color: white !important;
+}
+
+.tab-content>.tab-pane {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.tab-content>.active {
+    display: block !important;
+    visibility: visible !important;
+}
+
+.header__cart-heading {
+    margin: -32px 52px 0px;
+    white-space: initial;
+}
+
+.card-col {
+  margin: 5px;
+}
+.card-body {
+  flex: 1 1 auto;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: rgb(99 99 99 / 10%) 0px 2px 8px 0px;
+  width: 100%;
+}
+.card-body:active {
+  cursor: move;
+  outline: 3px dashed #7b7b7b;
+  outline-offset: 1px;
+}
+
+.modal.modal-left .modal-dialog, .modal.modal-right .modal-dialog {
+  max-width: 380px;
+  min-height: calc(100vh - 0px);
+}
+.modal.modal-left.show .modal-dialog, .modal.modal-right.show .modal-dialog {
+  transform: translate(0, 0);
+}
+.modal.modal-left .modal-content, .modal.modal-right .modal-content {
+  height: calc(100vh - 0px);
+  overflow-y: auto;
+}
+.modal.modal-left .modal-dialog {
+  transform: translate(-100%, 0);
+  margin: 0px auto 0 0;
+}
+.modal.modal-right .modal-dialog {
+  transform: translate(100%, 0);
+  margin: 0px 0 0 auto;
+}
+.modal-full {
+    min-width: 50%;
+    margin: 0;
+}
+
+.modal-full .modal-content {
+    min-height: 100vh;
+}
+.h6,.d-block{
+    text-align: left;
+    color: #9688FE;
+    font-weight: 600;
+}
+
+.btn-sm, .btn-group-sm>.btn {
+    padding: 5px 10px;
+    font-size: calc(12px + 100vw * 2/1906);
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+@media (max-width: 990px) {
+    .action-d-none{
+        display: none !important;
+    }
+    .sm-padding{
+        margin-top: 12px !important;
+    }
+
+}
+
+@media ( max-width: 575px ) {
+        .h6,.d-block{
+         text-align: center;
+        }
+        .button_sm{
+            display: flex !important;
+            justify-content: flex-end;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+}
+@media ( max-width: 350px ) {
+    .sm_size{
+        width: 100%;
+    }
+    .total_d_sm_block{
+        display:block !important;
+    }
+    .d_none_sm{
+        display: none !important;
+    }
+    .total_amount{
+        display: flex !important;
+    }
+    .qGisqd{
+        padding: 12px 0 !important;
+        margin-left: 22px;
+    }
+    .button_sm{
+            display: flex !important;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+    .btn-sm {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+</style>
+
+</head>
+<body style="height: 100%;">
+    <div class="loading-spinner" id="loading-spinner" style="visibility: visible;display: block;">
+        <img src="{% static 'img/consumer/cart_logo.png' %}" alt="" style="width: 85px !important; left: 50% !important; top: 50% !important; position: inherit; height: 110px !important;">
+    </div>
+    <form action="/my_purchases" method="POST" id="purchase_form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <header class="header" style="z-index: 2;">
+        <div class="logo">
+            <a style="text-decoration: underline;" href="/">
+                <img class="header_logo d-sm-none d-md-none d-lg-none mt-1" style="width: auto; max-height: 50px;" src="{% static 'img/consumer/border_white.png' %}" alt="">
+                <img class="header_logo d-none d-sm-block" src="{% static 'img/consumer/black&white.png' %}" alt="">
+            </a>
+       </div>
+         <div class="dropdown text-nowrap d-flex">
+           {% if consumer %}
+          <div class="dropdown m-auto pt-3">
+              <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+                  <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart " style="width: 300px;">
+                <div class="pt-3 pb-2 px-3 border-bottom">
+                    <h4 class="emercado_color_1 m-0">Cart</h4>
+                </div>
+                {% if my_cart|length > 0 %}
+                    
+                    {% if my_cart|length <= 6 %}
+                    <div class="" id="scroll_style">
+                    {% else %}
+                    <div class="header__cart-list-item scrollbar"id="scroll_style">
+                    {% endif %}
+                    
+                    {% for cart in my_cart %}
+                        <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                            {% if cart.product_image %}
+                            <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                            {% else  %}
+                            <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                            {% endif  %}
+                            <div class="header__cart-item-info text-black">
+                                <div class="header__cart-item-head">
+                                    <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                                    <div class="header__cart-item-price-wrap">
+                                        <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                        <span class="header__cart-item-multiply">x</span>
+                                        <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                                    </div>
+                                </div>
+                                <div class="header__cart-item-body">
+                                    <span class="header__cart-item-description"></span>
+                                    <span class="header__cart-item-remove"></span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider m-0"></div>
+                    {% endfor %}
+                    </div>
+                    <div class="">
+                        <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                        <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                    </div>
+                {% else %}
+                <div class="text-center">
+                    <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                    <p>No items yet</p>
+                    <div class="dropdown-divider m-0 pb-3"></div>
+                </div>
+                <div class="" style="display:none;" id="cart_footer">
+                    <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                    <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                </div>
+                {% endif %}
+  
+  
+              </div>
+          </div>
+          <div class="dropdown m-auto pt-3">
+              <div class="nav-link dropdown m-auto header_icon text-center"   data-bs-toggle="dropdown" id="notif_dropdown">
+                  <i class="dropbtn_bell fa-solid fa-bell text-white p-0" style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_bell " id="notif_count"></span>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_notif" style="width:300px">
+                <div class="pt-3 pb-2 px-3 border-bottom">
+                <h4 class="emercado_color_1 m-0 text_size_sm">Notifications</h4>
+                </div>
+                {% if notifications|length > 0 %}
+                    {% if notifications|length <= 5 %}
+                    <div class="" id="scroll_style">
+                    {% else %}
+                    <div class="header__cart-list-item scrollbar"id="scroll_style">
+                    {% endif %}
+                    <!-- notification if naay magpa request og order (parent order)-->
+                    {% for notif in notifications %}
+        
+                        {% if notif.notif_type == "Share Order" %}
+                            {% if not notif.requested_response  %}
+                                <a class="header__cart-item notif_block notif_unread" onclick="allow_share_order('{{csrf_token}}','{{notif.id}}')">
+                            {% else %}
+                                <a class="header__cart-item notif_block notif_read" id="test-1">
+                            {% endif %}
+                                <div class="header__cart-item-info text-black">
+                                    <div class="header__cart-item-head header__cart-item-head_notif">
+                                        <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px; margin-top: 3px;"/>
+                                        <div class="d-block mt-2">
+                                            <h5 class="header__cart-item-name">{{notif.requesting_name}}</h5>
+                                            <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.requesting_id_format}}</p>
+                                        </div>
+        
+                                    </div>
+                                    <div class="header__cart-item-body">
+                                        <span class="header__cart-item-description"  style="white-space: normal;margin-left: 50px;">
+                                            <p class="my-2 btn_notif">{{notif.content}}</p>
+                                        </span>
+                                    </div>
+        
+                                    <!-- <div class="text-center mb-2" id="shared_optons{{notif.id}}">
+                                        <span class="header__cart-item-remove">
+                                            <button type="button" class="btn btn-sm text-white" style="background-color: #656363; margin-right: 10px;" onclick="denied_request('{{csrf_token}}','{{notif.id}}')">No</button>
+                                            <button type="button" class="btn btn-sm text-white" style="background-color: #9688FE; margin-left: 10px;" onclick="accept_request('{{csrf_token}}','{{notif.id}}')">Yes</button>
+                                        </span>
+                                    </div> -->
+        
+                                </div>
+                            </a>
+                        <!-- end of notification if naay magpa request og order (parent order)-->
+                            <div class="dropdown-divider m-0"></div>
+                            {% elif notif.notif_type == "Share Order Response" %}
+                                {% if notif.requested_response == "Yes" %}
+                                    <a class="header__cart-item notif_block notif_unread" onclick="share_order_accessable('{{notif.url}}')">
+                                {% else %}
+                                    <a class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                                {% endif %}
+                                    <div class="header__cart-item-info text-black">
+                                        <div class="header__cart-item-head header__cart-item-head_notif">
+                                            <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                            <div class="d-block mt-2">
+                                                    <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                                    <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="header__cart-item-body">
+                                            <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                                <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                            </span>
+                                        </div>
+        
+                                    </div>
+                                    </a>
+                                    <!-- end of notification if naay magpa request og order (parent order)-->
+                                    <div class="dropdown-divider m-0"></div>
+                            {% elif notif.notif_type == "Personnel Discount Request" %}
+                                <a href="{{notif.url}}" class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                                    <div class="header__cart-item-info text-black">
+                                        <div class="header__cart-item-head header__cart-item-head_notif">
+                                            <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                            <div class="d-block mt-2">
+                                                    <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                                    <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="header__cart-item-body">
+                                            <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                                <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                            </span>
+                                        </div>
+        
+                                    </div>
+                                    </a>
+                                    <!-- end of notification if naay magpa request og order (parent order)-->
+                                <div class="dropdown-divider m-0"></div>
+                            {% endif %}
+                    {% endfor %}
+                    </div>
+                    
+                <a href="/notifications" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                {% else %}
+                <div class="text-center">
+                    <img src="{% static 'img/consumer/header/empty_notification.png' %}" style="padding: 25px !important; min-width: 180px !important; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                    <p>No notifications yet</p>
+                </div>
+                {% endif %}
+    
+            </div>
+    
+    
+          </div>
+          <div class="dropdown">
+          <a class="nav-link nav-profile align-items-center px-2 " href="#" data-bs-toggle="dropdown">
+              {% if consumer.profile_picture %}
+                  {% if 'profile_default.jpg' in consumer.profile_picture %}
+                      <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                  {% else %}
+                      <img class="img-fluid rounded-circle" src="/Post_Media/{{consumer.profile_picture}}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                  {% endif %}
+              {% else %}
+                  <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+              {% endif %}
+              <span class="name d-none d-lg-inline text-white">{{consumer.first_name}} {{consumer.last_name}}</span>
+          </a><!-- End Profile Iamge Icon -->
+              <nav class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_profile" style="width:173px !important;">
+                  <a class="dropdown-content-profile d-flex align-items-center" href="{% url 'user_profile' %}">
+                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;" ></i>
+                      <span>My Profile</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-content-profile d-flex align-items-center" href="#" data-toggle="modal" data-target="#logoutModal">
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;"></i><span>Logout</span>
+                  </a>
+              </nav>
+          </div>
+    
+          {% else %}
+          <div class="m-auto header_icon text-center">
+              <div class="dropdown m-auto">
+                  <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+                      <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+                  </div>
+                  <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart" style="width: 300px;">
+                      <div class="pt-3 pb-2 px-3 border-bottom">
+                          <h4 class="emercado_color_1 m-0 text_size_sm">Cart</h4>
+                      </div>
+                      {% if my_cart|length > 0 %}
+                      <div class="header__cart-list-item" id="scroll_style">
+                          {% for cart in my_cart %}
+                          <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                              {% if cart.product_image %}
+                              <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                              {% else  %}
+                                  <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                              {% endif  %}
+                              <div class="header__cart-item-info text-black">
+                                  <div class="header__cart-item-head">
+                                      <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                                      <div class="header__cart-item-price-wrap">
+                                          <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                          <span class="header__cart-item-multiply">x</span>
+                                          <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                                      </div>
+                                  </div>
+                                  <div class="header__cart-item-body">
+                                      <span class="header__cart-item-description"></span>
+                                      <span class="header__cart-item-remove"></span>
+                                  </div>
+                              </div>
+                          </a>
+                          {% endfor %}
+    
+                          <div class="dropdown-divider m-0 pb-3"></div>
+                          <div class="">
+                            <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                            <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                          </div>
+    
+                      </div>
+                      {% else %}
+                      <div class="text-center">
+                          <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                          <p>No items yet</p>
+                          <div class="dropdown-divider m-0 pb-3"></div>
+                      </div>
+                      <div class="" style="display:none;" id="cart_footer">
+                        <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                        <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                    </div>
+    
+                      {% endif %}
+    
+                  </div>
+              </div>
+          </div>
+          <a class="nav-link nav-profile align-items-center " href="/login" >
+              <span class="name  text-white">Login</span>
+          </a>
+          {% endif %}
+          <script>
+              $(document).ready(function () {
+                get_cart_total("{{csrf_token}}")
+              });
+          </script>
+         </div>
+         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-orange" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <!-- End -->
+    </header>
+    <main id="main" style="min-height: 50%;">
+        <!-- ======= Hero Section ======= -->
+        <section class="section dashboard emercado_background_color_3 h-100">
+            <div class="hero-container m-auto">
+                <div class="container p-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-white">
+                          <li class="breadcrumb-item">
+                              <a class="emercado_color_1" href="{% url 'dine' %}">Checkout</a>
+                          </li>
+                          <li class="breadcrumb-item active"
+                              aria-current="page">
+                              My Orders
+                          </li>
+                        </ol>
+                    </nav>
+
+                    <section class="emercado_background_color_2 mb-3" >
+                        <h1 class="heading mt-0">
+                          <span>
+                            <strong class="emercado_color_1" style="border-bottom: 5px solid #9688FE !important; font-size: 25px;">My Orders</strong>
+                          </span>
+                        </h1>
+                      </section>
+
+                    <section class="emercado_background_color_2 mb-3">
+                        <div class="row w-100 m-auto">
+                            <div class="text-center p-3">
+                                <div class="row w-100 m-auto">
+                                    <div class="profile-head" id="menu-links" >
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist" style="border: 1px solid #ddd; border-radius: 4px; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; display: flex;">
+                                            <li class="nav-item col-auto" style="min-width: 160px;">
+                                                <a class="purch-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+                                            </li>
+                                            <li class="nav-item col-auto" style="min-width: 160px;">
+                                                <a class="purch-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false">Pending</a>
+                                            </li>
+                                            <li class="nav-item col-auto" style="min-width: 160px;">
+                                                <a class="purch-link" id="preparing-tab" data-toggle="tab" href="#preparing" role="tab" aria-controls="preparing" aria-selected="false">Preparing</a>
+                                            </li>
+                                            <li class="nav-item col-auto" style="min-width: 160px;">
+                                                <a class="purch-link" id="prepared-tab" data-toggle="tab" href="#prepared" role="tab" aria-controls="prepared" aria-selected="false">Prepared</a>
+                                            </li>
+                                            <li class="nav-item col-auto" style="min-width: 160px;">
+                                                <a class="purch-link" id="completed-tab" data-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
+                                            </li>
+                                            <li class="nav-item col-auto" style="min-width: 160px;">
+                                                <a class="purch-link" id="cancelled-tab" data-toggle="tab" href="#cancelled" role="tab" aria-controls="cancelled" aria-selected="false">Cancelled</a>
+                                            </li>
+                                            <li class="nav-item col-auto" style="min-width: 160px;">
+                                                <a class="purch-link" id="return-tab" data-toggle="tab" href="#return" role="tab" aria-controls="return" aria-selected="false">Return/Refund</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row w-100 m-auto">
+                                    <div class="tab-content profile-tab" id="myTabContent">
+                                        <!-- ALL -->
+                                        <div class="tab-pane active show in" id="all" role="tabpanel" aria-labelledby="all-tab">
+                                            {% for order, product in retval %}
+                                            <div class="container-fluid card mt-5 p-2">
+                                                <div class="row w-100 m-auto" style="align-items: center;">
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-4 p-0 my-2 sm_size">
+                                                        <div class="d-flex">
+                                                            <a href="{{order.store_link}}" style="text-decoration: none;">
+                                                                <img class="img-fluid rounded-circle" src="/Post_Media/{{order.store_image}}" alt="" style="height: 30px; width: 30px;">
+                                                                <span class="text-black pt-2 ">{{order.store_name}}</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-2 col-md-4 col-lg-4 p-0">
+                                                        <div class="text-center total_amount">
+                                                            <span class="text-black pt-2 emercado_text_overflow d_none_sm">Total Amount</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 d-none d-sm-block d-md-block d-lg-block">
+                                                        <div class="text-center">
+                                                            <span class="text-black act">Action</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                                                    <div class="col-6 col-sm-3 col-md-4 col-lg-4 p-0 m-0  sm_size">
+                                                            <div class="qGisqd" data-toggle="modal" data-target="#largeModal{{order.order_id}}">
+                                                                <span style="cursor:pointer" class="emercado_color_1"><b>{{order.id_format}}</b></span>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-3 col-md-4 col-lg-4 my-2 sm_size">
+                                                        <div class="text-center total_amount">
+                                                                <p class="total_d_sm_block px-2" style="display:none; color:#000000; font-weight: 400;">Total Amount:</p>
+                                                                <span class="emercado_color_1" id="total_section"><script>document.write(CurrencyConverter({{order.total}}))</script></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 p-0">
+                                                        <div class="p-3 text-nowrap button_sm">
+                                                            <button type="button" class="btn btn-orange btn-sm mx-1" data-toggle="modal" data-target="#exampleModalCenterTitle1" style="color: white; min-width: 105px;">Pay Order</button>
+                                                            {% if order.order_status == "Pending" and order.discounted_flag == 0 %}
+                                                              <button type="button" class="btn btn-orange btn-sm mx-1" data-toggle="modal" data-target="#discount_request{{order.order_id}}" style="color: white;  min-width: 105px;">Request Discount</button>
+                                                            {% endif  %}  
+                                                        </div>
+
+                                                        <!-- modal1 -->
+                                                        <div class="modal fade" id="pay_modal{{order.order_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" data-backdrop="false" aria-hidden="true" style="background-color:rgba(0,0,0,0.5);">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <h5 class="modal-title emercado_color_1" id="exampleModalCenterTitle" style="font-size: 20px;">Pay Order</h5>
+                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true" style="font-size: 21px;">&times;</span>
+                                                                  </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="flex-container">
+                                                                        
+                                                                        <a href="#" data-toggle="modal" data-target="#qr-modal"><i class="bi bi-qr-code" style="position: absolute; top: 49px; right: 33px; cursor: pointer;"></i></a></span>
+                                                                        <div class="modal fade" id="qr-modal" tabindex="-1" aria-labelledby="qr-modal-label" aria-hidden="true" data-backdrop="false">
+                                                                            <div class="modal-dialog-centered">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        
+                                                                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary emercado_color_1" data-dismiss="modal">Confirm</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button"  class="btn btn-orange" style="color: #fff;">Pay</button>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- modal2 -->
+                                                        <div class="modal fade" id="discount_request{{order.order_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" data-backdrop="false" aria-hidden="true" style="background-color:rgba(0,0,0,0.5);">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <h5 class="modal-title emercado_color_1" id="exampleModalCenterTitle" style="font-size: 20px;">Apply for Discount</h5>
+                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true" style="font-size: 21px;">&times;</span>
+                                                                  </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                        <i id="discount_msg{{order.order_id}}" style="color: red; position: absolute; top: 74px; left: 23px;"></i>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail"style="display:flex;">Consumer Type</label>
+                                                                            <select class="form-control discount_fields{{order.order_id}}" onchange="verify_discount_request('{{order.order_id}}')" id="discount_personnel{{order.order_id}}">
+                                                                            <option value="">Please select. . . .</option>
+                                                                            {% for discount in all_discounts %}
+                                                                                <option value="{{discount.id}}">{{discount.personnel_status}}</option>
+                                                                            {% endfor %}
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleFormControlFile1" style="display:flex;">Upload your Valid ID</label>
+                                                                            <input type="file" onchange="verify_discount_request('{{order.order_id}}')" onkeyup="verify_discount_request('{{order.order_id}}')" class="form-control discount_fields{{order.order_id}}" id="discount_file{{order.order_id}}">
+                                                                          </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                    <button type="button"  disabled onclick="request_discount('{{order.order_id}}')" id="discount_btn{{order.order_id}}" class="btn btn-primary" style="background-color: #9688FE; border: none;">Submit</button>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                        <script>
+
+                                                        </script>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="largeModal{{order.order_id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal"  data-backdrop="false" aria-hidden="true" style="background-color:rgba(0,0,0,0.5);">
+                                                <div class="modal-dialog modal-xl">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <div class="row align-items-center">
+                                                        <div class="mb-2 mb-sm-0 px-5">
+                                                          <h4 class="modal-title" id="myModalLabel">{{order.id_format}}</h4>
+                                                        </div>
+                                                      </div>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true" style="font-size: 22px; cursor: pointer;">&times;</span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <div class="row w-100 m-auto">
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-3 mb-lg-0">
+                                                          <!-- Card -->
+                                                          <div class="card mb-3 mb-lg-5">
+                                                            <div class="card-header emercado_background_color_1">
+                                                              <h4 class="card-header-title text-white">Orders</h4>
+                                                            </div>
+                                                            <!-- Body -->
+                                                            <div class="card-body">
+                                                              <!-- Media -->
+                                                              {%for obj in product%}
+                                                              <div class="d-flex align-items-center">
+                                                                <div class="row w-100 m-0">
+                                                                    <div class="col-12 col-sm-3 col-md-3 col-lg-3 m-auto">
+                                                                        <div class="flex-shrink-0">
+                                                                            <img class="img-fluid" src="/Post_Media/{{obj.image}}" alt="" style="max-height: 100px; max-width: 100px; object-fit: contain;">
+                                                                        </div>
+                                                                    </div>
+                                                                   <div class="col-12 col-sm-9 col-md-9 col-lg-9 p-0">
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <div class="h6 d-block">{{obj.product_name}}</div>
+                                                                        {%if obj.variation_name%}
+                                                                        <h6 class="fs-6 text-body">Variation: <span class="fw-semibold">{{obj.variation_name}}</span></h6>
+                                                                        {% endif %}
+                                                                        <div class="row w-100 m-auto">
+                                                                            <div class="col-12 col-sm-4 col-md-4 col-lg-4  m-auto">
+                                                                                Price: <script>document.write(CurrencyConverter("{{obj.price}}"))</script>
+                                                                            </div>
+                                                                            <div class="col-12 col-sm-4 col-md-4 col-lg-4  m-auto">
+                                                                                x{{obj.quantity}}
+                                                                            </div>
+                                                                            <div class="col-12 col-sm-4 col-md-4 col-lg-4  m-auto d-none d-sm-block d-md-block d-lg-block">
+                                                                                Total Price: <span ><script>document.write(CurrencyConverter("{{obj.total}}"))</script></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                   </div>
+
+                                                                </div>
+                                                              </div>
+                                                              <hr style="border-top: 1px solid rgb(0 0 0);">
+                                                              {% endfor %}
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <div class="row text-end">
+                                                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 text-center m-auto">
+                                                                        <h4 class="card-header-title emercado_color_1">Total: <script>document.write(CurrencyConverter({{order.total}}))</script></h4>
+                                                                    </div>
+                                                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 text-center m-auto">
+                                                                        <a href="{{order.store_link}}">
+                                                                            <button type="button" class="btn btn-orange" style="color: #fff;">Add New Item</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                          <div class="card">
+                                                            <div class="card-header emercado_background_color_1">
+                                                              <h4 class="card-header-title text-white">Order QR code</h4>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="align-middle">
+                                                                    <img src="/Post_Media/{{order.qr_code}}" class="img-fluid" style="width: 250px; height: 250px;">
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            {% endfor %}
+                                        </div>
+                                        
+                                        <!-- PENDING -->
+                                        <div class="tab-pane" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                                            <div class="container-fluid card mt-5 p-2">
+                                                <div class="row w-100 m-auto" style="align-items: center;">
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-4 p-0 my-2 sm_size">
+                                                        <div class="emercado_text_overflow">
+                                                            <a class="d-flex" href="#" style="text-decoration: none;">
+                                                                <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" alt="" style="height: 30px; width: 30px;">
+                                                                <span class="text-black pt-2 emercado_text_overflow px-2" style="width:auto !important;">Inday Store</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-2 col-md-4 col-lg-4 p-0">
+                                                        <div class="text-center total_amount">
+                                                            <span class="text-black pt-2 emercado_text_overflow d_none_sm">Total Amount</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 d-none d-sm-block d-md-block d-lg-block">
+                                                        <div class="text-center">
+                                                            <span class="text-black act">Action</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% for pending in Pending %}
+                                                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                                                    <div class="col-6 col-sm-3 col-md-4 col-lg-4 p-0 m-0  sm_size">
+                                                            <div class="qGisqd">
+                                                                <span class="emercado_color_1"><b>{{pending.id_format}}</b></span>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-3 col-md-4 col-lg-4 my-2 sm_size">
+                                                        <div class="text-center total_amount">
+                                                            <p class="total_d_sm_block px-2" style="display:none; color:#000000; font-weight: 400;">Total Amount:</p>
+                                                            <span class="emercado_color_1">P180.00</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 p-0">
+                                                        <div class="p-3 button_sm">
+                                                            <button type="button" class="btn btn-orange btn-sm mx-1" data-toggle="modal" data-target="#exampleModalCenterTitle1" style="color: white; min-width: 100px;">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                        <!-- PREPARING -->
+                                        <div class="tab-pane" id="preparing" role="tabpanel" aria-labelledby="preparing-tab">
+                                            <div class="container-fluid card mt-5 p-2">
+                                                <div class="row w-100 m-auto" style="align-items: center;">
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 p-0 m-0 sm_size">
+                                                        <div class="py-2">
+                                                            <a class="d-flex" href="#" style="text-decoration: none;">
+                                                                <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" alt="" style="height: 30px; width: 30px;">
+                                                                <span class="text-black pt-2 emercado_text_overflow px-2" style="width:auto !important;">IL Corso</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-2">
+                                                        <div class="text-center total_amount">
+                                                            <span class="text-black pt-2 emercado_text_overflow d_none_sm">Total Amount</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 px-2 sm_size">
+                                                        <div class="qGisqd">
+                                                            <span class="emercado_color_1"><b>#ORD000001</b></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-2 my-2 sm_size">
+                                                        <div class="text-center total_amount px-4">
+                                                            <p class="total_d_sm_block px-2" style="display:none; color:#000000; font-weight: 400;">Total Amount:</p>
+                                                            <span class="emercado_color_1">P180.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- PREPARED -->
+                                        <div class="tab-pane" id="prepared" role="tabpanel" aria-labelledby="prepared-tab">
+                                            <div class="container-fluid card mt-5 p-2">
+                                                <div class="row w-100 m-auto" style="align-items: center;">
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 p-0 m-0 sm_size">
+                                                        <div class="py-2">
+                                                            <a class="d-flex" href="#" style="text-decoration: none;">
+                                                                <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" alt="" style="height: 30px; width: 30px;">
+                                                                <span class="text-black pt-2 emercado_text_overflow px-2" style="width:auto !important;">Dodong Store</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-2">
+                                                        <div class="text-center total_amount">
+                                                            <span class="text-black pt-2 emercado_text_overflow d_none_sm">Total Amount</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 px-2 sm_size">
+                                                        <div class="qGisqd">
+                                                            <span class="emercado_color_1"><b>#ORD000001</b></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-2 my-2 sm_size">
+                                                        <div class="text-center total_amount px-4">
+                                                            <p class="total_d_sm_block px-2" style="display:none; color:#000000; font-weight: 400;">Total Amount:</p>
+                                                            <span class="emercado_color_1">P180.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- COMPLETED -->
+                                        <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                                            <div class="container-fluid card mt-5 p-2">
+                                                <div class="row w-100 m-auto" style="align-items: center;">
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 p-0 m-0 sm_size">
+                                                        <div class="py-2">
+                                                            <a class="d-flex" href="#" style="text-decoration: none;">
+                                                                <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" alt="" style="height: 30px; width: 30px;">
+                                                                <span class="text-black pt-2 emercado_text_overflow px-2" style="width:auto !important;">Dodong Store</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-2">
+                                                        <div class="text-center total_amount">
+                                                            <span class="text-black pt-2 emercado_text_overflow d_none_sm">Total Amount</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 px-2 sm_size">
+                                                        <div class="qGisqd">
+                                                            <span class="emercado_color_1"><b>#ORD000001</b></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-2 my-2 sm_size">
+                                                        <div class="text-center total_amount px-4">
+                                                            <p class="total_d_sm_block px-2" style="display:none; color:#000000; font-weight: 400;">Total Amount:</p>
+                                                            <span class="emercado_color_1">P180.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- CANCELLED -->
+                                        <div class="tab-pane" id="cancelled" role="tabpanel" aria-labelledby="cancelled-tab">
+                                            <div class="container-fluid card mt-5 p-2">
+                                                <div class="row w-100 m-auto" style="align-items: center;">
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-4 p-0 my-2 sm_size">
+                                                        <div class="emercado_text_overflow">
+                                                            <a class="d-flex" href="#" style="text-decoration: none;">
+                                                                <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" alt="" style="height: 30px; width: 30px;">
+                                                                <span class="text-black pt-2 emercado_text_overflow px-2" style="width:auto !important;">Inday Store</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-2 col-md-4 col-lg-4 p-0">
+                                                        <div class="text-center total_amount">
+                                                            <span class="text-black pt-2 emercado_text_overflow d_none_sm">Total Amount</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 d-none d-sm-block d-md-block d-lg-block">
+                                                        <div class="text-center">
+                                                            <span class="text-black act">Action</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                                                    <div class="col-6 col-sm-3 col-md-4 col-lg-4 p-0 m-0  sm_size">
+                                                            <div class="qGisqd">
+                                                                <span class="emercado_color_1"><b>#ORD000001</b></span>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-3 col-md-4 col-lg-4 my-2 sm_size">
+                                                        <div class="text-center total_amount">
+                                                            <p class="total_d_sm_block px-2" style="display:none; color:#000000; font-weight: 400;">Total Amount:</p>
+                                                            <span class="emercado_color_1">P180.00</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 p-0">
+                                                        <div class="p-3 button_sm">
+                                                            <button type="button" class="btn btn-orange btn-sm mx-1" data-toggle="modal" data-target="#exampleModalCenterTitle1" style="color: white; min-width: 100px;">Buy Again</button>
+                                                            <button type="button" class="btn btn-orange btn-sm mx-1" data-toggle="modal" data-target="#exampleModalCenterTitle4" style="color: white; min-width: 100px;">Request Refund</button>
+                                                        </div>
+                                                        <div class="modal fade" id="exampleModalCenterTitle4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle4" data-backdrop="false" aria-hidden="true" style="background-color:rgba(0,0,0,0.5);">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <h5 class="modal-title emercado_color_1" id="exampleModalCenterTitle" style="font-size: 20px;">Request For Refund </h5>
+                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true" style="font-size: 21px;">&times;</span>
+                                                                  </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group text-start">
+                                                                        <label for="exampleFormControlTextarea1">Special Message</label>
+                                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Type here......."></textarea>
+                                                                      </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button"  class="btn btn-secondary"id="submit_btn" onclick="request_share_order('{{csrf_token}}')">Cancel</button>
+                                                                  <button type="button"  class="btn btn-orange" style="color: #fff;" id="submit_btn" onclick="request_share_order('{{csrf_token}}')">Submit</button>
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- RETURN/REFUND -->
+                                        <div class="tab-pane" id="return" role="tabpanel" aria-labelledby="return-tab">
+                                            <div class="container-fluid card mt-5 p-2">
+                                                <div class="row w-100 m-auto" style="align-items: center;">
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-4 p-0 my-2 sm_size">
+                                                        <div class="emercado_text_overflow">
+                                                            <a class="d-flex" href="#" style="text-decoration: none;">
+                                                                <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" alt="" style="height: 30px; width: 30px;">
+                                                                <span class="text-black pt-2 emercado_text_overflow px-2" style="width:auto !important;">Inday Store</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-2 col-md-4 col-lg-4 p-0">
+                                                        <div class="text-center total_amount">
+                                                            <span class="text-black pt-2 emercado_text_overflow d_none_sm">Total Amount</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 d-none d-sm-block d-md-block d-lg-block">
+                                                        <div class="text-center">
+                                                            <span class="text-black act">Status</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                                                    <div class="col-6 col-sm-3 col-md-4 col-lg-4 p-0 m-0  sm_size">
+                                                            <div class="qGisqd">
+                                                                <span class="emercado_color_1"><b>#ORD000001</b></span>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-3 col-md-4 col-lg-4 my-2 sm_size">
+                                                        <div class="text-center total_amount">
+                                                            <p class="total_d_sm_block px-2" style="display:none; color:#000000; font-weight: 400;">Total Amount:</p>
+                                                            <span class="emercado_color_1">P180.00</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 p-0">
+                                                        <div class="p-3 button_sm">
+                                                            <span><i class="fa-sharp fa-solid fa-circle-check" style="cursor: pointer; font-size: 15px; margin-right: 10px; color: green;"></i>Accepted</span>
+                                                        </div>
+                                                        <!-- <div class="p-3 button_sm">
+                                                            <span id="variants_option_others_cancel" onclick="cancel_add_new_option()"><i class="fa-solid fa-circle-xmark" style="color: #dc3545; cursor: pointer; margin-right: 10px; font-size: 15px;"></i>Rejected</span>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="emercado_background_color_2 mb-3" style="position: sticky; bottom: 0;">
+                        <div class="text-right px-4 p-3">
+                            <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#exampleModalCenterTitle3" style="color: white; min-width: 116px;">Share Order</button>
+                            <button type="button" class="btn btn-orange" data-toggle="modal" style="color: white; min-width: 105px; ">Request Payment</button>
+                        </div>
+                        <!-- modal3 -->
+                        <div class="modal fade" id="exampleModalCenterTitle3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle3" data-backdrop="false" aria-hidden="true" style="background-color:rgba(0,0,0,0.5);">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title emercado_color_1" id="exampleModalCenterTitle" style="font-size: 20px;">Order Method</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" style="font-size: 21px;">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="flex-container">
+                                        <label for="order_id" class="d-flex">ORDER ID <i id="share_msg" style="color:red; top: 75px; position: absolute;"></i></label>
+                                         <input type="text" class="form-control"  id="share_order_id"><i class="bi bi-people-fill" style="position: absolute; top: 49px; right: 60px; cursor: pointer;"></i>
+                                        <a href="#" data-toggle="modal" data-target="#qr-modal"><i class="bi bi-qr-code" style="position: absolute; top: 49px; right: 33px; cursor: pointer;"></i></a></span>
+                                        <div class="modal fade" id="qr-modal" tabindex="-1" aria-labelledby="qr-modal-label" aria-hidden="true" data-backdrop="false">
+                                            <div class="modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title emercado_color_1" id="qr-modal-label" style="font-size: 20px;">Scan QR Code</h5>
+                                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="scanner-content">
+                                                            <div class="qr-preview">
+                                                                <div id="reader"></div>
+                                                            </div>
+                                                            <div class="scanner-bar"></div>
+                                                            <h5 class="emercado_color_1">Make sure the QR Code is within the frame.</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary emercado_color_1" data-dismiss="modal">Confirm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button"  class="btn btn-orange" style="color: #fff;" id="submit_btn" onclick="request_share_order('{{csrf_token}}')">Submit</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main><!-- End #main -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <footer class="emercado_color_1" style="border-top: 6px solid;">
+    <section class="container m-auto" id="contacts">
+        <div class="footer_contacts">
+            <div class="row w-100 m-auto">
+                <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Customer Service</h4>
+                           <li><a class="footer_text text-black" href="#"> Help Centre</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Cash PH</a></li>
+                           <li><a class="footer_text text-black" href="#"> Payment Methods</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Pay</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Coins</a></li>
+                           <li><a class="footer_text text-black" href="#"> Order Tracking</a></li>
+                           <li><a class="footer_text text-black" href="#"> Return and Refund</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Guarantee</a></li>
+                           <li><a class="footer_text text-black" href="#"> Overseas Products</a></li>
+                           <li><a class="footer_text text-black" href="#"> Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">About Checkout</h4>
+                           <li><a class="footer_text text-black" href="#"> Checkout Blog</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Career</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Policies</a></li>
+                           <li><a class="footer_text text-black" href="#"> Privacy Policy</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Mall</a></li>
+                           <li><a class="footer_text text-black" href="#"> Seller Centre</a></li>
+                           <li><a class="footer_text text-black" href="#"> Flash Deals</a></li>
+                           <li><a class="footer_text text-black" href="#"> Media Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Payment</h4>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paymaya.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> PayMaya</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/visa.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Visa</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/gcash.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> GCash</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paypal.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Paypal</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Follow Us</h4>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/fb.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Facebook</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/twitter.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Twitter</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/in.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">LinkedIn</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/insta.jpg' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Instagram</a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </footer>
+
+  <!-- Vendor JS Files -->
+
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min..js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min..js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min..js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min..js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate..js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+
+  <!-- Template Main JS File -->
+
+    <script>
+    function menuToggle() {
+      const toggleMenu = document.querySelector(".menu");
+      toggleMenu.classList.toggle("active");
+    }
+    $(document).ready(function(){
+        requested_discounts('{{csrf_token}}');
+        $('#myTab a').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+});
+    </script>
+
+    <script>
+        new Splide( '#image-carousel' ).mount();
+    </script>
+
+    <script>
+        const menuLinks = document.querySelectorAll('#menu-links a');
+        menuLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+        event.preventDefault();
+        menuLinks.forEach((link) => link.classList.remove('active'));
+        link.classList.add('active');
+        const targetId = link.getAttribute('href');
+        const target = document.querySelector(targetId);
+        target.scrollIntoView({ behavior: 'smooth' });
+        });
+        });
+        $("#share_order_id").keyup(function(){
+        if(this.value != ""){
+            document.getElementById("submit_btn").disabled = false;
+        }else{
+            document.getElementById("submit_btn").disabled = true;
+        }
+
+        });
+
+        $(document).ready(function() {
+        unread_notifications('{{csrf_token}}')
+        });
+        $("#notif_dropdown").click(function() {
+        read_notifications('{{csrf_token}}')
+        });
+    </script>
+    </form>
+</body>
+</html>

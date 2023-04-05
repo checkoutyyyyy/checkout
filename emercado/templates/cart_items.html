@@ -1,0 +1,1117 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+  <title>Checkout - Dine - My Cart</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+
+  <!-- Favicons -->
+  <link href="{% static 'img/consumer/cart_logo.png' %}" rel="icon">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/order.css' %}" rel="stylesheet" />
+
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="{% static '/functionJS/utility.js' %}"></script>
+  <script src="{% static '/functionJS/spinner.js' %}"></script>
+
+
+  <style>
+    .th-w-40{
+      width: 40%!important;
+    }
+    th, td{
+      overflow: auto;
+    }
+    .open>.dropdown-menu {
+      display: block;
+      margin-top: 30px;
+    }
+    .dropdown.drop {
+      cursor: pointer;
+      color: rgba(0,0,0,.54);
+      margin-top: 10px;
+    }
+
+    .btn:first-child:active:focus-visible{
+      box-shadow: var(--bs-btn-focus-box-shadow);
+    }
+
+
+    .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+      color: white;
+      background-color: #9688FE;
+      border-color: none !important;
+    }
+
+    .header__cart-heading {
+    margin: -32px 52px 0px;
+    white-space: initial;
+    }
+
+
+    .variant {
+      display: block;
+      position: absolute;
+      text-transform: uppercase;
+    }
+    button.selected-variation{
+      color: #9688FE;
+      border-color: #947ADA;
+    }
+
+    .bi-caret-down-fill::before {
+
+    position: absolute;
+    top: 2px;
+    }
+    .dropdown-menu.dropdown-menu-right.shadow.animated--fade-in{
+      margin-right: 2px !important;
+      left: auto;
+      margin-top: 2px !important;
+    }
+
+    @media (max-width: 1200px){
+      .d_none_total{
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 991px){
+      .text-danger{
+        padding-top: 3rem !important;
+
+      }
+      .d_none_total{
+        display: none !important;
+      }
+    }
+    @media (max-width: 763px){
+      .dropdown-variation{
+        width: 240px !important;
+        position: absolute;
+        left: -30px !important;
+
+      }
+    }
+
+    @media (max-width: 415px){
+      .dropdown-variation{
+        width: 220px !important;
+        position: absolute;
+        left: -30px !important;
+        top: -17px !important;
+        z-index: 1;
+
+      }
+    }
+
+    @media (max-width: 575px){
+      .mobile_view_delete{
+        position: absolute;
+        right: 2px;
+        left: auto;
+        
+        top: 2px;
+     }
+     .d_none_mobile{
+      display: none;
+     }
+    }
+
+    @media (max-width: 280px){
+      .dropdown-menu.dropdown-menu-right.shadow.animated--fade-in{
+        margin-top: 2px;
+      }
+    }
+
+
+
+  </style>
+</head>
+
+
+<body>
+  <div class="loading-spinner" id="loading-spinner" style="visibility: visible;display: block;">
+    <img src="{% static 'img/consumer/cart_logo.png' %}" alt="" style="width: 85px !important; left: 50% !important; top: 50% !important; position: inherit; height: 110px !important;">
+</div>
+ <!-- ======= Header ======= -->
+ <header class="header" style="z-index: 2;">
+  <div class="logo">
+      <a style="text-decoration: underline;" href="/">
+        <img class="header_logo d-sm-none d-md-none d-lg-none mt-1" style="width: auto; max-height: 50px;" src="{% static 'img/consumer/border_white.png' %}" alt="">
+        <img class="header_logo d-none d-sm-block" src="{% static 'img/consumer/black&white.png' %}" alt="">
+      </a>
+  </div>
+   <div class="dropdown text-nowrap d-flex">
+     {% if consumer %}
+    <div class="dropdown m-auto pt-3">
+        <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+            <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart " style="width: 300px;">
+          <div class="pt-3 pb-2 px-3 border-bottom">
+              <h4 class="emercado_color_1 m-0">Cart</h4>
+          </div>
+          {% if my_cart|length > 0 %}
+              
+              {% if my_cart|length <= 6 %}
+              <div class="" id="scroll_style">
+              {% else %}
+              <div class="header__cart-list-item scrollbar"id="scroll_style">
+              {% endif %}
+              
+              {% for cart in my_cart %}
+                  <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                      {% if cart.product_image %}
+                      <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                      {% else  %}
+                      <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                      {% endif  %}
+                      <div class="header__cart-item-info text-black">
+                          <div class="header__cart-item-head">
+                              <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                              <div class="header__cart-item-price-wrap">
+                                  <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                  <span class="header__cart-item-multiply">x</span>
+                                  <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                              </div>
+                          </div>
+                          <div class="header__cart-item-body">
+                              <span class="header__cart-item-description"></span>
+                              <span class="header__cart-item-remove"></span>
+                          </div>
+                      </div>
+                  </a>
+                  <div class="dropdown-divider m-0"></div>
+              {% endfor %}
+              </div>
+              <div class="">
+                <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+              </div>
+          {% else %}
+          <div class="text-center">
+              <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+              <p>No items yet</p>
+              <div class="dropdown-divider m-0 pb-3"></div>
+          </div>
+          <div class="" style="display:none;" id="cart_footer">
+              <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+              <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+          </div>
+          {% endif %}
+
+
+        </div>
+    </div>
+    <div class="dropdown m-auto pt-3">
+        <div class="nav-link dropdown m-auto header_icon text-center"   data-bs-toggle="dropdown" id="notif_dropdown">
+            <i class="dropbtn_bell fa-solid fa-bell text-white p-0" style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_bell " id="notif_count"></span>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_notif" style="width:300px">
+          <div class="pt-3 pb-2 px-3 border-bottom">
+          <h4 class="emercado_color_1 m-0 text_size_sm">Notifications</h4>
+          </div>
+          {% if notifications|length > 0 %}
+              {% if notifications|length <= 5 %}
+              <div class="" id="scroll_style">
+              {% else %}
+              <div class="header__cart-list-item scrollbar"id="scroll_style">
+              {% endif %}
+              <!-- notification if naay magpa request og order (parent order)-->
+              {% for notif in notifications %}
+  
+                  {% if notif.notif_type == "Share Order" %}
+                      {% if not notif.requested_response  %}
+                          <a class="header__cart-item notif_block notif_unread" onclick="allow_share_order('{{csrf_token}}','{{notif.id}}')">
+                      {% else %}
+                          <a class="header__cart-item notif_block notif_read" id="test-1">
+                      {% endif %}
+                          <div class="header__cart-item-info text-black">
+                              <div class="header__cart-item-head header__cart-item-head_notif">
+                                  <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px; margin-top: 3px;"/>
+                                  <div class="d-block mt-2">
+                                      <h5 class="header__cart-item-name">{{notif.requesting_name}}</h5>
+                                      <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.requesting_id_format}}</p>
+                                  </div>
+  
+                              </div>
+                              <div class="header__cart-item-body">
+                                  <span class="header__cart-item-description"  style="white-space: normal;margin-left: 50px;">
+                                      <p class="my-2 btn_notif">{{notif.content}}</p>
+                                  </span>
+                              </div>
+  
+                              <!-- <div class="text-center mb-2" id="shared_optons{{notif.id}}">
+                                  <span class="header__cart-item-remove">
+                                      <button type="button" class="btn btn-sm text-white" style="background-color: #656363; margin-right: 10px;" onclick="denied_request('{{csrf_token}}','{{notif.id}}')">No</button>
+                                      <button type="button" class="btn btn-sm text-white" style="background-color: #ff6c20; margin-left: 10px;" onclick="accept_request('{{csrf_token}}','{{notif.id}}')">Yes</button>
+                                  </span>
+                              </div> -->
+  
+                          </div>
+                      </a>
+                  <!-- end of notification if naay magpa request og order (parent order)-->
+                      <div class="dropdown-divider m-0"></div>
+                      {% elif notif.notif_type == "Share Order Response" %}
+                          {% if notif.requested_response == "Yes" %}
+                              <a class="header__cart-item notif_block notif_unread" onclick="share_order_accessable('{{notif.url}}')">
+                          {% else %}
+                              <a class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                          {% endif %}
+                              <div class="header__cart-item-info text-black">
+                                  <div class="header__cart-item-head header__cart-item-head_notif">
+                                      <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                      <div class="d-block mt-2">
+                                              <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                              <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                      </div>
+                                  </div>
+                                  <div class="header__cart-item-body">
+                                      <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                          <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                      </span>
+                                  </div>
+  
+                              </div>
+                              </a>
+                              <!-- end of notification if naay magpa request og order (parent order)-->
+                              <div class="dropdown-divider m-0"></div>
+                      {% elif notif.notif_type == "Personnel Discount Request" %}
+                          <a href="{{notif.url}}" class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                              <div class="header__cart-item-info text-black">
+                                  <div class="header__cart-item-head header__cart-item-head_notif">
+                                      <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                      <div class="d-block mt-2">
+                                              <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                              <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                      </div>
+                                  </div>
+                                  <div class="header__cart-item-body">
+                                      <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                          <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                      </span>
+                                  </div>
+  
+                              </div>
+                              </a>
+                              <!-- end of notification if naay magpa request og order (parent order)-->
+                          <div class="dropdown-divider m-0"></div>
+                      {% endif %}
+              {% endfor %}
+              </div>
+              
+          <a href="/notifications" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+          {% else %}
+          <div class="text-center">
+              <img src="{% static 'img/consumer/header/empty_notification.png' %}" style="padding: 25px !important; min-width: 180px !important; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+              <p>No notifications yet</p>
+          </div>
+          {% endif %}
+
+      </div>
+
+
+    </div>
+    <div class="dropdown">
+    <a class="nav-link nav-profile align-items-center " href="#" data-bs-toggle="dropdown">
+        {% if consumer.profile_picture %}
+            {% if 'profile_default.jpg' in consumer.profile_picture %}
+                <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+            {% else %}
+                <img class="img-fluid rounded-circle" src="/Post_Media/{{consumer.profile_picture}}" style="width: 35px; height: 35px;  border: 3px solid white;">
+            {% endif %}
+        {% else %}
+            <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+        {% endif %}
+        <span class="name d-none d-lg-inline text-white">{{consumer.first_name}} {{consumer.last_name}}</span>
+    </a><!-- End Profile Iamge Icon -->
+        <nav class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_profile" style="width:173px !important;">
+            <a class="dropdown-content-profile d-flex align-items-center" href="{% url 'user_profile' %}">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;" ></i>
+                <span>My Profile</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-content-profile d-flex align-items-center" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;"></i><span>Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    {% else %}
+    <div class="m-auto header_icon text-center">
+        <div class="dropdown m-auto">
+            <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+                <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+            </div>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart" style="width: 300px;">
+                <div class="pt-3 pb-2 px-3 border-bottom">
+                    <h4 class="emercado_color_1 m-0 text_size_sm">Cart</h4>
+                </div>
+                {% if my_cart|length > 0 %}
+                <div class="header__cart-list-item" id="scroll_style">
+                    {% for cart in my_cart %}
+                    <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                        {% if cart.product_image %}
+                        <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                        {% else  %}
+                            <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                        {% endif  %}
+                        <div class="header__cart-item-info text-black">
+                            <div class="header__cart-item-head">
+                                <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                                <div class="header__cart-item-price-wrap">
+                                    <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                    <span class="header__cart-item-multiply">x</span>
+                                    <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                                </div>
+                            </div>
+                            <div class="header__cart-item-body">
+                                <span class="header__cart-item-description"></span>
+                                <span class="header__cart-item-remove"></span>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                    <div class="dropdown-divider m-0 pb-3"></div>
+                    <div class="">
+                      <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                      <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                    </div>
+
+                </div>
+                {% else %}
+                <div class="text-center">
+                    <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                    <p>No items yet</p>
+                    <div class="dropdown-divider m-0 pb-3"></div>
+                </div>
+                <div class="" style="display:none;" id="cart_footer">
+                    <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                    <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <a class="nav-link nav-profile align-items-center px-2" href="/login" >
+        <span class="name  text-white">Login</span>
+    </a>
+    {% endif %}
+    <script>
+        $(document).ready(function () {
+          get_cart_total("{{csrf_token}}")
+        });
+    </script>
+   </div>
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+              <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-orange" href="{% url 'logout' %}">Logout</a>
+              </div>
+          </div>
+      </div>
+   </div>
+  <!-- End -->
+ </header>
+ <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header d-block">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <h4>Sign in to order</h4>
+          <p id="login-messages" style="color: #28a745 !important; background-color: #f9fffb; border: 1px solid rgba(40,167,69,.2); padding: 10px !important; text-align: center; border-radius: 10px;"><i class="fa fa-check mx-1" aria-hidden="true" style=" margin-right: 5px; "></i></p>
+          <div class="row w-100 m-auto">
+            <div class="mb-3 p-0">
+                <label class="mb-1" for="email">Email / Username</label>
+                <input autocomplete="off" aria-describedby="emailHelp" type="text" id="userid" name="userid" value="" style="border-radius:10px; padding: 2rem 0.75rem" onkeyup="verify_login()" class="form-control text-center login_fields"  placeholder="Email / Username" >
+            </div>
+         </div>
+
+
+         <div class="row w-100 m-auto">
+           <div class="mb-3 p-0">
+               <label class="mb-1" for="email">Password</label>
+               <input autocomplete="off" aria-describedby="emailHelp" type="password" id="password" name="password" value="" style="border-radius:10px; padding: 2rem 0.75rem"  onkeyup="verify_login()" class="form-control text-center login_fields"  placeholder="Password" >
+           </div>
+        </div>
+
+
+        <div class="row w-100 mb-3 m-auto p-0" style="padding: 0 12px;">
+            <button type="button" value="login" id="login_btn" onclick="login('{{csrf_token}}')" disabled class="btn btn-default submit fw-bold" style="border-radius: 10px; padding: 12px 0.75rem">LOGIN</button>
+        </div>
+
+
+        <div class="text-center pt-2 mb-1 text-muted">
+            <a href=""><b class="emercado_color_1">Sign up here</b></a> Or login in using
+          </div>
+         <div class="infinity-social-btn text-center pt-2">
+           <ul class="social_icons p-0;">
+                       <!-- Facebook Button -->
+             <li class="mx-2" style="cursor: pointer;">
+              <a href="#" class="facebook">
+               <i class="fa fa-facebook w-100"></i>
+               <i class="fa fa-facebook w-100"></i>
+              </a>
+             </li>
+                       <!-- Google Button -->
+             <li class="mx-2" style="cursor: pointer;">
+              <a href="#" class="google">
+               <i class="fa fa-google w-100"></i>
+               <i class="fa fa-google w-100"></i>
+              </a>
+             </li>
+                       <!-- Twitter Button -->
+             <li class="mx-2" style="cursor: pointer;">
+              <a href="#" class="twitter">
+               <i class="fa fa-twitter w-100"></i>
+               <i class="fa fa-twitter w-100"></i>
+              </a>
+             </li>
+           </ul>
+         </div>
+         <hr>
+         <br>
+         <div class="row w-100 mb-3 m-auto" style="padding: 0 12px;">
+             <button type="button"  onclick="checkout_items('{{csrf_token}}')" class="btn btn-default submit fw-bold" style="border-radius: 10px; padding: 12px 0.75rem">Continue Without Signing In</button>
+         </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <main id="main">
+    <section class="emercado_background_color_3">
+      <div class="hero-container">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                  <li class="breadcrumb-item">
+                      <a class="emercado_color_1" href="{% url 'dine' %}">Checkout</a>
+                  </li>
+                  <li class="breadcrumb-item active"
+                      aria-current="page">
+                      Shopping Cart
+                  </li>
+                </ol>
+              </nav>
+          <!-- store -->
+
+
+          <section class="emercado_background_color_2 mb-3">
+            <h1 class="heading mt-0">
+              <span>
+                  <strong class="emercado_color_1" style="border-bottom: 5px solid #9688FE !important; font-size: 25px;">My Cart</strong>
+              </span>
+            </h1>
+          </section>
+
+
+          <section class="emercado_background_color_2 mb-3">
+            <div class="d-flex box borders p-3 w-100 m-auto" style="align-items: center;">
+              <span class="custom-checkbox  m-3 p-1">
+                <input style="cursor: pointer" type="checkbox" id="selectAll" >
+              </span>
+              <div class="px-2">
+                <span class="emercado_color_1">Checkout All Products</span>
+              </div>
+            </div>
+          </section>
+
+          {% for cart_key , cart  in retval %}
+            <section class="emercado_background_color_2 mb-3" id="store_section{{cart_key.id}}">
+              <div class="box borders p-3" style="height: auto;">
+                <div class="d-flex w-100 m-auto" style="align-items: center;">
+                  <span class="custom-checkbox m-3 p-1">
+                    <input style="cursor: pointer" type="checkbox" id="cart_key{{cart_key.id}}" class="emcdo_cart" >
+                    <label for="selectAll"></label>
+                  </span>
+                  <div class="p-0">
+                    <a href="{{cart_key.store_link}}" style="text-decoration: none; display: inline-block;">
+                      <img class="img-fluid rounded-circle" src="/Post_Media/{{cart_key.store_image}}" alt="shop-logo" style="height: 30px; width: 30px;">
+                      <span class="emercado_color_1" style="margin-left: 10px;">{{cart_key.store_name}}</span>
+                    </a>
+                  </div>
+                </div>
+                <hr>
+                <div class="row w-100 m-auto mb-3" id="cart_section{{obj.id}}" style="min-height: 32px;">
+                {% for obj in cart %}
+                  <div class="col-12 col-sm-6 col-md-12  col-lg-12 border mb-4 p-0 block{{cart_key.id}}" id="item_block{{obj.id}}">
+                    <div class="d-flex" style=" justify-content: space-between; min-height: 100px;">
+                      <div class="row h-100 py-5 mx-3">
+                        <input type="checkbox" name="emcdo_product" id="emcdo_product{{obj.id}}" class="cart_key{{cart_key.id}} checkbox_cart" onclick="group_order_key('{{cart_key.id}}','{{obj.id}}');select_cart_obj('{{csrf_token}}');" value="{{obj.id}}"/>
+                      </div>
+                      <div class="row w-100 h-100 m-auto" style=" align-items: center; ">
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 mt-3 p-0">
+                          <div class="d-block">
+                            <div class="d-flex emercado_text_overflow">
+                              <img class="img-fluid rounded-3" src="/Post_Media/{{obj.product_image}}" alt="" style="width: 50px; object-fit: cover; height: 50px;"/>
+                              <span class="d-flex"><p class=" m-auto px-2">{{obj.product_name}}</p></span>
+                            </div>
+                            <div class="mt-3" id="available_msg_section{{obj.id}}">
+                              <p class="m-0 text-nowrap text_size_sm" id="available_msg{{obj.id}}" style="color:red;"></p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 my-2 p-0">
+                          {% if obj.variation_name %}
+                            <div class="dropdown drop m-0 w-100 h-100 p-0 text-nowrap">
+                                <div class="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" id="dropdownMenu" data-bs-auto-close="false" aria-expanded="false">Variations:
+                                    <i class="bi bi-caret-down-fill" style="position: absolute;"></i>
+                                </div>
+                                <div class="emercado_text_overflow text-uppercase" id="variation{{obj.id}}" style="width:75px !important">{{obj.variation_name}}</div>
+                                <div class="dropdown-menu dropdown-variation" aria-labelledby="dropdownMenu {{obj.id}}" id="variationDropdown{{obj.id}}">
+                                    {% for key,value in obj.options.items %}
+                                    <div class="row w-100 m-auto p-3">
+                                        <p style="color: #646464; font-size: calc(9px + 100vw * 3/1906);">{{key}}: </p>
+                                        {% for key1,value1 in value.items %}
+                                        <div class="col-auto mb-3 px-1">
+                                            <button type="button" class="product-variation product-variation-{{obj.id}}-{{key}} " style="font-size: calc(9px + 100vw * 3/1906);" id="attr_option{{key1}}" value="{{key1}}" onclick="select_to_update('{{obj.id}}','{{key}}',{{key1}})" >{{value1}}</button>
+                                        </div>
+                                        {% endfor %}
+                                        <input type="text" class="opt_val{{obj.id}}" id="cart_obj{{obj.id}}_{{key}}" hidden>
+                                    </div>
+                                    <script>
+                                      $(document).ready(function () {
+                                        selected_option('{{obj.variation_options}}','product-variation-{{obj.id}}-{{key}}')
+                                      });
+
+                                      $('.product-variation-{{obj.id}}-{{key}}').on('click', function(){
+                                          $('.product-variation-{{obj.id}}-{{key}}').removeClass('selected-variation');
+                                          $(this).addClass('selected-variation');
+                                      });
+                                    </script>
+                                    {% endfor %}
+                                    <div class="row w-100 m-auto">
+                                        <div class="text-end">
+                                            <button class="btn btn-orange text-white" type="button" id="confirmBtn" onclick="update_variation('{{csrf_token}}','{{obj.id}}'); document.querySelector('#variationDropdown{{obj.id}}').classList.remove('show');" style="font-size: calc(9px + 100vw * 3/1906);">Confirm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          {% endif %}
+                        </div>
+
+                        <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-1 mt-2 d-block d-sm-block d-md-block d-lg-none">
+                          <span class="emercado_text_overflow m-auto">{{obj.product_name}}</span>
+                        </div> -->
+
+                        <div class="col-5 col-sm-6 col-md-2 col-lg-2 col-xl-2 p-0 my-2 text_size_sm" id="price_td{{obj.id}}" >
+                          <script>document.write(CurrencyConverter({{obj.price}}))</script>
+                        </div>
+
+                        <div class="col-7 col-sm-6 col-md-3 col-lg-2 col-xl-2 p-0 my-2">
+                          <div class="qty-input borders">
+                            <button class="qty-count qty-count--minus" data-action="minus" type="button" id="minus{{obj.id}}" >-</button>
+                            <input class="product-qty" type="number" id="product-qty{{obj.id}}" name="product-qty{{obj.id}}" min="1"  value="{{obj.quantity}}" onkeyup="update_quatity('{{csrf_token}}','{{obj.id}}')">
+                            <button class="qty-count qty-count--add" data-action="add" type="button" id="plus{{obj.id}}">+</button>
+                          </div>
+                          <script>
+                            $(document).ready(function () {
+                              if(document.getElementById("product-qty{{obj.id}}").value == "1"){
+                                document.getElementById("minus{{obj.id}}").disabled = true;
+                              }
+                            });
+                            $("#plus{{obj.id}}").click(function () {
+                              var this_value = document.getElementById("product-qty{{obj.id}}").value
+                              plus_update_quatity("{{csrf_token}}",parseInt(this_value) + 1,"{{obj.id}}")
+                            });
+                            $("#minus{{obj.id}}").click(function () {
+                              var this_value = document.getElementById("product-qty{{obj.id}}").value
+                              minus_update_quatity("{{csrf_token}}",parseInt(this_value) - 1,"{{obj.id}}")
+                            });
+                          </script>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-0 d-none d-sm-none d-md-none d-lg-block d_none_total" id="total_td{{obj.id}}">
+                          <div class="d-inline-flex" style="flex-direction: row; align-items: center;">
+                            <script>document.write(CurrencyConverter({{obj.total}}))</script>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-sm-2 col-md-1 col-lg-1 mt-3 px-3 text-end mobile_view_delete">
+                        <div class="dropdown no-arrow">
+                          <a class="dropdown" href="#" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v text-black" style="font-size: 20px;"></i>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in p-0" aria-labelledby="dropdownMenuButton" style="width: 100px !important; cursor: pointer;">
+                            <a class="dropdown-item py-3" data-toggle="modal" id="remove_div{{obj.id}}"><i class="mr-2 fas fa-trash-alt" style="color: #bb2124;"></i>
+                              <span class="text-black" style="margin-left: 5px; font-weight: 600;">Delete</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <script>
+                        $("#remove_div{{obj.id}}").click(function() {
+                           Swal.fire({
+                               title: 'Are you sure you want to remove this item?',
+                               icon: 'question',
+                               showDenyButton: true,
+                               showCancelButton: false,
+                               confirmButtonText: 'Yes',
+                               denyButtonText: "No",
+                           }
+
+                           ).then((result) => {
+                               /* Read more about isConfirmed, isDenied below */
+                               if (result.isConfirmed) {
+                                remove_cart_item('{{csrf_token}}','{{obj.id}}')
+                               } else if (result.isDenied) {
+                                 //  window.location.href = url;
+                               }
+                           })
+
+                         });
+                      </script>
+                    </div>
+                  </div>
+                {% endfor %}
+                </div>
+                <div class="row w-100 m-auto">
+                  <div class="col-12 cart_voucher" style="padding: 1rem 0 1rem 2.5rem; border-top: 1px solid rgba(0,0,0,.09);">
+                    <div class="dropdown drop m-0 w-100 h-100 p-0 text-nowrap">
+                      <div class="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" id="dropdownMenu" data-bs-auto-close="false" aria-expanded="false">
+                        <strong class="emercado_color_1">See Vouchers Here!</strong>
+                      </div>
+                      <div class="dropdown-menu dropdown-variation" aria-labelledby="dropdownMenu {{obj.id}}" id="variationDropdown{{obj.id}}">
+                        <h4 class="emercado_color_1 m-0 text_size_sm mb-3 p-3">(Name sa Store) Voucher</h4>
+                        <div class="row w-100 m-auto p-3">
+                          <ul class="vchr">
+                            <div class="see-voucher mb-3">
+                              <div class="see-voucher_left">
+                                <div class="see-voucher_sawtooth"></div>
+                              </div>
+                              <div class="see-voucher_right"></div>
+                              <div class="see-voucherright_s"></div>
+                              <div class="see-voucher_template">
+                                <div class="see-voucher_template_left">
+                                  <div class="vchr_logo" data-target="shop_icon"><img class="vchr_logs vchr_round" src="/Post_Media/{{cart_key.store_image}}" alt="Logo"></div>
+                                </div>
+                                <div class="see-voucher_template_middle">
+                                  <div style="display: flex;">
+                                    <div class="sv-title-text">₱50 off</div>
+                                  </div>
+                                  <div class="sv_subtitle">Min. Spend ₱500</div>
+                                  <div class="sv-label"></div>
+                                  <div class="sv_exprs">
+                                    <span class="sv-ends">Expiring: 2 days left</span>
+                                  </div>
+                                </div>
+                                <div class="see-voucher_template_right">
+                                  <div class="see-voucher_template_center">
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"><span class="indicator"></span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ul>
+                          <div class="vhr"></div>
+                          <div class="row w-100 m-auto">
+                            <div class="text-end">
+                              <button type="button" class="btn btn-secondary">Cancel</button>
+                              <button class="btn btn-orange text-white" type="button" id="confirmBtn" onclick="update_variation('{{csrf_token}}','{{obj.id}}'); document.querySelector('#variationDropdown{{obj.id}}').classList.remove('show');" style="font-size: calc(9px + 100vw * 3/1906);">Confirm</button>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <input type="text" name="group_order_key{{cart_key.id}}" id="group_order_key{{cart_key.id}}" hidden value="" class="order_keys">
+            </section>
+          {% endfor %}
+          <section class="emercado_background_color_2 mb-3" style="position: sticky; bottom: 0; z-index: 1;">
+            <div class="_2ElxFV">
+              <div class="exSsxY">
+                <div class="BNuBXe">
+                  <div class="_4L690l" id="no_item">0 Item</div>
+                  <div class="Or93gU" id="total_section"><script>document.write(CurrencyConverter(0))</script></div>
+                </div>
+              </div>
+              {% if consumer %}
+                <button type="button" class="emercado-button" id="checkout_btn" disabled onclick="checkout_items('{{csrf_token}}')"><span class="JEsC7W">Check Out</span></button>
+              {% else %}
+                <button type="button" class=" emercado-button" id="checkout_btn" data-toggle="modal" data-target="#myModal" disabled ><span class="JEsC7W">Check Out</span></button>
+              {% endif %}
+            </div>
+          </section>
+          <!-- End your project here-->
+       </div>
+     </div>
+  </section>
+</main><!-- End #main -->
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<footer class="emercado_color_1" style="border-top: 6px solid;">
+  <section class="container m-auto" id="contacts">
+      <div class="footer_contacts">
+          <div class="row w-100 m-auto">
+              <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                  <div class="custom_service">
+                      <ul class="list-unstyled">
+                      <h4 class="emercado_color_1">Customer Service</h4>
+                         <li><a class="footer_text text-black" href="#"> Help Centre</a></li>
+                         <li><a class="footer_text text-black" href="#"> Checkout Cash PH</a></li>
+                         <li><a class="footer_text text-black" href="#"> Payment Methods</a></li>
+                         <li><a class="footer_text text-black" href="#"> Checkout Pay</a></li>
+                         <li><a class="footer_text text-black" href="#"> Checkout Coins</a></li>
+                         <li><a class="footer_text text-black" href="#"> Order Tracking</a></li>
+                         <li><a class="footer_text text-black" href="#"> Return and Refund</a></li>
+                         <li><a class="footer_text text-black" href="#"> Checkout Guarantee</a></li>
+                         <li><a class="footer_text text-black" href="#"> Overseas Products</a></li>
+                         <li><a class="footer_text text-black" href="#"> Contact Us</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                  <div class="custom_service">
+                      <ul class="list-unstyled">
+                      <h4 class="emercado_color_1">About Checkout</h4>
+                         <li><a class="footer_text text-black" href="#"> Checkout Blog</a></li>
+                         <li><a class="footer_text text-black" href="#"> Checkout Career</a></li>
+                         <li><a class="footer_text text-black" href="#"> Checkout Policies</a></li>
+                         <li><a class="footer_text text-black" href="#"> Privacy Policy</a></li>
+                         <li><a class="footer_text text-black" href="#"> Checkout Mall</a></li>
+                         <li><a class="footer_text text-black" href="#"> Seller Centre</a></li>
+                         <li><a class="footer_text text-black" href="#"> Flash Deals</a></li>
+                         <li><a class="footer_text text-black" href="#"> Media Contact</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <div class="custom_service">
+                    <ul class="list-unstyled">
+                    <h4 class="emercado_color_1">Payment</h4>
+                    <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paymaya.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> PayMaya</a></li>
+                    <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/visa.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Visa</a></li>
+                    <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/gcash.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> GCash</a></li>
+                    <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paypal.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Paypal</a></li>
+                    </ul>
+                </div>
+              </div>
+              <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                  <div class="custom_service">
+                      <ul class="list-unstyled">
+                      <h4 class="emercado_color_1">Follow Us</h4>
+                      <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/fb.png' %}" alt="">
+                          <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Facebook</a>
+                      </li>
+                      <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/twitter.png' %}" alt="">
+                          <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Twitter</a>
+                      </li>
+                      <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/in.png' %}" alt="">
+                          <a  class="footer_text text-black" href="#" style="padding-left: 5px;">LinkedIn</a>
+                      </li>
+                      <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/insta.jpg' %}" alt="">
+                          <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Instagram</a>
+                      </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</footer>
+
+
+
+
+
+
+
+
+
+
+  <!-- Vendor JS Files -->
+
+
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min..js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min..js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min..js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min..js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate..js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    $(document).ready(function(){
+      // Activate tooltip
+      $('[data-toggle="tooltip"]').tooltip();
+
+    });
+    // Select/Deselect checkboxes
+      var checkbox = $('input[type="checkbox"]');
+
+
+      $("#selectAll").click(function(){
+
+
+        if(this.checked){
+          var this_class = document.getElementsByClassName("checkbox_cart")
+          for(var i = 0; i < this_class.length; i++){
+            if(this_class[i].checked == false){
+              if(this_class[i].disabled == false){
+                this_class[i].click();
+                this_class[i].checked = true;
+              }
+            }
+          }
+          checkbox.each(function(){
+            if(this.disabled == false){
+              this.checked = true;
+            }
+          });
+        select_cart_obj('{{csrf_token}}');
+        } else{
+          var this_class = document.getElementsByClassName("checkbox_cart")
+          for(var i = 0; i < this_class.length; i++){
+            if(this_class[i].disabled == false){
+              //this_class[i].click();
+              this_class[i].checked = false;
+            }
+
+          }
+          checkbox.each(function(){
+            if(this.disabled == false){
+              this.checked = false;
+            }
+
+          });
+          select_cart_obj('{{csrf_token}}');
+          unselect_key();
+        }
+
+      });
+      checkbox.click(function(){
+        if(!this.checked){
+          $("#selectAll").prop("checked", false);
+        }
+      });
+
+
+  </script>
+
+    <script>
+      function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+      }
+    </script>
+    <script>
+      var QtyInput = (function () {
+        var $qtyInputs = $(".qty-input");
+
+
+        if (!$qtyInputs.length) {
+          return;
+        }
+        var $inputs = $qtyInputs.find(".product-qty");
+        var $countBtn = $qtyInputs.find(".qty-count");
+        var qtyMin = parseInt($inputs.attr("min"));
+        var qtyMax = parseInt($inputs.attr("max"));
+
+
+        $inputs.change(function () {
+          var $this = $(this);
+          var $minusBtn = $this.siblings(".qty-count--minus");
+          var $addBtn = $this.siblings(".qty-count--add");
+          var qty = parseInt($this.val());
+
+
+          if (isNaN(qty) || qty <= qtyMin) {
+            $this.val(qtyMin);
+            $minusBtn.attr("disabled", true);
+          } else {
+            $minusBtn.attr("disabled", false);
+
+
+            if(qty >= qtyMax){
+              $this.val(qtyMax);
+              $addBtn.attr('disabled', true);
+            } else {
+              $this.val(qty);
+              $addBtn.attr('disabled', false);
+            }
+          }
+        });
+        $countBtn.click(function () {
+          var operator = this.dataset.action;
+          var $this = $(this);
+          var $input = $this.siblings(".product-qty");
+          var qty = parseInt($input.val());
+
+
+          if (operator == "add") {
+            qty += 1;
+            if (qty >= qtyMin + 1) {
+              $this.siblings(".qty-count--minus").attr("disabled", false);
+            }
+
+
+            if (qty >= qtyMax) {
+              $this.attr("disabled", true);
+            }
+          } else {
+            qty = qty <= qtyMin ? qtyMin : (qty -= 1);
+
+
+            if (qty == qtyMin) {
+              $this.attr("disabled", true);
+            }
+
+
+            if (qty < qtyMax) {
+              $this.siblings(".qty-count--add").attr("disabled", false);
+            }
+          }
+
+
+          $input.val(qty);
+
+
+        });
+
+
+      })();
+
+
+    </script>
+
+    <script>
+
+      $(document).ready(function() {
+        unread_notifications('{{csrf_token}}')
+      });
+      $("#notif_dropdown").click(function() {
+        read_notifications('{{csrf_token}}')
+      });
+
+      $(document).ready(function () {
+        check_available_product("{{csrf_token}}")
+        check_quantity("{{csrf_token}}")
+        check_variations("{{csrf_token}}")
+        disable_cart_variation("{{csrf_token}}")
+        var place_item = sessionStorage.getItem("place_item");
+        if(place_item != null){
+          document.getElementById("emcdo_product"+place_item+"").click();
+        }
+      });
+
+
+      $(document).ready(function () {
+        $('#dtHorizontalExample').DataTable({
+          "scrollX": true
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+
+
+
+      $("a").click(function () {
+        sessionStorage.removeItem("place_item");
+      });
+
+      {% for key in cart_key %}
+       $("#cart_key{{key.id}}").click(function () {
+          if(this.checked == true){
+              var place_item = sessionStorage.getItem("place_item");
+              var this_class = document.getElementsByClassName("cart_key{{key.id}}")
+              for(var i = 0; i < this_class.length; i++){
+                if(this_class[i].checked == false){
+                  this_class[i].click();
+                  this_class[i].checked = true;
+                }
+
+              }
+
+          }else{
+              var this_class = document.getElementsByClassName("cart_key{{key.id}}")
+              for(var i = 0; i < this_class.length; i++){
+                  //this_class[i].click();
+                  this_class[i].checked = false;
+              }
+              unselect_key()
+          }
+          select_cart_obj('{{csrf_token}}');
+          });
+
+        {% endfor %}
+
+
+
+    </script>
+
+
+</body>
+
+
+</html>

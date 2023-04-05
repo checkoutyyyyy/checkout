@@ -1,0 +1,1134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+
+
+  <title>Checkout-Shop</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/consumer/cart_logo.png' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="{% static '/functionJS/utility.js' %}"></script>
+  <script src="{% static '/functionJS/spinner.js' %}"></script>
+
+  <style>
+    .emercado_background_image{
+        position: relative;
+        background: linear-gradient(0deg, rgb(0, 0, 0, 0.1) 100%, rgb(0, 0, 0, 0.1) 100%), url('{% static "img/consumer/female_shopping_bags_background_image.jpg" %}');
+        background-size: cover;
+        height: calc(100vw * 350/1906);
+        min-height: 150px !important;
+        background-position: 0% 35%;
+        display: flex;
+        align-items: center;
+    }
+    .emercado_background{
+        position: relative;
+        background: linear-gradient(0deg, rgb(0, 0, 0, .05) 100%, rgb(0, 0, 0, .05) 100%), url('{% static "img/consumer/header_background.png" %}');
+        background-size: cover;
+    }
+    .emercado_background_order_now{
+        position: relative;
+        background: linear-gradient(-180deg,#ff6c20,rgb(255 255 255 / 15%));
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: rebeccapurple;
+    }
+    figure.landing_img {
+        font-family: 'Raleway', Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(-180deg,#ff6c20,#212529);
+        min-height: 120px !important;
+        height: calc(100vw * 300/1906) !important;
+        text-align: center;
+    }
+    figure.landing_img * {
+        -webkit-box-sizing: padding-box;
+        box-sizing: padding-box;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    figure.landing_img img {
+        width: 100%;
+        object-fit: cover;
+    }
+    figure.landing_img figcaption {
+        bottom: 0;
+        display: block;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    figure.landing_img h2 {
+        font-weight: 400;
+        left: 0;
+        right: 0;
+        font-size: 30px;
+        letter-spacing: -1px;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 50%;
+        -webkit-transform: translateY(50%);
+        transform: translateY(50%);
+        color: #ffffff;
+        text-shadow: 1px 0px 0px #000000;
+    }
+    figure.landing_img h2 span {
+        font-weight: 800;
+    }
+    figure.landing_img p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 50%;
+        opacity: 0;
+        font-size: 14px;
+        -webkit-transform: translateY(-20%) scale(0.7);
+        transform: translateY(-20%) scale(0.7);
+    }
+    figure.landing_img .square:hover {
+        height: 150px;
+        width: 150px;
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: '';
+        -webkit-transform: rotate(45deg) translate(-50%, -50%);
+        transform: rotate(45deg) translate(-50%, -50%);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+    figure.landing_img .square:before,
+    figure.landing_img .square:after,
+    figure.landing_img .square div:before,
+    figure.landing_img .square div:after {
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        content: "";
+        display: block;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+    }
+    figure.landing_img .square:before,
+    figure.landing_img .square:after {
+        width: 65%;
+        height: 2px;
+    }
+    figure.landing_img .square div:before,
+    figure.landing_img .square div:after {
+        width: 2px;
+        height: 65%;
+    }
+    figure.landing_img .square:before,
+    figure.landing_img .square div:before {
+        left: 0;
+        top: 0;
+    }
+    figure.landing_img .square:after,
+    figure.landing_img .square div:after {
+        bottom: 0;
+        right: 0;
+    }
+    figure.landing_img a {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+    }
+    figure.landing_img:hover img,
+    figure.landing_img.hover img {
+        background-color: transparent;
+        opacity: 0.25;
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    figure.landing_img:hover h2,
+    figure.landing_img.hover h2 {
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    figure.landing_img:hover p,
+    figure.landing_img.hover p {
+        opacity: 1;
+        -webkit-transform: translateY(0px) scale(1);
+        transform: translateY(0px) scale(1);
+    }
+    figure.landing_img:hover .square:before,
+    figure.landing_img.hover .square:before {
+        width: 38%;
+    }
+    figure.landing_img:hover .square div:before,
+    figure.landing_img.hover .square div:before {
+        height: 38%;
+    }
+    figure.landing_img:hover .square:after,
+    figure.landing_img.hover .square:after {
+        width: 55%;
+    }
+    figure.landing_img:hover .square div:after,
+    figure.landing_img.hover .square div:after {
+        height: 55%;
+    }
+    /* .header__cart-heading {
+    margin: -32px 52px 0px;
+    white-space: initial;
+    } */
+  </style>
+</head>
+<body>
+    <div class="loading-spinner" id="loading-spinner" style="visibility: visible;display: block;">
+        <img src="{% static 'img/consumer/cart_logo.png' %}" alt="" style="width: 85px !important; left: 50% !important; top: 50% !important; position: inherit; height: 110px !important;">
+    </div>
+    <header class="header" style="z-index: 2;">
+        <div class="logo">
+            <a style="text-decoration: underline;" href="/">
+                <img class="header_logo d-sm-none d-md-none d-lg-none mt-1" style="width: auto; max-height: 50px;" src="{% static 'img/consumer/border_white.png' %}" alt="">
+                <img class="header_logo d-none d-sm-block" src="{% static 'img/consumer/black&white.png' %}" alt="">
+            </a>
+        </div>
+         <div class="dropdown text-nowrap d-flex">
+           {% if consumer %}
+          <div class="dropdown m-auto pt-3">
+              <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+                  <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart " style="width: 300px;">
+                <div class="pt-3 pb-2 px-3 border-bottom">
+                    <h4 class="emercado_color_1 m-0">Cart</h4>
+                </div>
+                {% if my_cart|length > 0 %}
+                    
+                    {% if my_cart|length <= 6 %}
+                    <div class="" id="scroll_style">
+                    {% else %}
+                    <div class="header__cart-list-item scrollbar"id="scroll_style">
+                    {% endif %}
+                    
+                    {% for cart in my_cart %}
+                        <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                            {% if cart.product_image %}
+                            <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                            {% else  %}
+                            <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                            {% endif  %}
+                            <div class="header__cart-item-info text-black">
+                                <div class="header__cart-item-head">
+                                    <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                                    <div class="header__cart-item-price-wrap">
+                                        <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                        <span class="header__cart-item-multiply">x</span>
+                                        <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                                    </div>
+                                </div>
+                                <div class="header__cart-item-body">
+                                    <span class="header__cart-item-description"></span>
+                                    <span class="header__cart-item-remove"></span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider m-0"></div>
+                    {% endfor %}
+                    </div>
+                    <div class="">
+                        <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                        <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                    </div>
+                {% else %}
+                <div class="text-center">
+                    <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                    <p>No items yet</p>
+                    <div class="dropdown-divider m-0 pb-3"></div>
+                </div>
+                <div class="" style="display:none;" id="cart_footer">
+                    <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                    <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                </div>
+                {% endif %}
+  
+  
+              </div>
+          </div>
+          <div class="dropdown m-auto pt-3">
+              <div class="nav-link dropdown m-auto header_icon text-center"   data-bs-toggle="dropdown" id="notif_dropdown">
+                  <i class="dropbtn_bell fa-solid fa-bell text-white p-0" style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_bell " id="notif_count"></span>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_notif" style="width:300px">
+                <div class="pt-3 pb-2 px-3 border-bottom">
+                <h4 class="emercado_color_1 m-0 text_size_sm">Notifications</h4>
+                </div>
+                {% if notifications|length > 0 %}
+                    {% if notifications|length <= 5 %}
+                    <div class="" id="scroll_style">
+                    {% else %}
+                    <div class="header__cart-list-item scrollbar"id="scroll_style">
+                    {% endif %}
+                    <!-- notification if naay magpa request og order (parent order)-->
+                    {% for notif in notifications %}
+        
+                        {% if notif.notif_type == "Share Order" %}
+                            {% if not notif.requested_response  %}
+                                <a class="header__cart-item notif_block notif_unread" onclick="allow_share_order('{{csrf_token}}','{{notif.id}}')">
+                            {% else %}
+                                <a class="header__cart-item notif_block notif_read" id="test-1">
+                            {% endif %}
+                                <div class="header__cart-item-info text-black">
+                                    <div class="header__cart-item-head header__cart-item-head_notif">
+                                        <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px; margin-top: 3px;"/>
+                                        <div class="d-block mt-2">
+                                            <h5 class="header__cart-item-name">{{notif.requesting_name}}</h5>
+                                            <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.requesting_id_format}}</p>
+                                        </div>
+        
+                                    </div>
+                                    <div class="header__cart-item-body">
+                                        <span class="header__cart-item-description"  style="white-space: normal;margin-left: 50px;">
+                                            <p class="my-2 btn_notif">{{notif.content}}</p>
+                                        </span>
+                                    </div>
+        
+                                    <!-- <div class="text-center mb-2" id="shared_optons{{notif.id}}">
+                                        <span class="header__cart-item-remove">
+                                            <button type="button" class="btn btn-sm text-white" style="background-color: #656363; margin-right: 10px;" onclick="denied_request('{{csrf_token}}','{{notif.id}}')">No</button>
+                                            <button type="button" class="btn btn-sm text-white" style="background-color: #ff6c20; margin-left: 10px;" onclick="accept_request('{{csrf_token}}','{{notif.id}}')">Yes</button>
+                                        </span>
+                                    </div> -->
+        
+                                </div>
+                            </a>
+                        <!-- end of notification if naay magpa request og order (parent order)-->
+                            <div class="dropdown-divider m-0"></div>
+                            {% elif notif.notif_type == "Share Order Response" %}
+                                {% if notif.requested_response == "Yes" %}
+                                    <a class="header__cart-item notif_block notif_unread" onclick="share_order_accessable('{{notif.url}}')">
+                                {% else %}
+                                    <a class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                                {% endif %}
+                                    <div class="header__cart-item-info text-black">
+                                        <div class="header__cart-item-head header__cart-item-head_notif">
+                                            <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                            <div class="d-block mt-2">
+                                                    <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                                    <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="header__cart-item-body">
+                                            <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                                <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                            </span>
+                                        </div>
+        
+                                    </div>
+                                    </a>
+                                    <!-- end of notification if naay magpa request og order (parent order)-->
+                                    <div class="dropdown-divider m-0"></div>
+                            {% elif notif.notif_type == "Personnel Discount Request" %}
+                                <a href="{{notif.url}}" class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                                    <div class="header__cart-item-info text-black">
+                                        <div class="header__cart-item-head header__cart-item-head_notif">
+                                            <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                            <div class="d-block mt-2">
+                                                    <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                                    <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="header__cart-item-body">
+                                            <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                                <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                            </span>
+                                        </div>
+        
+                                    </div>
+                                    </a>
+                                    <!-- end of notification if naay magpa request og order (parent order)-->
+                                <div class="dropdown-divider m-0"></div>
+                            {% endif %}
+                    {% endfor %}
+                    </div>
+                    
+                <a href="/notifications" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                {% else %}
+                <div class="text-center">
+                    <img src="{% static 'img/consumer/header/empty_notification.png' %}" style="padding: 25px !important; min-width: 180px !important; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                    <p>No notifications yet</p>
+                </div>
+                {% endif %}
+    
+            </div>
+    
+    
+          </div>
+          <div class="dropdown">
+          <a class="nav-link nav-profile align-items-center px-2" href="#" data-bs-toggle="dropdown">
+              {% if consumer.profile_picture %}
+                  {% if 'profile_default.jpg' in consumer.profile_picture %}
+                      <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                  {% else %}
+                      <img class="img-fluid rounded-circle" src="/Post_Media/{{consumer.profile_picture}}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                  {% endif %}
+              {% else %}
+                  <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+              {% endif %}
+              <span class="name d-none d-lg-inline text-white">{{consumer.first_name}} {{consumer.last_name}}</span>
+          </a><!-- End Profile Iamge Icon -->
+              <nav class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_profile" style="width:173px !important;">
+                  <a class="dropdown-content-profile d-flex align-items-center" href="{% url 'user_profile' %}">
+                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;" ></i>
+                      <span>My Profile</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-content-profile d-flex align-items-center" href="#" data-toggle="modal" data-target="#logoutModal">
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;"></i><span>Logout</span>
+                  </a>
+              </nav>
+          </div>
+    
+          {% else %}
+          <div class="m-auto header_icon text-center">
+              <div class="dropdown m-auto">
+                  <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+                      <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+                  </div>
+                  <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart" style="width: 300px;">
+                      <div class="pt-3 pb-2 px-3 border-bottom">
+                          <h4 class="emercado_color_1 m-0 text_size_sm">Cart</h4>
+                      </div>
+                      {% if my_cart|length > 0 %}
+                      <div class="header__cart-list-item" id="scroll_style">
+                          {% for cart in my_cart %}
+                          <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                              {% if cart.product_image %}
+                              <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                              {% else  %}
+                                  <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                              {% endif  %}
+                              <div class="header__cart-item-info text-black">
+                                  <div class="header__cart-item-head">
+                                      <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                                      <div class="header__cart-item-price-wrap">
+                                          <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                          <span class="header__cart-item-multiply">x</span>
+                                          <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                                      </div>
+                                  </div>
+                                  <div class="header__cart-item-body">
+                                      <span class="header__cart-item-description"></span>
+                                      <span class="header__cart-item-remove"></span>
+                                  </div>
+                              </div>
+                          </a>
+                          {% endfor %}
+    
+                          <div class="dropdown-divider m-0 pb-3"></div>
+                          <div class="">
+                            <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                            <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                          </div>
+    
+                      </div>
+                      {% else %}
+                      <div class="text-center">
+                          <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                          <p>No items yet</p>
+                          <div class="dropdown-divider m-0 pb-3"></div>
+                      </div>
+                      <div class="" style="display:none;" id="cart_footer">
+                        <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                        <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                    </div>  
+                      {% endif %}
+    
+                  </div>
+              </div>
+          </div>
+          <a class="nav-link nav-profile align-items-center " href="/login" >
+              <span class="name  text-white">Login</span>
+          </a>
+          {% endif %}
+          <script>
+              $(document).ready(function () {
+                get_cart_total("{{csrf_token}}")
+              });
+          </script>
+         </div>
+         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-orange" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <!-- End -->
+    </header>
+    <main id="main">
+        <!-- ======= Hero Section ======= -->
+        <section class="section dashboard emercado_background_color_3 p-0">
+            <section class="emercado_background_image">
+                <p class="m-0" style="font-size: calc(100vw * 160/1906);text-shadow: 2px 0px 0 #000; color:#ff6c20;">Work hard, shop harder</p>
+            </section>
+            <section class="emercado_background">
+                <div class="hero-container container-lg px-0">
+                    <div class="row w-100 m-auto">
+                        <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+                            <div class="row w-100 m-auto d-sm-flex d-lg-none pb-4" style="align-items: center;">
+                                <div class="col-12 col-sm-12 p-0">
+                                    <section class="p-0 container-fluid emercado_background_order_now shadow">
+                                        <div class="photo h-100">
+                                            <figure class="landing_img m-auto h-100 hover">
+                                                <img src="{% static 'img/consumer/dine/dine_background.jpg' %}" class="h-100" alt="sample64"/>
+                                                <figcaption>
+                                                  <div class="square">
+                                                    <div></div>
+                                                  </div>
+                                                  <h2>DINE</h2>
+                                                  <p class="text-white">Indulge your cravings</p>
+                                                </figcaption>
+                                                <a href="{% url 'dine' %}"></a>
+                                            </figure>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+
+                            <section class="container-fluid emercado_background_color_2 mb-5 p-0 shadow" style="height: 100px; z-index: 1; top: 60px !important">
+                                <div class="container-fluid p-2" style="padding: 10px !important;">
+                                    <div class="w-100 m-auto category_md d-flex my-2" id="menu-links">
+                                        <a class="px-1 col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 mt-2 text-decoration-none text-center" href="{% url 'my_purchases' %}">
+                                            <div class="icon-wrapper">
+                                                <i class="fa-solid fa-wallet coupon_icon" style="color: #ff6c20"></i>
+                                            </div>
+                                            <p class="text-center mt-2">
+                                                <h6 style="color: #ff6c20; font-size: calc(8px + 100vw * 7/1906);" class="text-black">My Orders</h6>
+                                            </p>
+                                        </a>
+                                        <a class="px-1 col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 mt-2 text-decoration-none text-center" href="{% url 'coupons' %}">
+                                            <div class="icon-wrapper">
+                                                <i class="fa fa-ticket coupon_icon" style="color: #ff6c20"></i>
+                                            </div>
+                                            <p class="text-center mt-2">
+                                                <h6 style="color: #ff6c20; font-size: calc(8px + 100vw * 7/1906);" class="text-black">Vouchers</h6>
+                                            </p>
+                                        </a>
+                                        <a class="px-1 col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 mt-2 text-decoration-none text-center" href="#">
+                                            <div class="icon-wrapper">
+                                                <i class="fa fa-gift coupon_icon" style="color: #ff6c20"></i>
+                                            </div>
+                                            <p class="text-center mt-2">
+                                                <h6 style="color: #ff6c20; font-size: calc(8px + 100vw * 7/1906);" class="text-black">Gift Checks</h6>
+                                            </p>
+                                        </a>
+                                        <a class="px-1 col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 mt-2 text-decoration-none text-center" href="{% url 'rewards' %}">
+                                            <div class="icon-wrapper">
+                                                <i class="fas fa-award coupon_icon" style="color: #ff6c20"></i>
+                                            </div>
+                                            <p class="text-center mt-2">
+                                                <h6 style="color: #ff6c20; font-size: calc(8px + 100vw * 7/1906);" class="text-black">Rewards</h6>
+                                            </p>
+                                        </a>
+                                        <!-- <a class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 mt-2 text-decoration-none text-center" id="menu-links"  href="#contacts">
+                                            <div class="icon-wrapper">
+                                                <i class="fa-solid fa-square-phone coupon_icon" style="color: #ff6c20"></i>
+                                            </div>
+                                            <p class="text-center mt-2" style="color: #ff6c20; font-size: calc(8px + 100vw * 7/1906);">
+                                                <h6 class="text-black">Contacts</h6>
+                                            </p>
+                                        </a> -->
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="container-fluid emercado_background_color_2 mb-5 p-4 shadow">
+                                <h3 class="emercado_color_1 m-0 mb-4">Categories</h3>
+                                <div class="w-100 m-auto category_sm category_md d-flex">
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/men_shirt.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Men's Wear</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/women_wear.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Women's Wear</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/groceries.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Groceries</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/mobile_accessories.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Mobile Accessories</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/personal_care.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Personal Cares</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/bag.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Bags</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/men_shoes.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Men's Shoes</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/women_high_heels.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Women's High Hells</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/food.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Foods</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/hardware_tools.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Hardware Tools</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/school_supply.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">School Supplies</p>
+                                    </a>
+                                    <a href="#" class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 box emercado_item_box border px-4 emercado_category_hover" style="white-space: nowrap;">
+                                        <div class="categs text-center">
+                                            <div class="list">
+                                                <div class="category mt-2" style="display: flex; height: inherit; justify-content: center; align-items: center;">
+                                                    <img src="{% static 'img/consumer/categories/jewelry.png' %}" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="emercado_name_category text-center emercado_text_overflow">Jewelries</p>
+                                    </a>
+                                </div>
+                                <div id="merchants"></div>
+                            </section>
+                            <section class="container-fluid emercado_background_color_2 mb-5 p-4 shadow">
+                                <div>
+                                    <h4>Where are you now?</h4>
+                                    <p>Please input your location below for verification</p>
+                                </div>
+                            </section>
+                            <section class="container-fluid emercado_background_color_2 mb-5 p-4 menus shadow">
+                                <h3 class="emercado_color_1 m-0 mb-4 d-block">Products</h3>
+                                <div class="box-container">
+                                    <div class="row w-100 m-auto">
+                                        {% for product in products %}
+                                        <div class="col-12 col-sm-3 col-md-3 col-lg-2 mb-3 px-2">
+                                            <a href="/menu/{{product.product_id}}">
+                                                <div class="box emercado_item_box border"  data-toggle="modal" data-target="#largeModal{{product.product_id}}">
+                                                    <div class="image emercado_background_color_whitesmoke">
+                                                        <img src="/Post_Media/{{product.default_image}}" alt="">
+                                                        <h3 class="emercado_text_overflow"> <i class="fa-solid fa-shopping-cart"></i> {{product.product_name}}</h3>
+                                                    </div>
+                                                    {% if product.status_type == 1 %}
+                                                        {% if product.stock > 0%}
+                                                            <div class="content">
+                                                                <h4 class="m-0 emercado_price">₱{{product.original_price}}0</h4>
+                                                                <span class="h6 emercado_sub_price">₱350.99</span>
+                                                                <p class="m-0" style="color:green"> {{product.stock}} pieces available</p>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="emercado_sold_out_container emercado_sides_0">
+                                                                <div class="emercado_sold_out">
+                                                                <h4 class="m-0 p-0" style="font-weight: 300;">Sold out</h4>
+                                                                </div>
+                                                            </div>
+                                                            <script>
+                                                                $(document).ready(function () {
+                                                                    document.getElementById("menus").disabled = true;
+                                                                });
+                                                            </script>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        {% if product.available_flag == 1 %}
+                                                            <div class="content">
+                                                                <h4 class="m-0 emercado_price">₱{{product.original_price}}0</h4>
+                                                                <span class="h6 emercado_sub_price">₱350.99</span>
+                                                                <p class="m-0 text-center" style="color:green">Available</p>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="content">
+                                                                <h4 class="m-0 emercado_price">₱{{product.original_price}}0</h4>
+                                                                <span class="h6 emercado_sub_price">₱350.99</span>
+                                                                <p class="m-0 text-center" style="color:red">Unavailable</p>
+                                                            </div>
+                                                            <script>
+                                                                $(document).ready(function () {
+                                                                    document.getElementById("menus").disabled = true;
+                                                                });
+                                                            </script>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            </a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                            <section class="d-none d-lg-block mb-5 p-0">
+                                <div id="myCarousel" class="carousel slide" data-ride="carousel" style=" height: 100px !important; ">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    </ol>
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner h-100">
+                                    <div class="item active">
+                                        <img src="{% static 'img/consumer/coupons.png' %}" alt="Los Angeles" class="emercado_carousel_index object-fit-cover">
+                                    </div>
+                                    <div class="item">
+                                        <img src="{% static 'img/consumer/vouchers2.png' %}" alt="Chicago" class="emercado_carousel_index object-fit-cover">
+                                    </div>
+                                    <div class="item">
+                                        <img src="{% static 'img/consumer/vouchers3.png' %}" alt="New York" class="emercado_carousel_index object-fit-cover">
+                                    </div>
+                                    </div>
+                                    <!-- Left and right controls -->
+                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </section>
+
+                            <section class="d-none d-lg-block mb-5 p-0 container-fluid emercado_background_order_now mb-5 p-0 shadow">
+                                <div class="photo h-100">
+                                    <figure class="landing_img m-auto h-100 hover">
+                                        <img src="{% static 'img/consumer/dine/dine_background.jpg' %}" class="h-100" alt="sample64"/>
+                                        <figcaption>
+                                          <div class="square">
+                                            <div></div>
+                                          </div>
+                                          <h2>DINE</h2>
+                                          <p class="text-white">Indulge your cravings</p>
+                                        </figcaption>
+                                        <a href="{% url 'dine' %}"></a>
+                                    </figure>
+                                </div>
+                            </section>
+                            <section class="container-fluid emercado_background_color_2 mb-5 p-4 menus shadow">
+                                <h3 class="emercado_color_1 m-0 mb-4 d-block">Merchants</h3>
+                                <div class="search_button p-2">
+                                    <form action="/" class="search-form p-2" style="background: ghostwhite ; top: 22px !important; display: flex !important; width: 100% !important; border: 1px solid #ccc; border-radius: 5px;">
+                                        <input type="search"  name="search" placeholder="Search Store" id="searchBox" style="background: ghostwhite ;height: 100%; width: 100%; font-size: 14px; color: var(--text-color-1); padding: 9px;">
+                                        <button type="submit" class="header__search-btn"  style="background-color: #ee4d2d; border: none; height: 39px; width: 60px; border-radius: 2px; /* margin-right: 0px; */ outline: none; display: inline;"><i class="header__search-btn-icon fas fa-search text-white"></i></button>
+                                    </form>
+                                </div>
+                                <div class="box-container my-3">
+                                    <div class="row w-100 m-auto">
+                                        {% for store in stores %}
+                                        <div class="col-12 col-sm-3 col-md-6 col-lg-6 mb-3 px-2">
+                                            <a href="/store/{{store.store_id}}">
+                                                <div class="box emercado_item_box border" data-aos="fade-up">
+                                                    <div class="image emercado_background_color_whitesmoke">
+                                                        <img src="/Post_Media/{{store.profile_pic}}" alt="">
+                                                        <h3 class="emercado_marker_address p-2 emercado_text_overflow">
+                                                            <i class="fa fa-map-marker"></i><span style="margin-left: 10px;">{{store.store_address1}}</span></h3>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h4 class="mt-0 emercado_color_1 text-black emercado_text_overflow p-1">{{store.store_name}}</h4>
+                                                        <p class="m-0 text-black p-0">No. of Products</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div id="products"></div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+    </main><!-- End #main -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <footer class="emercado_color_1" style="border-top: 6px solid;">
+    <section class="container m-auto" id="contacts">
+        <div class="footer_contacts p-2">
+            <div class="row w-100 m-auto">
+                <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Customer Service</h4>
+                           <li><a class="footer_text text-black" href="#"> Help Centre</a></li>
+                           <li><a class="footer_text text-black" href="#"> eMercado Cash PH</a></li>
+                           <li><a class="footer_text text-black" href="#"> Payment Methods</a></li>
+                           <li><a class="footer_text text-black" href="#"> eMercado Pay</a></li>
+                           <li><a class="footer_text text-black" href="#"> eMercado Coins</a></li>
+                           <li><a class="footer_text text-black" href="#"> Order Tracking</a></li>
+                           <li><a class="footer_text text-black" href="#"> Return and Refund</a></li>
+                           <li><a class="footer_text text-black" href="#"> eMercado Guarantee</a></li>
+                           <li><a class="footer_text text-black" href="#"> Overseas Products</a></li>
+                           <li><a class="footer_text text-black" href="#"> Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">About eMercado</h4>
+                           <li><a class="footer_text text-black" href="#"> eMercado Blog</a></li>
+                           <li><a class="footer_text text-black" href="#"> eMercado Career</a></li>
+                           <li><a class="footer_text text-black" href="#"> eMercado Policies</a></li>
+                           <li><a class="footer_text text-black" href="#"> Privacy Policy</a></li>
+                           <li><a class="footer_text text-black" href="#"> eMercado Mall</a></li>
+                           <li><a class="footer_text text-black" href="#"> Seller Centre</a></li>
+                           <li><a class="footer_text text-black" href="#"> Flash Deals</a></li>
+                           <li><a class="footer_text text-black" href="#"> Media Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Payment</h4>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paymaya.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> PayMaya</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/visa.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Visa</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/gcash.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> GCash</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paypal.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Paypal</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Follow Us</h4>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/fb.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Facebook</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/twitter.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Twitter</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/in.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">LinkedIn</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/insta.jpg' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Instagram</a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </footer>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min..js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min..js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min..js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min..js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate..js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+        var itemsMainDiv = ('.MultiCarousel');
+        var itemsDiv = ('.MultiCarousel-inner');
+        var itemWidth = "";
+        $('.leftLst, .rightLst').click(function () {
+            var condition = $(this).hasClass("leftLst");
+            if (condition)
+                click(0, this);
+            else
+                click(1, this)
+        });
+        ResCarouselSize();
+        $(window).resize(function () {
+            ResCarouselSize();
+        });
+
+        //this function define the size of the items
+        function ResCarouselSize() {
+            var incno = 0;
+            var dataItems = ("data-items");
+            var itemClass = ('.item');
+            var id = 0;
+            var btnParentSb = '';
+            var itemsSplit = '';
+            var sampwidth = $(itemsMainDiv).width();
+            var bodyWidth = $('body').width();
+            $(itemsDiv).each(function () {
+                id = id + 1;
+                var itemNumbers = $(this).find(itemClass).length;
+                btnParentSb = $(this).parent().attr(dataItems);
+                itemsSplit = btnParentSb.split(',');
+                $(this).parent().attr("id", "MultiCarousel" + id);
+
+                if (bodyWidth >= 1200) {
+                    incno = itemsSplit[3];
+                    itemWidth = sampwidth / incno;
+                }
+                else if (bodyWidth >= 992) {
+                    incno = itemsSplit[2];
+                    itemWidth = sampwidth / incno;
+                }
+                else if (bodyWidth >= 768) {
+                    incno = itemsSplit[1];
+                    itemWidth = sampwidth / incno;
+                }
+                else {
+                    incno = itemsSplit[0];
+                    itemWidth = sampwidth / incno;
+                }
+                $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+                $(this).find(itemClass).each(function () {
+                    $(this).outerWidth(itemWidth);
+                });
+                $(".leftLst").addClass("over");
+                $(".rightLst").removeClass("over");
+            });
+        }
+        //this function used to move the items
+        function ResCarousel(e, el, s) {
+            var leftBtn = ('.leftLst');
+            var rightBtn = ('.rightLst');
+            var translateXval = '';
+            var divStyle = $(el + ' ' + itemsDiv).css('transform');
+            var values = divStyle.match(/-?[\d\.]+/g);
+            var xds = Math.abs(values[4]);
+            if (e == 0) {
+                translateXval = parseInt(xds) - parseInt(itemWidth * s);
+                $(el + ' ' + rightBtn).removeClass("over");
+
+                if (translateXval <= itemWidth / 2) {
+                    translateXval = 0;
+                    $(el + ' ' + leftBtn).addClass("over");
+                }
+            }
+            else if (e == 1) {
+                var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+                translateXval = parseInt(xds) + parseInt(itemWidth * s);
+                $(el + ' ' + leftBtn).removeClass("over");
+
+                if (translateXval >= itemsCondition - itemWidth / 2) {
+                    translateXval = itemsCondition;
+                    $(el + ' ' + rightBtn).addClass("over");
+                }
+            }
+            $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+        }
+            //It is used to get some elements from btn
+            function click(ell, ee) {
+                var Parent = "#" + $(ee).parent().attr("id");
+                var slide = $(Parent).attr("data-slide");
+                ResCarousel(ell, Parent, slide);
+            }
+            });
+    </script>
+
+    <script>
+            function menuToggle() {
+            const toggleMenu = document.querySelector(".menu");
+            toggleMenu.classList.toggle("active");
+            }
+    </script>
+
+    <script>
+        new Splide( '#image-carousel' ).mount();
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#search-btn').click(function() {
+                $('#searchBox_dropdwn').toggle();
+            });
+        });
+    </script>
+
+    <script>
+        const menuLinks = document.querySelectorAll('#menu-links a');
+        menuLinks.forEach((link) => {
+            link.addEventListener('click', (event) => {
+            // Prevent default link behavior
+            event.preventDefault();
+
+
+            // Remove "active" class from all links
+            menuLinks.forEach((link) => link.classList.remove('active'));
+
+
+            // Add "active" class to the clicked link
+            link.classList.add('active');
+
+
+            // Get the href attribute value of the clicked link
+            const targetHref = link.getAttribute('href');
+
+
+            // Navigate to the target URL
+            window.location.href = targetHref;
+            });
+        });
+    </script>
+
+    <script>
+        const menuLinks = document.querySelectorAll('#menu-links a');
+               menuLinks.forEach((link) => {
+               link.addEventListener('click', (event) => {
+                   // Prevent default link behavior
+                   event.preventDefault();
+
+
+                   // Remove "active" class from all links
+                   menuLinks.forEach((link) => link.classList.remove('active'));
+
+
+                   // Add "active" class to the clicked link
+                   link.classList.add('active');
+
+
+                   // Get the href attribute value of the clicked link
+                   const targetHref = link.getAttribute('href');
+
+
+                   // Navigate to the target URL
+                   window.location.href = targetHref;
+           });
+       });
+    </script>
+
+    <script>
+        /* Demo purposes only */
+        $(".hover").mouseleave(
+            function () {
+            $(this).removeClass("hover");
+            }
+        );
+        $(document).ready(function() {
+          unread_notifications('{{csrf_token}}')
+        });
+        $("#notif_dropdown").click(function() {
+          read_notifications('{{csrf_token}}')
+        });
+    </script>
+
+</body>
+</html>

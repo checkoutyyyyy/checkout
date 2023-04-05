@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+*{
+    font-family: 'Open Sans';
+}
+.register_form {
+ min-height: 100vh;
+}
+
+button.btn.btn-default.submit {
+    background-color: #9688FE;
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+
+}
+button.btn.btn-default.submit:hover {
+    background-color: #9688FE;
+    color: white;
+}
+.title{
+ font-size: 34px;
+ font-weight: 700;
+ line-height: 3;
+ color: #9688FE;
+}
+
+.sign_up_heading {
+ font-weight: 300;
+}
+
+.login_instead{
+    color: #9688FE;
+    font-weight: 600;
+    text-decoration: none;
+
+}
+
+.login_instead:hover{
+    text-decoration: underline !important;
+    color: #9688FE;
+}
+input.form-control.text-center {
+   color: #545050;
+
+}
+select#mySelect {
+    padding: 14px;
+    width: 100%;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid gainsboro;
+}
+span {
+    padding-left: 5px;
+}
+.show{
+    display:block;
+}
+button.btn.btn-default {
+    width: 100%;
+    border: 1px solid gainsboro !important;
+    padding: 12px;
+    border-radius: 10px;
+}
+select option:hover {
+    box-shadow: 0 0 10px 100px green inset !important;
+    color:white;
+}
+  select option:checked{
+    box-shadow: 0 0 10px 100px green inset !important;
+    }

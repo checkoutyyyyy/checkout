@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+*{
+    font-family: 'Open Sans';
+}
+.sign_up {
+ min-height: 100vh;
+}
+
+button.btn.btn-default.submit {
+    background-color: #9688FE;
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+
+}
+button.btn.btn-default.submit:hover {
+    background-color: #7a68ff;
+    color: white;
+
+}
+.title {
+ font-size: 34px;
+ font-weight: 700;
+ line-height: 3;
+ color: #9688FE;
+}
+
+.sign_up_heading {
+ font-weight: 300;
+}
+
+.login_instead{
+color: #545050; text-decoration: none;
+font-weight: 400;
+
+}
+
+.login_instead:hover{
+text-decoration: underline;
+color: #545050;
+}
+input.form-control.text-center {
+   color: #545050;
+
+}
+button.btn.btn-primary.dropdown-toggle {
+    width: 100%;
+    padding: 1rem 0.75rem;
+    background-color:#EAE7E7;
+    border:none;
+    border-radius:10px;
+    color: #545050;
+}
+.dropdown-menu{
+    width: 100%;
+
+}
+select#mySelect {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    border: 0.1px solid #adb5bd;
+}
+span {
+    padding-left: 10px;
+}
+.all_select{
+    padding-left: 7px;
+}

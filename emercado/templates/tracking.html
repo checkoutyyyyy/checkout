@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="{% static '/functionJS/spinner.js' %}"></script>
+    <style>
+        .container-fluid {
+            margin-top: 200px ;
+        }
+ 
+        p {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+ 
+        .small {
+            letter-spacing: 0.5px !important;
+        }
+ 
+        hr {
+            background-color: rgba(248, 248, 248, 0.667);
+        }
+ 
+        .card-2 {
+            box-shadow: 1px 1px 3px 0px rgb(112, 115, 139);
+ 
+        }
+ 
+        .fa-circle.active {
+            font-size: 8px;
+            color: #E26A2C;
+        }
+ 
+        .fa-circle {
+            font-size: 8px;
+            color: #aaa;
+        }
+ 
+        .rounded {
+            border-radius: 2.25rem !important;
+        }
+ 
+ 
+        .progress-bar {
+            background-color: #E26A2C !important;
+        }
+ 
+ 
+        .progress {
+            height: 5px !important;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-spinner" id="loading-spinner" style="visibility: visible;display: block;">
+        <img src="{% static 'img/consumer/cart_logo.png' %}" alt="" style="width: 85px !important; left: 50% !important; top: 50% !important; position: inherit; height: 110px !important;">
+    </div>
+    <div class="container-fluid my-5 d-flex justify-content-center">        
+        <div class="card">
+            <div class="card-body">
+                <div class="row justify-content-between mb-3">
+                    <div class="col-auto"> <h6 class="color-1 mb-0" style="font-size: 18px !important;">Order Details</h6> </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-2">
+                            <div class="card-header bg-white d-flex">
+                                <div class="d-flex align-self-center">
+                                    <img class="img-fluid rounded-circle" src="/imgs/4.png" alt="shop-logo" style="max-height: 30px; max-width: 30px;">
+                                </div>
+                                <div class="d-flex align-self-center text-dark" style="margin-left: 6px;font-size: 15px;font-weight: 700;">
+                                    Shop Name
+                                </div>
+                                <div class="d-flex align-self-center ml-auto">
+                                    <small class="d-block">Order 587288161575616</small>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 mb-3"> <small> Track Order <span><i class=" ml-2 fa fa-refresh"  aria-hidden="true"></i></span></small> </div>
+                                    <div class="col mt-auto">
+                                        <div class="progress my-auto"> <div class="progress-bar progress-bar  rounded" style="width: 62%" role="progressbar" aria-valuenow="25" aria-valuemin="0"  aria-valuemax="100"></div> </div>
+                                        <div class="media row justify-content-between ">
+                                            <div class="col-auto text-right"><span> <small  class="text-right mr-sm-2">Ordered</small> <i class="fa fa-circle active"></i> </span></div>
+                                            <div class="flex-col"> <span> <small class="text-right mr-sm-2">Out for delivary</small><i class="fa fa-circle active"></i></span></div>
+                                            <div class="col-auto flex-col-auto"><small  class="text-right mr-sm-2">Delivered</small><span> <i  class="fa fa-circle"></i></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                                <div class="media">
+                                    <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0 shadow" src="/imgs/2.png" width="135" height="135" /> </div>
+                                    <div class="media-body my-auto text-right">
+                                        <div class="row  my-auto flex-column flex-md-row">
+                                            <div class="col-auto my-auto"> <small>Item 1 name</small></div>
+                                            <div class="col my-auto"> <small>Qty : 1</small></div>
+                                            <div class="col my-auto"><h6 class="mb-0">₱3,600.00</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                                <div class="media">
+                                    <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0 shadow" src="/imgs/10.png" width="135" height="135" /> </div>
+                                    <div class="media-body my-auto text-right">
+                                        <div class="row  my-auto flex-column flex-md-row">
+                                            <div class="col-auto my-auto"> <small>Item 2 name</small></div>
+                                            <div class="col my-auto"> <small>Qty : 1</small></div>
+                                            <div class="col my-auto"><h6 class="mb-0">₱3,600.00</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <h6><b>Total Summary</b></h6>
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col col"><p class="mb-1">Date Ordered</p> </div>
+                                            <div class="flex-sm-col col-auto"><p class="mb-1">27 Dec 2022 11:50:58</p></div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col col"><p class="mb-1">Paid by</p> </div>
+                                            <div class="flex-sm-col col-auto"><p class="mb-1">Cash On Delivery</p></div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col col"> <p class="mb-1">Subtotal</p> </div>
+                                            <div class="flex-sm-col col-auto"> <p class="mb-1">₱4,835</p> </div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col col"><p class="mb-1">Discount</p> </div>
+                                            <div class="flex-sm-col col-auto"><p class="mb-1">₱150</p></div>
+                                        </div>
+ 
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col col"><p class="mb-1">GST 18%</p></div>
+                                            <div class="flex-sm-col col-auto"><p class="mb-1">843</p></div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col col"><p class="mb-1">Delivery Charges</p></div>
+                                            <div class="flex-sm-col col-auto"><p class="mb-1">Free</p></div>
+                                        </div>
+                                        <hr class="my-3">
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col col"><p class="mb-1">Total(VAT Incl.)</p></div>
+                                            <div class="flex-sm-col col-auto"><h6 class="mb-1" style="font-size: 18px;">₱2,833.00</h6></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

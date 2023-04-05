@@ -1,0 +1,722 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Checkout-Featured Items</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/consumer/cart_logo.png' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="{% static '/functionJS/utility.js' %}"></script>
+  <script src="{% static '/functionJS/spinner.js' %}"></script>
+
+<style>
+    .header__cart-heading {
+    margin: -32px 52px 0px;
+    white-space: initial;
+}
+</style>
+
+</head>
+
+<body>
+    <div class="loading-spinner" id="loading-spinner" style="visibility: visible;display: block;">
+        <img src="{% static 'img/consumer/cart_logo.png' %}" alt="" style="width: 85px !important; left: 50% !important; top: 50% !important; position: inherit; height: 110px !important;">
+    </div>
+    <header class="header" style="z-index: 2;">
+        <div class="logo">
+            <a style="text-decoration: underline;" href="/">
+                <img class="header_logo d-sm-none d-md-none d-lg-none mt-1" style="width: auto; height: 50px;" src="{% static 'img/consumer/border_white.png' %}" alt="">
+                <img class="header_logo d-none d-sm-block" src="{% static 'img/consumer/black&white.png' %}" alt="">
+            </a>
+        </div>
+         <div class="dropdown text-nowrap d-flex">
+           {% if consumer %}
+          <div class="dropdown m-auto pt-3">
+              <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+                  <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart " style="width: 300px;">
+                <div class="pt-3 pb-2 px-3 border-bottom">
+                    <h4 class="emercado_color_1 m-0">Cart</h4>
+                </div>
+                {% if my_cart|length > 0 %}
+                    
+                    {% if my_cart|length <= 6 %}
+                    <div class="" id="scroll_style">
+                    {% else %}
+                    <div class="header__cart-list-item scrollbar"id="scroll_style">
+                    {% endif %}
+                    
+                    {% for cart in my_cart %}
+                        <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                            {% if cart.product_image %}
+                            <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                            {% else  %}
+                            <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                            {% endif  %}
+                            <div class="header__cart-item-info text-black">
+                                <div class="header__cart-item-head">
+                                    <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                                    <div class="header__cart-item-price-wrap">
+                                        <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                        <span class="header__cart-item-multiply">x</span>
+                                        <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                                    </div>
+                                </div>
+                                <div class="header__cart-item-body">
+                                    <span class="header__cart-item-description"></span>
+                                    <span class="header__cart-item-remove"></span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider m-0"></div>
+                    {% endfor %}
+                    </div>
+                    <div class="">
+                        <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                        <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                    </div>
+
+                {% else %}
+                <div class="text-center">
+                    <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                    <p>No items yet</p>
+                    <div class="dropdown-divider m-0 pb-3"></div>
+                </div>
+                <div class="" style="display:none;" id="cart_footer">
+                    <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                    <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                </div>
+                {% endif %}
+  
+  
+              </div>
+          </div>
+          <div class="dropdown m-auto">
+              <div class="nav-link dropdown m-auto header_icon text-center"   data-bs-toggle="dropdown" id="notif_dropdown">
+                  <i class="dropbtn_bell fa-solid fa-bell text-white p-0" style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_bell " id="notif_count"></span>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_notif" style="width:300px">
+                <div class="pt-3 pb-2 px-3 border-bottom">
+                <h4 class="emercado_color_1 m-0 text_size_sm">Notifications</h4>
+                </div>
+                {% if notifications|length > 0 %}
+                    {% if notifications|length <= 5 %}
+                    <div class="" id="scroll_style">
+                    {% else %}
+                    <div class="header__cart-list-item scrollbar"id="scroll_style">
+                    {% endif %}
+                    <!-- notification if naay magpa request og order (parent order)-->
+                    {% for notif in notifications %}
+        
+                        {% if notif.notif_type == "Share Order" %}
+                            {% if not notif.requested_response  %}
+                                <a class="header__cart-item notif_block notif_unread" onclick="allow_share_order('{{csrf_token}}','{{notif.id}}')">
+                            {% else %}
+                                <a class="header__cart-item notif_block notif_read" id="test-1">
+                            {% endif %}
+                                <div class="header__cart-item-info text-black">
+                                    <div class="header__cart-item-head header__cart-item-head_notif">
+                                        <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px; margin-top: 3px;"/>
+                                        <div class="d-block mt-2">
+                                            <h5 class="header__cart-item-name">{{notif.requesting_name}}</h5>
+                                            <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.requesting_id_format}}</p>
+                                        </div>
+        
+                                    </div>
+                                    <div class="header__cart-item-body">
+                                        <span class="header__cart-item-description"  style="white-space: normal;margin-left: 50px;">
+                                            <p class="my-2 btn_notif">{{notif.content}}</p>
+                                        </span>
+                                    </div>
+        
+                                    <!-- <div class="text-center mb-2" id="shared_optons{{notif.id}}">
+                                        <span class="header__cart-item-remove">
+                                            <button type="button" class="btn btn-sm text-white" style="background-color: #656363; margin-right: 10px;" onclick="denied_request('{{csrf_token}}','{{notif.id}}')">No</button>
+                                            <button type="button" class="btn btn-sm text-white" style="background-color: #ff6c20; margin-left: 10px;" onclick="accept_request('{{csrf_token}}','{{notif.id}}')">Yes</button>
+                                        </span>
+                                    </div> -->
+        
+                                </div>
+                            </a>
+                        <!-- end of notification if naay magpa request og order (parent order)-->
+                            <div class="dropdown-divider m-0"></div>
+                            {% elif notif.notif_type == "Share Order Response" %}
+                                {% if notif.requested_response == "Yes" %}
+                                    <a class="header__cart-item notif_block notif_unread" onclick="share_order_accessable('{{notif.url}}')">
+                                {% else %}
+                                    <a class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                                {% endif %}
+                                    <div class="header__cart-item-info text-black">
+                                        <div class="header__cart-item-head header__cart-item-head_notif">
+                                            <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                            <div class="d-block mt-2">
+                                                    <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                                    <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="header__cart-item-body">
+                                            <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                                <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                            </span>
+                                        </div>
+        
+                                    </div>
+                                    </a>
+                                    <!-- end of notification if naay magpa request og order (parent order)-->
+                                    <div class="dropdown-divider m-0"></div>
+                            {% elif notif.notif_type == "Personnel Discount Request" %}
+                                <a href="{{notif.url}}" class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                                    <div class="header__cart-item-info text-black">
+                                        <div class="header__cart-item-head header__cart-item-head_notif">
+                                            <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                            <div class="d-block mt-2">
+                                                    <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                                    <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="header__cart-item-body">
+                                            <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                                <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                            </span>
+                                        </div>
+        
+                                    </div>
+                                    </a>
+                                    <!-- end of notification if naay magpa request og order (parent order)-->
+                                <div class="dropdown-divider m-0"></div>
+                            {% endif %}
+                    {% endfor %}
+                    </div>
+                    
+                <a href="/notifications" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                {% else %}
+                <div class="text-center">
+                    <img src="{% static 'img/consumer/header/empty_notification.png' %}" style="padding: 25px !important; min-width: 180px !important; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                    <p>No notifications yet</p>
+                </div>
+                {% endif %}
+    
+            </div>
+    
+    
+          </div>
+          <div class="dropdown">
+          <a class="nav-link nav-profile align-items-center px-2" href="#" data-bs-toggle="dropdown">
+              {% if consumer.profile_picture %}
+                  {% if 'profile_default.jpg' in consumer.profile_picture %}
+                      <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                  {% else %}
+                      <img class="img-fluid rounded-circle" src="/Post_Media/{{consumer.profile_picture}}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                  {% endif %}
+              {% else %}
+                  <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+              {% endif %}
+              <span class="name d-none d-lg-inline text-white">{{consumer.first_name}} {{consumer.last_name}}</span>
+          </a><!-- End Profile Iamge Icon -->
+              <nav class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_profile" style="width:173px !important;">
+                  <a class="dropdown-content-profile d-flex align-items-center" href="{% url 'user_profile' %}">
+                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;" ></i>
+                      <span>My Profile</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-content-profile d-flex align-items-center" href="#" data-toggle="modal" data-target="#logoutModal">
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;"></i><span>Logout</span>
+                  </a>
+              </nav>
+          </div>
+    
+          {% else %}
+          <div class="m-auto header_icon text-center">
+              <div class="dropdown m-auto">
+                  <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+                      <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+                  </div>
+                  <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart" style="width: 300px;">
+                      <div class="pt-3 pb-2 px-3 border-bottom">
+                          <h4 class="emercado_color_1 m-0 text_size_sm">Cart</h4>
+                      </div>
+                      {% if my_cart|length > 0 %}
+                      <div class="header__cart-list-item" id="scroll_style">
+                          {% for cart in my_cart %}
+                          <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                              {% if cart.product_image %}
+                              <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                              {% else  %}
+                                  <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                              {% endif  %}
+                              <div class="header__cart-item-info text-black">
+                                  <div class="header__cart-item-head">
+                                      <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                                      <div class="header__cart-item-price-wrap">
+                                          <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                          <span class="header__cart-item-multiply">x</span>
+                                          <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                                      </div>
+                                  </div>
+                                  <div class="header__cart-item-body">
+                                      <span class="header__cart-item-description"></span>
+                                      <span class="header__cart-item-remove"></span>
+                                  </div>
+                              </div>
+                          </a>
+                          {% endfor %}
+    
+                          <div class="dropdown-divider m-0 pb-3"></div>
+                          <div class="">
+                            <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                            <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                          </div>
+                      </div>
+                      {% else %}
+                        <div class="text-center">
+                            <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                            <p>No items yet</p>
+                            <div class="dropdown-divider m-0 pb-3"></div>
+                        </div>
+                        <div class="" style="display:none;" id="cart_footer">
+                            <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                            <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                        </div>
+                      {% endif %}
+    
+                  </div>
+              </div>
+          </div>
+          <a class="nav-link nav-profile align-items-center " href="/login" >
+              <span class="name  text-white">Login</span>
+          </a>
+          {% endif %}
+          <script>
+              $(document).ready(function () {
+                get_cart_total("{{csrf_token}}")
+              });
+          </script>
+         </div>
+         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-orange" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <!-- End -->
+    </header>
+  <main id="main">
+    <section class="section dashboard">
+      <div class="hero-container" style="padding: 60px 0;">
+        <div class="container">
+         <a href="#" class="btn"> Back</a>
+
+
+            <h3 style="padding-top: 10px;">Featured Menu Items</h3>
+                <div class="row">
+                    <div class="MultiCarousel" data-items="1,2,3,4" data-slide="1" id="MultiCarousel"  data-interval="3000">
+                        <div class="MultiCarousel-inner">
+                            <div class="carousel">
+                                <div class="item">
+                                    <div class="pad15">
+                                        <a href="#"><img src="{% static 'img/Sugbo-Mercado.jpg' %}" alt="" style="border: 0px solid #ff9d09;"></a>
+                                        <h6> <i class="fa fa-map-marker"></i> Garden Bloc in Cebu IT Park </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <div class="item">
+                                    <div class="pad15">
+                                        <a href="#"><img src="{% static 'img/the-market.png' %}" alt="" style="border: 0px solid #ff9d09;"></a>
+                                        <h6> <i class="fa fa-map-marker"></i> Logarta St, Mandaue City, Cebu </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <div class="item">
+                                    <div class="pad15">
+                                        <a href="#"><img src="{% static 'img/yahay.jpg' %}" alt="" style="border: 0px solid #ff9d09;"></a>
+                                        <h6> <i class="fa fa-map-marker"></i> Talisay, Cebu City </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <div class="item">
+                                    <div class="pad15">
+                                        <a href="#"><img src="{% static 'img/mercato.png' %}" alt="" style="border: 0px solid #ff9d09;"></a>
+                                        <h6> <i class="fa fa-map-marker"></i> So-ong II, Lapu-Lapu City, Cebu </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <div class="item">
+                                    <div class="pad15">
+                                        <a href="#"><img src="{% static 'img/The-Grid.png' %}" alt="" style="border: 0px solid #ff9d09;"></a>
+                                        <h6> <i class="fa fa-map-marker"></i> Brgy. Nasipit, Talamban, Cebu City </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <div class="item">
+                                    <div class="pad15">
+                                        <a href="#"><img src="{% static 'img/Tambayan.png' %}" alt="" style="border: 0px solid #ff9d09;"></a>
+                                        <h6> <i class="fa fa-map-marker"></i> Consolacion, Cebu </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <div class="item">
+                                    <div class="pad15">
+                                        <a href="#"><img src="{% static 'img/pardo.png' %}" alt="" style="border: 0px solid #ff9d09;"></a>
+                                        <h6> <i class="fa fa-map-marker"></i> 69 Natalio B. Bacalso Ave, Cebu City </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <div class="item">
+                                    <div class="pad15">
+                                        <a href="#"><img src="{% static 'img/naga.png' %}" style="border: 0px solid #ff9d09;"></a>
+                                        <h6> <i class="fa fa-map-marker"></i> City of Naga, Cebu </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary leftLst" style="border-outline: none;"><</button>
+                        <button class="btn btn-primary rightLst" style="border-outline: none;">></button>
+                    </div>
+                </div>
+
+          <!-- store -->
+            <section class="menus" id="menus">
+                <h1 class="heading"><span><strong>Featured Menu Items</strong></span> </h1>
+                <div class="box-container">
+                    <div class="box" data-aos="fade-up">
+                        <div class="image">
+                            <img src="{% static 'img/sampgyupsal.png' %}" alt="">
+                            <h3> <i class="fas fa-utensils"></i> Samgyupsal</h3>
+                        </div>
+                        <div class="content">
+                            <h3> <i class="fa fa-map-marker"></i> Haneul Samgyeopsal </h3>
+                            <div class="price"> 290.99 <span>350.99</span> </div>
+                            <p> Plain Thick Pork Belly </p>
+                            <a href="#" class="btn menu"> <strong>BUY</strong> </a>
+                        </div>
+                    </div>
+
+                    <div class="box" data-aos="fade-up">
+                        <div class="image">
+                            <img src="{% static 'img/Moksal.png' %}" alt="">
+                            <h3> <i class="fas fa-utensils"></i> Okasan </h3>
+                        </div>
+                        <div class="content">
+                            <h3> <i class="fa fa-map-marker"></i> Moksal </h3>
+                            <div class="price"> 290.99 <span>350.99</span> </div>
+                            <p> Plain Pork Shoulder </p>
+                            <a href="#" class="btn menu"> <strong>BUY</strong> </a>
+                        </div>
+                    </div>
+
+                    <div class="box" data-aos="fade-up">
+                        <div class="image">
+                            <img src="{% static 'img/Daepe.png' %}" alt="">
+                            <h3> <i class="fas fa-utensils"></i> Daepe </h3>
+                        </div>
+                        <div class="content">
+                            <h3> <i class="fa fa-map-marker"></i> Haneul Samgyeopsal </h3>
+                            <div class="price"> 290.99 <span>350.99</span> </div>
+                            <p> Thin Slice Pork Belly</p>
+                            <a href="#" class="btn menu"> <strong>BUY</strong> </a>
+                        </div>
+                    </div>
+
+                    <div class="box" data-aos="fade-up">
+                        <div class="image">
+                            <img src="{% static 'img/soy-chicken.png' %}" alt="">
+                            <h3> <i class="fas fa-utensils"></i> Soy Chicken </h3>
+                        </div>
+                        <div class="content">
+                            <h3> <i class="fa fa-map-marker"></i> Okasan </h3>
+                            <div class="price"> 290.99 <span>350.99</span> </div>
+                            <p> Chicken Thight w/ soy teriyaki marinated</p>
+                            <a href="#" class="btn menu"> <strong>BUY</strong> </a>
+                        </div>
+                    </div>
+
+                    <div class="box" data-aos="fade-up">
+                        <div class="image">
+                            <img src="{% static 'img/marinated-pork.png' %}" alt="">
+                            <h3> <i class="fas fa-utensils"></i> Marinated Pork </h3>
+                        </div>
+                        <div class="content">
+                            <h3> <i class="fa fa-map-marker"></i> Perto's Sizzling Plate </h3>
+                            <div class="price"> 290.99 <span>350.99</span> </div>
+                            <p> Marinated Thin Slice Pork Belly</p>
+                            <a href="#" class="btn menu"> <strong>BUY</strong> </a>
+                        </div>
+                    </div>
+
+                    <div class="box" data-aos="fade-up">
+                        <div class="image">
+                            <img src="{% static 'img/bulgogi.png' %}" alt="">
+                            <h3> <i class="fas fa-utensils"></i> Bulgogi </h3>
+                        </div>
+                        <div class="content">
+                            <h3> <i class="fa fa-map-marker"></i> TwirlyTales </h3>
+                            <div class="price"> 290.99 <span>350.99</span> </div>
+                            <p> Korean Marinated Beef </p>
+                            <a href="#" class="btn menu"> <strong>BUY</strong> </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+  </section>
+</main><!-- End #main -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <footer class="emercado_color_1" style="border-top: 6px solid;">
+    <section class="container m-auto" id="contacts">
+        <div class="footer_contacts">
+            <div class="row w-100 m-auto">
+                <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Customer Service</h4>
+                           <li><a class="footer_text text-black" href="#"> Help Centre</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Cash PH</a></li>
+                           <li><a class="footer_text text-black" href="#"> Payment Methods</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Pay</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Coins</a></li>
+                           <li><a class="footer_text text-black" href="#"> Order Tracking</a></li>
+                           <li><a class="footer_text text-black" href="#"> Return and Refund</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Guarantee</a></li>
+                           <li><a class="footer_text text-black" href="#"> Overseas Products</a></li>
+                           <li><a class="footer_text text-black" href="#"> Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">About Checkout</h4>
+                           <li><a class="footer_text text-black" href="#"> Checkout Blog</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Career</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Policies</a></li>
+                           <li><a class="footer_text text-black" href="#"> Privacy Policy</a></li>
+                           <li><a class="footer_text text-black" href="#"> Checkout Mall</a></li>
+                           <li><a class="footer_text text-black" href="#"> Seller Centre</a></li>
+                           <li><a class="footer_text text-black" href="#"> Flash Deals</a></li>
+                           <li><a class="footer_text text-black" href="#"> Media Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Payment</h4>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paymaya.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> PayMaya</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/visa.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Visa</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/gcash.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> GCash</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paypal.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Paypal</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Follow Us</h4>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/fb.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Facebook</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/twitter.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Twitter</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/in.png' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">LinkedIn</a>
+                        </li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/insta.jpg' %}" alt="">
+                            <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Instagram</a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </footer>
+
+
+      <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+      <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min..js' %}"></script>
+      <script src="{% static 'vendor/glightbox/js/glightbox.min..js' %}"></script>
+      <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min..js' %}"></script>
+      <script src="{% static 'vendor/swiper/swiper-bundle.min..js' %}"></script>
+      <script src="{% static 'vendor/php-email-form/validate..js' %}"></script>
+      <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+        var itemsMainDiv = ('.MultiCarousel');
+        var itemsDiv = ('.MultiCarousel-inner');
+        var itemWidth = "";
+
+        $('.leftLst, .rightLst').click(function () {
+            var condition = $(this).hasClass("leftLst");
+            if (condition)
+                click(0, this);
+            else
+                click(1, this)
+        });
+
+        ResCarouselSize();
+
+
+
+
+        $(window).resize(function () {
+            ResCarouselSize();
+        });
+
+        //this function define the size of the items
+        function ResCarouselSize() {
+            var incno = 0;
+            var dataItems = ("data-items");
+            var itemClass = ('.item');
+            var id = 0;
+            var btnParentSb = '';
+            var itemsSplit = '';
+            var sampwidth = $(itemsMainDiv).width();
+            var bodyWidth = $('body').width();
+            $(itemsDiv).each(function () {
+                id = id + 1;
+                var itemNumbers = $(this).find(itemClass).length;
+                btnParentSb = $(this).parent().attr(dataItems);
+                itemsSplit = btnParentSb.split(',');
+                $(this).parent().attr("id", "MultiCarousel" + id);
+
+
+                if (bodyWidth >= 1200) {
+                    incno = itemsSplit[3];
+                    itemWidth = sampwidth / incno;
+                }
+                else if (bodyWidth >= 992) {
+                    incno = itemsSplit[2];
+                    itemWidth = sampwidth / incno;
+                }
+                else if (bodyWidth >= 768) {
+                    incno = itemsSplit[1];
+                    itemWidth = sampwidth / incno;
+                }
+                else {
+                    incno = itemsSplit[0];
+                    itemWidth = sampwidth / incno;
+                }
+                $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+                $(this).find(itemClass).each(function () {
+                    $(this).outerWidth(itemWidth);
+                });
+
+                $(".leftLst").addClass("over");
+                $(".rightLst").removeClass("over");
+
+            });
+        }
+
+
+        //this function used to move the items
+        function ResCarousel(e, el, s) {
+            var leftBtn = ('.leftLst');
+            var rightBtn = ('.rightLst');
+            var translateXval = '';
+            var divStyle = $(el + ' ' + itemsDiv).css('transform');
+            var values = divStyle.match(/-?[\d\.]+/g);
+            var xds = Math.abs(values[4]);
+            if (e == 0) {
+                translateXval = parseInt(xds) - parseInt(itemWidth * s);
+                $(el + ' ' + rightBtn).removeClass("over");
+
+                if (translateXval <= itemWidth / 2) {
+                    translateXval = 0;
+                    $(el + ' ' + leftBtn).addClass("over");
+                }
+            }
+            else if (e == 1) {
+                var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+                translateXval = parseInt(xds) + parseInt(itemWidth * s);
+                $(el + ' ' + leftBtn).removeClass("over");
+
+                if (translateXval >= itemsCondition - itemWidth / 2) {
+                    translateXval = itemsCondition;
+                    $(el + ' ' + rightBtn).addClass("over");
+                }
+            }
+            $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+        }
+
+        //It is used to get some elements from btn
+        function click(ell, ee) {
+            var Parent = "#" + $(ee).parent().attr("id");
+            var slide = $(Parent).attr("data-slide");
+            ResCarousel(ell, Parent, slide);
+        }
+
+        });
+    </script>
+
+    <script>
+    function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+    }
+    $(document).ready(function() {
+        unread_notifications('{{csrf_token}}')
+    });
+    $("#notif_dropdown").click(function() {
+        read_notifications('{{csrf_token}}')
+    });
+    </script>
+</body>
+
+</html>

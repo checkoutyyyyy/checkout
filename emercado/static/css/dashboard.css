@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Open Sans');
+
+#body-row {
+    margin-left: 0;
+    margin-right: 0;
+}
+#sidebar-container {
+    min-height: 100vh;
+    background: #9688FE;
+    padding: 0;
+}
+.sidebar-expanded {
+    width: 200px;
+}
+
+.sidebar-collapsed {
+    width: 100px;
+}
+
+#sidebar-container .list-group a {
+    margin: auto;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    background-color: #ff6c2000;
+    padding: 12px;
+}  
+#sidebar-container .list-group .sidebar-submenu a {
+    height: 45px;
+    padding-left: 5rem;
+    font-size: 14px !important;
+    background-color: #9688FE;
+    border: 0;
+    border-radius: 0;
+}
+span.submenu-collapsed{
+    color: #9688FE;
+    font-weight: lighter;
+    font-size: 14px;
+}
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+.sidebar-separator-title {
+    height: 35px;
+}
+.fa-fw{
+    width: 2.25em;
+}
+a.list-group-item.list-group-item-action.flex-column.align-items-start {
+    border: none;
+    background-color: black;
+    color: white;
+}
+a.list-group-item.list-group-item-action.flex-column.align-items-start.collapsed:hover {
+    background-color: black !important;
+    border: 0;
+    border-radius: 0;
+    color: white !important;
+}
+a.list-group-item.list-group-item-action.flex-column.align-items-start:hover {
+    background-color: black  !important;
+    border: 0;
+    border-radius: 0;
+    color: white !important;
+}
+span.submenu-collapsed:hover {
+    color:white;
+    font-size: 12px;
+}
+@media (max-width: 313px) {
+    span.text-white {
+        display: none;
+    }
+}
+
+.btn-red{
+    background-color: #9688FE;
+}
+.btn-red:hover{
+    background-color: #9688FE;
+}
+
+a.btns {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #9688FE;
+    color: white !important;
+  }
+
+
+
+
+
+   

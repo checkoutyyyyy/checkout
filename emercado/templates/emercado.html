@@ -1,0 +1,758 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+  <title>Checkout</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/consumer/cart_logo.png' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=El Messiri' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/emercado.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="{% static '/functionJS/spinner.js' %}"></script>
+
+</head>
+<style>
+    .emercado_background_image{
+        position: relative;
+        background: linear-gradient(0deg, rgb(0, 0, 0, 0.01) 100%, rgb(0, 0, 0, 0.01) 100%), url('{% static "img/consumer/dine/bg/dine_bg_2.png" %}');
+        background-size: cover;
+        height: calc(100vw * 980/1906);
+        min-height: 700px !important;
+        background-position: 0% 35%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+
+    .emercado_background_image_2{
+        position: relative;
+        background: linear-gradient(0deg, rgb(0, 0, 0, 0.01) 100%, rgb(0, 0, 0, 0.01) 100%), url('{% static "img/consumer/landing_page/section_2_background.jpg" %}');
+        background-size: cover;
+        height: calc(100vw * 480/1906);
+        min-height: 250px !important;
+        background-position: 0% 35%;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+
+    .emercado_background_image_3{
+        position: relative;
+        background: linear-gradient(0deg, rgb(0, 0, 0, 0.01) 100%, rgb(0, 0, 0, 0.01) 100%), url('{% static "img/consumer/landing_page/section_3_background.jpg" %}');
+        background-size: cover;
+        height: calc(100vw * 480/1906);
+        min-height: 150px !important;
+        background-position: 0% 35%;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+
+    .emercado_background_image_4{
+        position: relative;
+        background: linear-gradient(0deg, rgb(0, 0, 0, 0.01) 100%, rgb(0, 0, 0, 0.01) 100%), url('{% static "img/consumer/landing_page/section_dine.jpg" %}');
+        background-size: cover;
+        background-position: 0% 35%;
+        min-height: 150px !important;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+
+    .emercado_background_image_5{
+        position: relative;
+        background: linear-gradient(0deg, rgb(0, 0, 0, 0.01) 100%, rgb(0, 0, 0, 0.01) 100%), url('{% static "img/consumer/landing_page/section_merchant.jpg" %}');
+        background-size: cover;
+        background-position: 0% 35%;
+        min-height: 150px !important;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+
+    .emercado_background_black{
+        position: relative;
+        /* background: linear-gradient(0deg, rgb(0, 0, 0, 0.4) 100%, rgb(0, 0, 0, 0.01) 100%), url('{% static "img/consumer/landing_page/section_black_background.png" %}'); */
+        background-size: cover;
+        background-position: 0% 50%;
+        min-height: 150px !important;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .emercado_background_orange{
+        position: relative;
+        /* background: linear-gradient(0deg, rgb(0, 0, 0, 0.4) 100%, rgb(0, 0, 0, 0.01) 100%), url('{% static "img/consumer/landing_page/section_orange_background.png" %}'); */
+        background-size: cover;
+        background-position: 0% 50%;
+        min-height: 150px !important;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+   
+    figure.landing_img {
+        font-family: 'Raleway', Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(-180deg,#9688FE,#212529);
+        min-height: 220px !important;
+        max-height: 500px !important;
+        text-align: center;
+    }
+    figure.landing_img * {
+        -webkit-box-sizing: padding-box;
+        box-sizing: padding-box;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    figure.landing_img img {
+        width: 100%;
+        object-fit: cover;
+    }
+    figure.landing_img figcaption {
+        bottom: 0;
+        display: block;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    figure.landing_img h2 {
+        font-weight: 400;
+        left: 0;
+        right: 0;
+        font-size: calc(45px + 100vw * 60/1906) !important;
+        letter-spacing: -1px;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 50%;
+        -webkit-transform: translateY(50%);
+        transform: translateY(50%);
+        color: #FFFFFF;
+        text-shadow: 1px 0px 0px #fff;
+    }
+    figure.landing_img h2 span {
+        font-weight: 800;
+    }
+    figure.landing_img p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 50%;
+        opacity: 0;
+        font-size: calc(8px + 100vw * 25/1906) !important;
+        -webkit-transform: translateY(-20%) scale(0.7);
+        transform: translateY(-20%) scale(0.7);
+    }
+    figure.landing_img .square {
+        background-color: rgb(0 0 0 / 50%);
+        height: calc(100vw * 350/1906) !important;
+        width: calc(100vw * 350/1906) !important;
+        min-height: 150px !important;
+        min-width: 150px !important;
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: '';
+        -webkit-transform: rotate(45deg) translate(-50%, -50%);
+        transform: rotate(45deg) translate(-50%, -50%);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+    figure.landing_img .square:before,
+    figure.landing_img .square:after,
+    figure.landing_img .square div:before,
+    figure.landing_img .square div:after {
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        content: "";
+        display: block;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+    }
+    figure.landing_img .square:before,
+    figure.landing_img .square:after {
+        width: 65%;
+        height: 2px;
+    }
+    figure.landing_img .square div:before,
+    figure.landing_img .square div:after {
+        width: 2px;
+        height: 65%;
+    }
+    figure.landing_img .square:before,
+    figure.landing_img .square div:before {
+        left: 0;
+        top: 0;
+    }
+    figure.landing_img .square:after,
+    figure.landing_img .square div:after {
+        bottom: 0;
+        right: 0;
+    }
+    figure.landing_img a {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+    }
+    figure.landing_img:hover img,
+    figure.landing_img.hover img {
+        background-color: transparent;
+        opacity: 0.25;
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    figure.landing_img:hover h2,
+    figure.landing_img.hover h2 {
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    figure.landing_img:hover p,
+    figure.landing_img.hover p {
+        opacity: 1;
+        -webkit-transform: translateY(0px) scale(1);
+        transform: translateY(0px) scale(1);
+    }
+    figure.landing_img:hover .square:before,
+    figure.landing_img.hover .square:before {
+        width: 38%;
+    }
+    figure.landing_img:hover .square div:before,
+    figure.landing_img.hover .square div:before {
+        height: 38%;
+    }
+    figure.landing_img:hover .square:after,
+    figure.landing_img.hover .square:after {
+        width: 55%;
+    }
+    figure.landing_img:hover .square div:after,
+    figure.landing_img.hover .square div:after {
+        height: 55%;
+    }
+    .animate-charcter {
+        background-image: linear-gradient(
+            -225deg,
+            #000 0%,
+            #7a68ff 29%,
+            #fff 67%,
+            #9688FE 100%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 2s cubic-bezier(0.39, -0.24, 0.74, 0.05) infinite;
+        display: inline-block;
+            font-size: 190px;
+    }
+
+    @keyframes textclip {
+        to {
+            background-position: 200% center;
+        }
+    }
+    .d-block{
+        display: flex !important;
+    }
+
+    @-webkit-keyframes rotateIt3 {
+        0 {
+            -webkit-transform: rotate(0);
+            transform: rotate(0)
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg)
+        }
+    }
+
+    @keyframes rotateIt3 {
+        0 {
+            -webkit-transform: rotate(0);
+            transform: rotate(0)
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg)
+        }
+    }
+
+    #home-pic-2,#home-pic-3,#home-pic-4,#home-pic-5,#home-pic-6 {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-animation: rotateIt3;
+        animation: rotateIt3;
+        -webkit-animation-duration: 90s;
+        animation-duration: 90s;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite
+    }
+    #home-page-pictures {
+        position: relative
+    }
+
+    #home-page-pictures h2 {
+        font-size: 414rem;
+        line-height: .8;
+        color: #ebdfd4;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 49vw
+    }
+
+    #home-page-pictures #home-pic-2 {
+        position: absolute;
+        top: -18vw;
+        right: -3vw;
+    }
+
+    #home-page-pictures #home-pic-2 img {
+        width: calc(100vw * 240/1906);
+        height: auto
+    }
+
+    #home-page-pictures #home-pic-3 {
+        position: absolute;
+        top: -15vw;
+        left: 0;
+    }
+
+    #home-page-pictures #home-pic-3 img {
+        width: calc(100vw * 240/1906);
+        height: auto;
+    }
+
+    #home-page-pictures #home-pic-4 {
+        position: absolute;
+        top: -13vw;
+        left: 12vw;
+    }
+
+    #home-page-pictures #home-pic-4 img {
+        width: calc(100vw * 240/1906);
+        height: auto
+    }
+
+    #home-page-pictures #home-pic-5 {
+        position: absolute;
+        top: 10vw;
+        left: 0;
+    }
+
+    #home-page-pictures #home-pic-5 img {
+        width: calc(100vw * 240/1906);
+        height: auto
+    }
+
+    #home-page-pictures #home-pic-6 {
+        position: absolute;
+        right: 3vw;
+        top: 6vw;
+    }
+
+    #home-page-pictures #home-pic-6 img {
+        width: calc(100vw * 240/1906);
+        height: auto
+    }
+ 
+</style>
+<body>
+    <div class="loading-spinner" id="loading-spinner" style="visibility: visible;display: block;">
+        <img src="{% static 'img/consumer/cart_logo.png' %}" alt="" style="width: 85px !important; left: 50% !important; top: 50% !important; position: inherit; height: 110px !important;">
+    </div>
+    <header class="header_landing emercado_transparent_background pe-2" style="z-index: 2; height: 65px !important;"> 
+            <div class="logo">   
+                <a style="text-decoration: underline;" href="/">
+                  <img class="header_logo d-sm-none d-md-none d-lg-none mt-1" style="width: auto; max-height: 50px;" src="{% static 'img/consumer/border_white.png' %}" alt="">
+                  <img class="header_logo d-none d-sm-block" src="{% static 'img/consumer/black&white.png' %}" alt="">
+                </a>
+            </div>
+        <div class="d-flex h-100">
+            {% if consumer %}
+            <a class="mx-1 p-2 border d-flex emercado_a_hover_background_color" style="align-items: center; justify-content: center; width: calc(100vw * 240/1906); min-width: 135px !important; color: white;  border-radius: 10px;" href="/merchant/register">
+                <h5 class="m-0 text-nowrap" style="font-size: calc(12px + 100vw * 4/1906) !important;">Be a Checkout Store!</h5>
+            </a>
+            <a class="nav-link nav-profile mx-1 p-2 text-white d-block emercado_a_hover_background_color" style="align-items: center; justify-content: center; width: calc(100vw * 200/1906); min-width: 50px !important; border-radius: 10px;" href="#" data-bs-toggle="dropdown">
+                {% if consumer.profile_picture %}
+                    {% if 'profile_default.jpg' in consumer.profile_picture %}
+                        <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                    {% else %}
+                        <img class="img-fluid rounded-circle" src="/Post_Media/{{consumer.profile_picture}}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                    {% endif %}
+                {% else %}
+                    <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+                {% endif %}
+                <span class="name d-none d-lg-inline text-white">{{consumer.user_name}}</span>
+            </a>
+            <nav class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_profile" style="width:173px !important;">
+                <a class="dropdown-content-profile d-flex align-items-center" href="{% url 'user_profile' %}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;" ></i>
+                    <span>My Profile</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-content-profile d-flex align-items-center" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;"></i><span>Logout</span>
+                </a>
+            </nav>
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-orange" href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            {% else %}
+            <a class="mx-1 p-2 border d-flex emercado_a_hover_background_color" style="align-items: center; justify-content: center; width: calc(100vw * 240/1906); min-width: 135px !important; color: white;  border-radius: 10px;" href="/merchant/register">
+                <h5 class="m-0 text-nowrap" style="font-size: calc(12px + 100vw * 4/1906) !important;" >Be a Checkout Store!</h5>
+            </a>
+            <a class="mx-1 p-2 text-white border d-flex emercado_a_hover_background_color" style="align-items: center; justify-content: center; width: calc(100vw * 200/1906); min-width: 50px !important; border-radius: 10px;" href="{% url 'login' %}">
+                <h5 class="m-0" style="font-size: calc(12px + 100vw * 4/1906) !important;">Login</h5>
+            </a>
+            {% endif %}
+        </div>
+    </header>
+    <main id="main">
+        <section class="emercado_background_image">
+            <div class="px-5" style="background: rgb(0 0 0 / 30%);">
+                <p class="m-0 animate-charcter" style="font-size: calc(14px + 200vw * 100/1906); height: calc(190vw * 135/1906); min-height: 60px !important; overflow: hidden;">Checkout</p>
+                <p class="m-0" style="font-size: calc(14px + 100vw * 50/1906); color:#fff;">Be our guest and we'll help you <a href="#selection_section"><span class="text-white text-decoration-underline emercado_color_1" style="font-size: calc(14px + 100vw * 50/1906);">get started!</span></a></p>
+            </div>
+        </section>
+        <section class=""  id="selection_section" style="scroll-margin-top: 57px;">
+            <div class="row w-100 m-auto h-100" style="min-height: 500px !important; position: relative; z-index: 1;">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0">
+                    <div class="photo h-100 w-100">
+                        <figure class="landing_img m-auto h-100">
+                            <img src="{% static 'img/consumer/dine/bg/dine_bg_1.png' %}" class="h-100" alt="sample64"/>
+                            <figcaption>
+                              <div class="square">
+                                <div></div>
+                              </div>
+                              <h2 class="emercado_color_1">DINE</h2>
+                              <p class="text-white">Indulge your cravings</p>
+                            </figcaption>
+                            <a href="{% url 'dine' %}"></a>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-white emercado_background_orange p-5 " style="min-height: 250px;">
+                    <div id="home-page-pictures">
+                        <p class="m-0 emercado_color_1" style="font-size: calc(16px + 100vw * 30/1906) !important;">Checkout celebrates with you a festival of food right here, right now</p>
+                        <div class="d-none d-lg-block" id="home-pic-2">
+                            <img src="https://adachirestaurant.com/wp-content/uploads/2020/11/home-pic-1.png" alt="">
+                        </div>
+                        <div class="d-none d-lg-block" id="home-pic-3">
+                            <img src="https://adachirestaurant.com/wp-content/uploads/2020/11/home-pic-2.png" alt="">
+                        </div>
+                        <!-- <div class="d-none d-lg-block" id="home-pic-4">
+                            <img src="https://adachirestaurant.com/wp-content/uploads/2020/11/home-pic-3.png" alt="">
+                        </div>  -->
+                        <div class="d-none d-lg-block" id="home-pic-5">
+                            <img src="https://adachirestaurant.com/wp-content/uploads/2020/11/home-pic-5.png" alt="">
+                        </div>
+                        <!-- <div class="d-none d-lg-block" id="home-pic-6">
+                            <img src="https://adachirestaurant.com/wp-content/uploads/2020/11/home-pic-4.png" alt="">
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section class="emercado_background_image_2">
+            <div class="px-5 my-auto">
+                <p class="m-0" style="font-size: calc(14px + 200vw * 100/1906); height: calc(190vw * 115/1906); min-height: 60px !important; overflow: hidden; color: #fff;">Merchant</p>
+                <p class="m-0" style="font-size: calc(14px + 100vw * 50/1906); color:#fff;">Be an eMercado <a href="/merchant/register"><span class="emercado_color_1 text-decoration-underline">Store</span></a>!</p>
+            </div>
+        </section> -->
+        <section class="">
+            <div class="row w-100 m-auto h-100" style="min-height: 500px !important;">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-white emercado_background_black p-5 " style="min-height: 250px;">
+                    <p class="m-0 emercado_color_1" style="font-size: calc(16px + 100vw * 30/1906) !important;">Checkout lets your finger do the shopping with more ease and convenience</p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0">
+                    <div class="photo h-100 w-100">
+                        <figure class="landing_img m-auto h-100">
+                            <img src="{% static 'img/consumer/store/store_bg_1.png' %}" class="h-100" alt="sample75"/>
+                            <figcaption>
+                                <div class="square">
+                                    <div></div>
+                                </div>
+                               <h2 class="emercado_color_1">SHOP</h2>
+                               <p class="text-white">till you drop</p>
+                            </figcaption>
+                            <a href="{% url 'index' %}"></a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section class="section" id="selection_section">
+            <div class="container-fluid p-0 h-100">
+                {% if consumer %}
+                <div class="row w-100 m-auto h-50">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center m-0 p-0">
+                        <div class="photo h-100">
+                            <figure class="landing_img m-auto h-100">
+                                <img src="{% static 'img/consumer/landing_page/dine.jpg' %}" class="h-100" alt="sample64"/>
+                                <figcaption>
+                                  <div class="square">
+                                    <div></div>
+                                  </div>
+                                  <h2>DINE</h2>
+                                  <p class="text-white">Indulge your cravings</p>
+                                </figcaption>
+                                <a href="{% url 'dine' %}"></a>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center m-0 p-0">
+                        <div class="photo h-100">
+                            <figure class="landing_img m-auto h-100">
+                                <img src="{% static 'img/consumer/landing_page/shop.jpg' %}" class="h-100" alt="sample75"/>
+                                <figcaption>
+                                    <div class="square">
+                                        <div></div>
+                                    </div>
+                                   <H2 class="">SHOP</H2>
+                                   <p class="text-white">Spend More!</p>
+                                </figcaption>
+                                <a href="{% url 'index' %}"></a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="row w-100 m-auto h-50">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center m-0 p-0">
+                        <div class="photo h-100">
+                            <figure class="landing_img m-auto h-100">
+                                <img src="{% static 'img/consumer/landing_page/dine.jpg' %}" class="h-100" alt="sample64"/>
+                                <figcaption>
+                                  <div class="square">
+                                    <div></div>
+                                  </div>
+                                  <h2>DINE</h2>
+                                  <p class="text-white">Indulge your cravings</p>
+                                </figcaption>
+                                <a href="{% url 'dine' %}"></a>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center m-0 p-0">
+                        <div class="photo h-100">
+                            <figure class="landing_img m-auto h-100">
+                                <img src="{% static 'img/consumer/landing_page/shop.jpg' %}" class="h-100" alt="sample75"/>
+                                <figcaption>
+                                    <div class="square">
+                                        <div></div>
+                                    </div>
+                                   <H2 class="">SHOP</H2>
+                                   <p class="text-white">Spend More!</p>
+                                </figcaption>
+                                <a href="{% url 'index' %}"></a>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center m-0 p-0">
+                        <div class="photo h-100">
+                            <figure class="landing_img m-auto h-100">
+                                <img src="{% static 'img/consumer/landing_page/merchant.jpg' %}" class="h-100" alt="sample64"/>
+                                <figcaption>
+                                  <div class="square">
+                                    <div></div>
+                                  </div>
+                                  <h2>Merchant</h2>
+                                  <p class="text-white">Be an eMercado Store</p>
+                                </figcaption>
+                                <a href="/merchant/register"></a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </section> -->
+       
+    </main><!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+    <footer class="emercado_color_1" style="border-top: 6px solid;">
+        <section class="container m-auto">
+            <div class="footer_contacts p-2">
+                <div class="row w-100 m-auto">
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                        <div class="custom_service">
+                            <ul class="list-unstyled">
+                            <h4 class="emercado_color_1">Customer Service</h4>
+                            <li><a class="footer_text text-black" href="#"> Help Centre</a></li>
+                            <li><a class="footer_text text-black" href="#"> Checkout Cash PH</a></li>
+                            <li><a class="footer_text text-black" href="#"> Payment Methods</a></li>
+                            <li><a class="footer_text text-black" href="#"> Checkout Pay</a></li>
+                            <li><a class="footer_text text-black" href="#"> Checkout Coins</a></li>
+                            <li><a class="footer_text text-black" href="#"> Order Tracking</a></li>
+                            <li><a class="footer_text text-black" href="#"> Return and Refund</a></li>
+                            <li><a class="footer_text text-black" href="#"> Checkout Guarantee</a></li>
+                            <li><a class="footer_text text-black" href="#"> Overseas Products</a></li>
+                            <li><a class="footer_text text-black" href="#"> Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                        <div class="custom_service">
+                            <ul class="list-unstyled">
+                            <h4 class="emercado_color_1">About Checkout</h4>
+                            <li><a class="footer_text text-black" href="#"> Checkout Blog</a></li>
+                            <li><a class="footer_text text-black" href="#"> Checkout Career</a></li>
+                            <li><a class="footer_text text-black" href="#"> Checkout Policies</a></li>
+                            <li><a class="footer_text text-black" href="#"> Privacy Policy</a></li>
+                            <li><a class="footer_text text-black" href="#"> Checkout Mall</a></li>
+                            <li><a class="footer_text text-black" href="#"> Seller Centre</a></li>
+                            <li><a class="footer_text text-black" href="#"> Flash Deals</a></li>
+                            <li><a class="footer_text text-black" href="#"> Media Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                        <div class="custom_service">
+                            <ul class="list-unstyled">
+                            <h4 class="emercado_color_1">Payment</h4>
+                            <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paymaya.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> PayMaya</a></li>
+                            <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/visa.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Visa</a></li>
+                            <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/gcash.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> GCash</a></li>
+                            <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paypal.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Paypal</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                        <div class="custom_service">
+                            <ul class="list-unstyled">
+                            <h4 class="emercado_color_1">Follow Us</h4>
+                            <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/fb.png' %}" alt="">
+                                <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Facebook</a>
+                            </li>
+                            <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/twitter.png' %}" alt="">
+                                <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Twitter</a>
+                            </li>
+                            <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/in.png' %}" alt="">
+                                <a  class="footer_text text-black" href="#" style="padding-left: 5px;">LinkedIn</a>
+                            </li>
+                            <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/insta.jpg' %}" alt="">
+                                <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Instagram</a>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <script src="{% static 'js/store.js' %}"></script>
+ 
+    <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/glightbox/js/glightbox.min..js' %}"></script>
+    <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min..js' %}"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min..js' %}"></script>
+    <script src="{% static 'vendor/php-email-form/validate..js' %}"></script>
+    <!-- Template Main JS File -->
+ 
+    <script>
+        $(window).scroll(function() {    
+            var scroll = $(window).scrollTop();
+            if (scroll >= 1) {
+                $(".header_landing").addClass("emercado_gradient_background");
+                $(".header_landing").removeClass("emercado_transparent_background");
+            }else{
+                $(".header_landing").addClass("emercado_transparent_background");
+                $(".header_landing").removeClass("emercado_gradient_background");
+            }
+        });
+    </script>
+
+
+    <script>
+    /* Demo purposes only */
+    $(".hover").mouseleave(
+        function () {
+        $(this).removeClass("hover");
+        }
+    );
+    </script>
+</body>
+</html>
+
+
+
+
+

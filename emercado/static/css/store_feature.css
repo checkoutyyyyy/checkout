@@ -1,0 +1,139 @@
+p.name_item {
+    color: #dd4b39;
+  }
+ .buy.m-auto {
+    display: block;
+    text-align: center;
+ }
+ span.text.px-2 {
+    font-size: 13px;
+    font-weight: 700;
+ }
+ .has-search .form-control-feedback {
+    position: absolute;
+    width: 63px;
+    height: 34px;
+    text-align: center;
+    pointer-events: none;
+    color: #545050;
+    top: 6px;
+ }
+ .form-group.has-search {
+   width: 218px;
+   float: right;
+ }
+ h3.min-size_fav{
+  font-size: 23px;
+  font-weight: 600;
+  padding-left: 12px;
+ }
+ h3.save_items{
+  font-size: 18px;
+  font-weight: lighter;
+ }
+
+ .menus .items_box-container{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+   gap:1.5rem;
+ }
+ 
+ .menus .items_box-container .box{
+   background:var(--bg-color-1);
+   border-radius: .5rem;
+   box-shadow: var(--box-shadow);
+ }
+ 
+ .menus .items_box-container .box .image{
+   height:25rem;
+   width: 100%;
+   padding:1.5rem;
+   position: relative;
+ }
+ 
+ .menus .items_box-container .box .image img{
+   height:100%;
+   width: 100%;
+   object-fit: cover;
+   border-radius: .5rem;
+ }
+ 
+ .menus .items_box-container .box .image h3{
+   position: absolute;
+   top:2.5rem; left:2.5rem;
+   font-size: 2rem;
+   color:#fff;
+   background: rgba(0,0,0,.5);
+   border-radius: .5rem;
+   font-weight: lighter;
+   padding:.5rem 1.5rem;
+ }
+ 
+ .menus .items_box-container .box .image h3 i, .store .items_box-container .box .image h3 i{
+     color: #9688FE;
+     background: white;
+     padding: 5px;
+     border-radius: 5px;
+ }
+ 
+ .menus .items_box-container .box .content{
+   padding:1.5rem;
+   padding-top: 0;
+ }
+ 
+ .menus .items_box-container .box .content .price{
+   font-weight: 600;
+   color:var(--text-color-1);
+   font-size: 2.5rem;
+ }
+ 
+ .menus .items_box-container .box .content .price span{
+   font-weight: lighter;
+   color:var(--text-color-2);
+   font-size: 1.5rem;
+   text-decoration: line-through;
+ }
+ 
+ .menus .items_box-container .box .content p{
+   font-size: 1.5rem;
+   padding:.5rem 0;
+   color:var(--text-color-2);
+   line-height: 1.7;
+ }
+ button.btn.btn-orange.text-white.btn.btn-light.mb-4 {
+   border-color: #9688FE;
+   width: 189px;
+   background-color: #9688FE;
+   color: white;
+}
+button.btn.btn-orange.text-white.btn.btn-light.mb-4:hover {
+  background-color: #7a68ff;
+
+}
+.heart-btn{
+  color: red;  
+  font-size: 50px;
+}
+
+
+h6.emercado_address {
+  position: absolute;
+  bottom: 1rem;
+  color: white;
+  background: rgb(104 48 16 / 51%);
+  border-radius: 0.5rem;
+  font-weight: lighter;
+  padding: 5px 0px;
+}
+
+
+ @media (max-width: 575px) {
+   h3.min-size_fav {
+      text-align: center;
+      font-weight: 600;
+   }
+   .form-group.has-search {
+    display: contents;
+}
+   
+ }

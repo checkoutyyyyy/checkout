@@ -1,0 +1,1305 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Checkout - Dine - My Orders</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/consumer/cart_logo.png' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/order.css' %}" rel="stylesheet" />
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="{% static '/functionJS/utility.js' %}"></script>
+  <script src="{% static '/functionJS/spinner.js' %}"></script>
+
+  <style>
+    .th-w-40{
+        width: 40%!important;
+    }
+    .th-w-20{
+        width: 20%!important;
+    }
+    .breadcrumb {
+      padding: 10px 8px;
+      margin-bottom: 5px;
+      list-style: none;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    padding: 10px 8px;
+    margin-bottom: 5px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+  }
+  .modal-header .close {
+    margin-top: -2px;
+    margin-inline-start: auto !important;
+  }
+
+/* ----- MODAL STYLE ----- */
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+
+	.modal-header {
+		border-bottom-color: #EEEEEE;
+		background-color: #FAFAFA;
+	}
+
+  @media ( max-width: 991px ) {
+    .d-none-total{
+        display: block !important;
+    }
+      .modal-header .close {
+        margin-top: -2px;
+        margin-inline-start: auto !important;
+    }
+
+    label{
+      font-weight: 400 !important;
+    }
+
+    @media ( max-width: 991px ) {
+        .d-none-total{
+            display: block !important;
+        }
+    }
+
+    @media ( max-width: 280px ) {
+        .nav li, .JEsC7W{
+          width: 61px;
+          font-size: 12px;
+        }
+    }
+  }
+  .btn-oranges{
+    background-color: #fff !important;
+    border: 1px solid #7a68ff;
+    color: #9688FE !important;
+  }
+  .btn-oranges.active {
+    color: #fff !important;
+    border: 1px solid #9688FE !important;
+    background-color: #9688FE !important;
+  }
+</style>
+
+
+</head>
+
+<body>
+  <div class="loading-spinner" id="loading-spinner" style="visibility: visible;display: block;">
+    <img src="{% static 'img/consumer/cart_logo.png' %}" alt="" style="width: 85px !important; left: 50% !important; top: 50% !important; position: inherit; height: 110px !important;">
+</div>
+  <form action="/checkout"  method="POST" id="myForm">
+
+      {% csrf_token %}
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="dropdown m-auto">
+          <div class="nav-link nav-profile m-auto header_icon text-center"  data-bs-toggle="dropdown">
+              <i class="fas fa-search text-white" id="search-btn" style="font-size: 2rem; cursor: pointer;"></i>
+          </div>
+        </div>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <section id="sign_in_section" style="display:none">
+              <h4>Sign in to order</h4>
+              <p id="login-messages" style="color: #28a745 !important; background-color: #f9fffb; border: 1px solid rgba(40,167,69,.2); padding: 10px !important; text-align: center;"><i class="fa fa-check mx-1" aria-hidden="true" style=" margin-right: 5px; "></i></p>
+              <div class="row w-100 m-auto">
+                <div class="mb-3">
+                    <label class="mb-1" for="email">Email / Username</label>
+                    <input autocomplete="off" aria-describedby="emailHelp" type="text" id="userid" name="userid" value="" style="border-radius:10px; padding: 1rem 0.75rem" onkeyup="verify_login()" class="form-control text-center login_fields"  placeholder="Email / Username" >
+                </div>
+             </div>
+
+             <div class="row w-100 m-auto">
+               <div class="mb-3">
+                   <label class="mb-1" for="email">Password</label>
+                   <input autocomplete="off" aria-describedby="emailHelp" type="password" id="password" name="password" value="" style="border-radius:10px; padding: 1rem 0.75rem"  onkeyup="verify_login()" class="form-control text-center login_fields"  placeholder="Password" >
+               </div>
+            </div>
+
+            <div class="row w-100 mb-3 m-auto" style="padding: 0 12px;">
+                <button type="button" value="login" id="login_btn" onclick="login1('{{csrf_token}}')" disabled class="btn btn-default submit fw-bold" style="border-radius: 15px; padding: 1rem 0.75rem">LOGIN</button>
+            </div>
+
+            <div class="text-center pt-2 mb-1 text-muted">
+                <a href=""><b class="emercado_color_1">Sign up here</b></a> Or login in using
+              </div>
+             <div class="infinity-social-btn text-center pt-2">
+               <ul class="social_icons p-0" style="justify-content: center;">
+                           <!-- Facebook Button -->
+                 <li class="mx-2" style="cursor: pointer;">
+                  <a href="#" class="facebook">
+                   <i class="fa fa-facebook w-100"></i>
+                   <i class="fa fa-facebook w-100"></i>
+                  </a>
+                 </li>
+                           <!-- Google Button -->
+                 <li class="mx-2" style="cursor: pointer;">
+                  <a href="#" class="google">
+                   <i class="fa fa-google w-100"></i>
+                   <i class="fa fa-google w-100"></i>
+                  </a>
+                 </li>
+                           <!-- Twitter Button -->
+                 <li class="mx-2" style="cursor: pointer;">
+                  <a href="#" class="twitter">
+                   <i class="fa fa-twitter w-100"></i>
+                   <i class="fa fa-twitter w-100"></i>
+                  </a>
+                 </li>
+               </ul>
+             </div>
+             <br>
+             <div class="row w-100 mb-3 m-auto" style="padding: 0 12px;">
+                 <button type="button" value="login" id="sign_in_section_btn" class="btn btn-default submit fw-bold" style="border-radius: 15px; padding: 1rem 0.75rem">Continue Without Sign In</button>
+             </div>
+          </section>
+         <section id="info_section">
+               <div class="row w-100 m-auto">
+                 <div class="mb-3">
+                     <label class="mb-1" for="email">Full Name</label>
+                     <input autocomplete="off" aria-describedby="emailHelp" type="text" id="fname" name="fname" value="" style="border-radius:10px; padding: 1rem 0.75rem" onkeyup="verify_order_info()" class="form-control text-center info"  placeholder="Full Name" >
+                 </div>
+              </div>
+
+              <div class="row w-100 m-auto">
+                <div class="mb-3">
+                    <label class="mb-1" for="email">Email Address <p id="email_msg" style="color:red;"></p></label>
+                    <input autocomplete="off" aria-describedby="emailHelp" type="email" id="emailadd" name="emailadd" value="" style="border-radius:10px; padding: 1rem 0.75rem"  onkeyup="verify_order_info()" class="form-control text-center info"  placeholder="Email" >
+                </div>
+             </div>
+
+             <div class="row w-100 m-auto">
+               <div class="mb-3">
+                   <label class="mb-1" for="email">Phone Number <p id="phone_msg" style="color:red;"></p></label>
+                   <input autocomplete="off" aria-describedby="emailHelp" type="text" id="phone" name="phone" value="" style="border-radius:10px; padding: 1rem 0.75rem"  onkeyup="verify_order_info()" class="form-control text-center info"  placeholder="Phone" >
+               </div>
+            </div>
+
+             <div class="row w-100 mb-3 m-auto" style="padding: 0 12px;">
+                 <button type="button" value="POST" id="info_btn"  disabled class="btn btn-default submit fw-bold" style="border-radius: 15px; padding: 1rem 0.75rem">Place Order</button>
+             </div>
+             <br>
+             <div class="row w-100 mb-3 m-auto" style="padding: 0 12px;">
+                 <button type="button" value="login" id="info_section_btn" class="btn btn-default submit fw-bold" style="border-radius: 15px; padding: 1rem 0.75rem">Sign In Instead</button>
+             </div>
+         </section>
+         <script>
+         $("#info_btn").click(function () {
+            document.getElementById("placeOrder_btn").setAttribute("type", "submit");
+            document.getElementById("placeOrder_btn").click();
+          });
+
+          $("#info_section_btn").click(function () {
+             document.getElementById("info_section").style.display = "none";
+             document.getElementById("sign_in_section").style.display = "block";
+           });
+          $("#sign_in_section_btn").click(function () {
+             document.getElementById("info_section").style.display = "block";
+             document.getElementById("sign_in_section").style.display = "none";
+           });
+         </script>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+ <!-- ======= Header ======= -->
+ <header class="header" style="z-index: 2;">
+  <div class="logo">
+      <a style="text-decoration: underline;" href="/">
+        <img class="header_logo d-sm-none d-md-none d-lg-none mt-1" style="width: auto; height: 50px;" src="{% static 'img/consumer/border_white.png' %}" alt="">
+        <img class="header_logo d-none d-sm-block" src="{% static 'img/consumer/black&white.png' %}" alt="">
+     </a>
+ </div>
+   <div class="dropdown text-nowrap d-flex">
+     {% if consumer %}
+    <div class="dropdown m-auto pt-3">
+        <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+            <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart " style="width: 300px;">
+          <div class="pt-3 pb-2 px-3 border-bottom">
+              <h4 class="emercado_color_1 m-0">Cart</h4>
+          </div>
+          {% if my_cart|length > 0 %}
+              
+              {% if my_cart|length <= 6 %}
+              <div class="" id="scroll_style">
+              {% else %}
+              <div class="header__cart-list-item scrollbar"id="scroll_style">
+              {% endif %}
+              
+              {% for cart in my_cart %}
+                  <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                      {% if cart.product_image %}
+                      <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                      {% else  %}
+                      <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                      {% endif  %}
+                      <div class="header__cart-item-info text-black">
+                          <div class="header__cart-item-head">
+                              <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                              <div class="header__cart-item-price-wrap">
+                                  <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                  <span class="header__cart-item-multiply">x</span>
+                                  <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                              </div>
+                          </div>
+                          <div class="header__cart-item-body">
+                              <span class="header__cart-item-description"></span>
+                              <span class="header__cart-item-remove"></span>
+                          </div>
+                      </div>
+                  </a>
+                  <div class="dropdown-divider m-0"></div>
+              {% endfor %}
+              </div>
+              <div class="">
+                <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                <a href="/checkout" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+              </div>
+          {% else %}
+          <div class="text-center">
+              <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+              <p>No items yet</p>
+              <div class="dropdown-divider m-0 pb-3"></div>
+          </div>
+          <div class="" style="display:none;" id="cart_footer">
+              <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+              <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+          </div>
+          {% endif %}
+
+
+        </div>
+    </div>
+    <div class="dropdown m-auto pt-3">
+        <div class="nav-link dropdown m-auto header_icon text-center"   data-bs-toggle="dropdown" id="notif_dropdown">
+            <i class="dropbtn_bell fa-solid fa-bell text-white p-0" style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_bell " id="notif_count"></span>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_notif" style="width:300px">
+          <div class="pt-3 pb-2 px-3 border-bottom">
+          <h4 class="emercado_color_1 m-0 text_size_sm">Notifications</h4>
+          </div>
+          {% if notifications|length > 0 %}
+              {% if notifications|length <= 5 %}
+              <div class="" id="scroll_style">
+              {% else %}
+              <div class="header__cart-list-item scrollbar"id="scroll_style">
+              {% endif %}
+              <!-- notification if naay magpa request og order (parent order)-->
+              {% for notif in notifications %}
+  
+                  {% if notif.notif_type == "Share Order" %}
+                      {% if not notif.requested_response  %}
+                          <a class="header__cart-item notif_block notif_unread" onclick="allow_share_order('{{csrf_token}}','{{notif.id}}')">
+                      {% else %}
+                          <a class="header__cart-item notif_block notif_read" id="test-1">
+                      {% endif %}
+                          <div class="header__cart-item-info text-black">
+                              <div class="header__cart-item-head header__cart-item-head_notif">
+                                  <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px; margin-top: 3px;"/>
+                                  <div class="d-block mt-2">
+                                      <h5 class="header__cart-item-name">{{notif.requesting_name}}</h5>
+                                      <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.requesting_id_format}}</p>
+                                  </div>
+  
+                              </div>
+                              <div class="header__cart-item-body">
+                                  <span class="header__cart-item-description"  style="white-space: normal;margin-left: 50px;">
+                                      <p class="my-2 btn_notif">{{notif.content}}</p>
+                                  </span>
+                              </div>
+  
+                              <!-- <div class="text-center mb-2" id="shared_optons{{notif.id}}">
+                                  <span class="header__cart-item-remove">
+                                      <button type="button" class="btn btn-sm text-white" style="background-color: #656363; margin-right: 10px;" onclick="denied_request('{{csrf_token}}','{{notif.id}}')">No</button>
+                                      <button type="button" class="btn btn-sm text-white" style="background-color: #ff6c20; margin-left: 10px;" onclick="accept_request('{{csrf_token}}','{{notif.id}}')">Yes</button>
+                                  </span>
+                              </div> -->
+  
+                          </div>
+                      </a>
+                  <!-- end of notification if naay magpa request og order (parent order)-->
+                      <div class="dropdown-divider m-0"></div>
+                      {% elif notif.notif_type == "Share Order Response" %}
+                          {% if notif.requested_response == "Yes" %}
+                              <a class="header__cart-item notif_block notif_unread" onclick="share_order_accessable('{{notif.url}}')">
+                          {% else %}
+                              <a class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                          {% endif %}
+                              <div class="header__cart-item-info text-black">
+                                  <div class="header__cart-item-head header__cart-item-head_notif">
+                                      <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                      <div class="d-block mt-2">
+                                              <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                              <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                      </div>
+                                  </div>
+                                  <div class="header__cart-item-body">
+                                      <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                          <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                      </span>
+                                  </div>
+  
+                              </div>
+                              </a>
+                              <!-- end of notification if naay magpa request og order (parent order)-->
+                              <div class="dropdown-divider m-0"></div>
+                      {% elif notif.notif_type == "Personnel Discount Request" %}
+                          <a href="{{notif.url}}" class="header__cart-item notif_block notif_read" onclick="share_order_access_denied()">
+                              <div class="header__cart-item-info text-black">
+                                  <div class="header__cart-item-head header__cart-item-head_notif">
+                                      <img src="Post_Media/{{notif.image}}" alt="" class="header__cart-img img-fluid rounded-circle" style="width: 30px; height: 30px;"/>
+                                      <div class="d-block mt-2">
+                                              <h5 class="header__cart-item-name">{{notif.account_responded_name}}</h5>
+                                              <p class="emercado_color_1 p-0 m-0 btn_notif">{{notif.account_responded_id_format}}</p>
+                                      </div>
+                                  </div>
+                                  <div class="header__cart-item-body">
+                                      <span class="header__cart-item-description" style="white-space: normal;margin-left: 50px;">
+                                          <p class="my-2 btn_notif"> {{notif.content}}</p>
+                                      </span>
+                                  </div>
+  
+                              </div>
+                              </a>
+                              <!-- end of notification if naay magpa request og order (parent order)-->
+                          <div class="dropdown-divider m-0"></div>
+                      {% endif %}
+              {% endfor %}
+              </div>
+              
+          <a href="/notifications" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+          {% else %}
+          <div class="text-center">
+              <img src="{% static 'img/consumer/header/empty_notification.png' %}" style="padding: 25px !important; min-width: 180px !important; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+              <p>No notifications yet</p>
+          </div>
+          {% endif %}
+
+      </div>
+
+
+    </div>
+    <div class="dropdown">
+    <a class="nav-link nav-profile align-items-center " href="#" data-bs-toggle="dropdown">
+        {% if consumer.profile_picture %}
+            {% if 'profile_default.jpg' in consumer.profile_picture %}
+                <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+            {% else %}
+                <img class="img-fluid rounded-circle" src="/Post_Media/{{consumer.profile_picture}}" style="width: 35px; height: 35px;  border: 3px solid white;">
+            {% endif %}
+        {% else %}
+            <img class="img-fluid rounded-circle" src="{% static 'img/consumer/profile/profile_default.jpg' %}" style="width: 35px; height: 35px;  border: 3px solid white;">
+        {% endif %}
+        <span class="name d-none d-lg-inline text-white">{{consumer.first_name}} {{consumer.last_name}}</span>
+    </a><!-- End Profile Iamge Icon -->
+        <nav class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_profile" style="width:173px !important;">
+            <a class="dropdown-content-profile d-flex align-items-center" href="{% url 'user_profile' %}">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;" ></i>
+                <span>My Profile</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-content-profile d-flex align-items-center" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" style="padding-right: 23px; font-size: 18px;"></i><span>Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    {% else %}
+    <div class="m-auto header_icon text-center">
+        <div class="dropdown m-auto">
+            <div class=" nav-link m-auto header_icon text-center"  data-bs-toggle="dropdown">
+                <i class="dropbtn_cart fa-solid fa-shopping-cart text-white p-0"  style="font-size:2rem; margin: 0 10px; cursor: pointer;"></i><span class="badge_cart" id="cart_total_count"></span>
+            </div>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow_cart" style="width: 300px;">
+                <div class="pt-3 pb-2 px-3 border-bottom">
+                    <h4 class="emercado_color_1 m-0 text_size_sm">Cart</h4>
+                </div>
+                {% if my_cart|length > 0 %}
+                <div class="header__cart-list-item" id="scroll_style">
+                    {% for cart in my_cart %}
+                    <a class="header__cart-item cart_block" href="/view_cart#cart_section{{cart.id}}">
+                        {% if cart.product_image %}
+                        <img  src="/Post_Media/{{cart.product_image}}" alt="" class="header__cart-img"/>
+                        {% else  %}
+                            <img  src="/static/img/consumer/sampgyupsal.png" alt="" class="header__cart-img"/>
+                        {% endif  %}
+                        <div class="header__cart-item-info text-black">
+                            <div class="header__cart-item-head">
+                                <h5 class="header__cart-item-name">{{cart.product_name}}</h5>
+                                <div class="header__cart-item-price-wrap">
+                                    <span class="header__cart-item-price"><script>document.write(CurrencyConverter({{cart.total}}))</script></span>
+                                    <span class="header__cart-item-multiply">x</span>
+                                    <span class="header__cart-item-qnt">{{cart.quantity}}</span>
+                                </div>
+                            </div>
+                            <div class="header__cart-item-body">
+                                <span class="header__cart-item-description"></span>
+                                <span class="header__cart-item-remove"></span>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                    <div class="dropdown-divider m-0 pb-3"></div>
+                    <div class="">
+                      <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                      <a href="/checkout" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                     </div>
+
+                </div>
+                {% else %}
+                <div class="text-center">
+                    <img src="{% static 'img/consumer/header/empty_cart.jpg' %}" style="min-width: 150px; height: calc(100vw * 250/1906); width: calc(100vw * 250/1906); min-height: 180px !important;" alt="sample75"/>
+                    <p>No items yet</p>
+                    <div class="dropdown-divider m-0 pb-3"></div>
+                </div>
+                <div class="" style="display:none;" id="cart_footer">
+                    <a href="/view_cart" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">View All</a>
+                    <a href="/checkout_all" class="header__cart-view-cart btn btn--primary mb-4 text-white" style="font-size: 9px !important;">Checkout</a>
+                </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <a class="nav-link nav-profile align-items-center px-2" href="/login" >
+        <span class="name  text-white">Login</span>
+    </a>
+    {% endif %}
+    <script>
+        $(document).ready(function () {
+          get_cart_total("{{csrf_token}}")
+        });
+    </script>
+   </div>
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+              <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-orange" href="{% url 'logout' %}">Logout</a>
+              </div>
+          </div>
+      </div>
+   </div>
+  <!-- End -->
+ </header>
+
+  <main id="main">
+    <section class="emercado_background_color_3">
+      <div class="hero-container">
+        <div class="container">
+            <nav aria-label="breadcrumb" >
+              <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item">
+                  <a class="emercado_color_1" href="{% url 'dine' %}">Checkout</a>
+                </li>
+                <li class="breadcrumb-item active">
+                Orders
+                </li>
+              </ol>
+            </nav>
+          <!-- store -->
+          <section class="emercado_background_color_2 mb-3" >
+            <h1 class="heading mt-0">
+              <span>
+                <strong class="emercado_color_1" style="border-bottom: 5px solid #9688FE !important; font-size: 25px;">My Orders</strong>
+              </span>
+            </h1>
+          </section>
+
+          <!-- <section class="emercado_background_color_2">
+            <div class="row w-100 m-auto ">
+              <div class="row w-100 m-auto" style="align-items: center;">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-2">
+                    <div class="d-flex  emercado_text_overflow" style="padding: 8px;">
+                        <a href="#" style="text-decoration: none;">
+                            <img class="img-fluid rounded-circle" src="/static/img/consumer/profile/profile_default.jpg" alt="" style="height: 30px; width: 30px;">
+                            <span class="text-black">Inday Store</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                    <div class="col-12 col-sm-6 col-md-12 col-lg-6 mb-4 px-2 my-3">
+                        <div class="d-flex align-self-center">
+                          <span><b>Order ID</b></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-12 col-lg-6 mb-4 px-2 my-3">
+                      <div class="d-flex align-self-center">
+                          <span><b>Actions</b></span>
+                      </div>
+                    </div>
+                </div>
+                <div class="row w-100 m-auto mb-3 border" style="align-items: center;">
+                 <div class="col-6 col-sm-6 col-md-3 col-lg-6 px-2 my-3">
+                    <div class="d-flex align-self-center">
+                      <div class="qGisqd emercado_text_overflow mb-2">
+                        <a href><b>#ORD000001</b></a>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 my-4 px-2">
+                    <div class="row w-100">
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 d-block" style="text-align: start;">
+                          <a class="btn btn-sm btn-size" href="#">Share Order</a>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 d-block" style="text-align: start;">
+                            <a class="btn btn-sm btn-size" href="#">Request Payment</a>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- Cancel Modal -->
+                <!-- <div class="modal fade" id="CancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="background-color:rgba(0,0,0,0.5);">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Cancel Order</h5>
+                          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                            <div class="modal-body">Are you sure you want to cancel this order?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-orange" href="#">Confirm Cancel</a>
+                        </div>
+                      </div>
+                  </div>
+                </div> -->
+                <!-- End Cancel Modal -->
+
+              <!-- </div>
+            </div>
+          </section>
+          <section class="emercado_background_color_2 mb-3">
+            <div class="_2ElxFV">
+              <div class="exSsxY">
+                <div class="BNuBXe">s
+                  <div class="_4L690l" id="no_item">Total Bill:</div>
+                  <div class="Or93gU" id="total_section"><script>document.write(CurrencyConverter({{total}}))</script></div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="emercado_background_color_2 mb-3 " >
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-8 mt-4">
+                <h4 class="emercado_color_1 text-center px-5">Please Choose What Kind Of Service You Want.</h4>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
+                <div class="nav justify-content-center">
+                  <ul>
+                    <li class="pick-up" id="li_pick_up{{store.store_id}}" onclick="toggle()">Pick Up</li>
+                    <li class="dine-in" id="li_dine_in{{store.store_id}}" onclick="toggle()">Dine In</li>
+                    <li class="deliver" id="li_deliver{{store.store_id}}" onclick="toggle()">Delivery</li>
+                  </ul>
+                  <input type="radio" name="service_flag{{store.store_id}}" id="pick_up_flag{{store.store_id}}" checked hidden value="1">
+                  <input type="radio" name="service_flag{{store.store_id}}" id="dine_in_flag{{store.store_id}}" hidden value="2">
+                  <input type="radio" name="service_flag{{store.store_id}}" id="delivery_flag{{store.store_id}}" hidden value="3">
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="emercado_background_color_2 mb-3" id="appearSelect">
+            <div class="content">
+              <div  id="pick-up{{store.store_id}}" >
+                  <p class="mb-5" id="service_type{{store.store_id}}" style="text-align: center;"><strong> PICK UP </strong></p>
+                  <div class="form-group row">
+                    <label for="inputTime" class="col-sm-4 col-form-label">Order Timing</label>
+                    <div class="col-sm-2">
+                      <input type="checkbox" id="now" name="now" value="now" onclick="displayMe()">
+                      <label for="now"> Now</label><br>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="checkbox" id="later" name="later" value="later" onclick="displayMe()">
+                      <label for="later"> Later</label><br>
+                    </div>
+                  </div>
+
+                    <div class="form-group row" id="time">
+                      <label for="inputTime" class="col-sm-4 col-form-label">Time</label>
+                      <div class="col-sm-8">
+                        <input type="time" class="form-control service_fields" id="inputTime" name="time{{store.store_id}}" onkeyup="validate_order()" onchange="validate_order()" placeholder="Time to deliver...">
+                      </div>
+                    </div>
+                    <div class="form-group row" id="date">
+                      <label for="inputDate" class="col-sm-4 col-form-label">Date</label>
+                      <div class="col-sm-8">
+                        <input type="date" class="form-control service_fields" id="inputDate" name="date{{store.store_id}}" onkeyup="validate_order()" onchange="validate_order()" placeholder="Date to deliver...">
+                      </div>
+                    </div>
+                    <div class="form-group row" id="instruction" >
+                      <label for="inputInstruction" class="col-sm-4 col-form-label">Special Instruction</label>
+                      <div class="col-sm-8">
+                        <textarea class="form-control" id="inputInstruction" name="instruction{{store.store_id}}" placeholder="Write special instruction here..."></textarea>
+                      </div>
+                    </div>
+
+
+              </div>
+
+            </div>
+            <script>
+             $("#li_pick_up{{store.store_id}}").click(function () {
+                  document.getElementById("pick_up_flag{{store.store_id}}").click();
+                  document.getElementById("service_type{{store.store_id}}").innerHTML = "PICK UP"
+              });
+              $("#li_dine_in{{store.store_id}}").click(function () {
+                  document.getElementById("dine_in_flag{{store.store_id}}").click();
+                  document.getElementById("service_type{{store.store_id}}").innerHTML = "DINE IN"
+              });
+              $("#li_deliver{{store.store_id}}").click(function () {
+                  document.getElementById("delivery_flag{{store.store_id}}").click();
+                  document.getElementById("service_type{{store.store_id}}").innerHTML = "DELIVERY"
+              });
+            </script>
+            <script>
+              function displayMe() {
+                var x = document.getElementById("now");
+                var y = document.getElementById("later");
+                var z = document.getElementById("date");
+
+                x.addEventListener('change', (event) =>{
+                  if (event.target.checked) {
+                    y.disabled = true;
+                  }else{
+                    y.disabled = false;
+                  }
+                });
+
+                y.addEventListener('change', (event) =>{
+                  if (event.target.checked) {
+                    x.disabled = true;
+                  }else{
+                    x.disabled = false;
+                  }
+                });
+
+                if (x.checked == true){
+                  z.style.display="none";
+                }else{
+                  z.style.display="block";
+                }
+                if (y.checked == true){
+                  z.style.display="block";
+                }
+              }
+            </script>
+            <script>
+              function toggle() {
+                var x = document.getElementById("appearSelect");
+                if (x.style.display === "block") {
+                  x.style.display = "none";
+                } else {
+                  x.style.display = "block";
+                }
+              }
+
+            </script>
+          </section>
+        </div>
+      </div> -->
+
+          {%for store,cart,total in retval%}
+            <section class="emercado_background_color_2 mb-3 store_section{{store.store_id}}" >
+              <div class="box borders p-3" style="height: auto;">
+                <div class="d-flex w-100 m-auto" style="align-items: center;">
+                  <div class="px-3">
+                    <a href="{{store.store_link}}" style="text-decoration: none;">
+                      <img class="img-fluid rounded-circle" src="/Post_Media/{{store.store_image}}" alt="" style="height: 30px; width: 30px;">
+                      <span class="emercado_color_1">{{store.store_name}}</span>
+                    </a>
+                  </div>
+                </div>
+                <hr>
+                <div class="row w-100 m-auto mb-3" id="cart_section{{obj.id}}" style="min-height: 32px;">
+                  {% for obj in cart %}
+                    <div class="col-12 col-sm-6 col-md-12  col-lg-12 border mb-4 order_items order_items{{store.store_id}}" id="order_item{{obj.id}}">
+                      <div class="d-flex" style=" justify-content: space-between;">
+                        <div class="row w-100 h-100 m-auto" style=" align-items: center; ">
+                          <div class="col-6 col-sm-6 col-md-1 col-lg-1 col-xl-2 my-3 p-0 d-flex">
+                            <img class="img-fluid rounded-3" src="/Post_Media/{{obj.product_image}}" alt="" style="width: 50px; object-fit: contain; height: 50px;"/>
+                          </div>
+
+                          <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2 my-3 p-0">
+                            <div class="email">
+                              <span>{{obj.product_name}} </span>
+                              {%if obj.variation_id%}
+                                <span>{{obj.variation_name}}</span>
+                              {%endif%}
+                            </div>
+                          </div>
+
+                          <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2 p-1 my-2" id="price_td{{obj.id}}">
+                            <script>document.write(CurrencyConverter({{obj.price}}))</script>
+                          </div>
+
+                          <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2 p-1 my-2">
+                            <span>{{obj.quantity}}</span>
+                          </div>
+
+                          <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-0" id="total_td{{obj.id}}">
+                            <div class="d-inline-flex d-none d-sm-none d-md-none d-lg-block" style="flex-direction: row; align-items: center;">
+                              <script>document.write(CurrencyConverter({{obj.total}}))</script>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="col-1 col-sm-2 col-md-1 col-lg-1 mt-3 px-3 text-end mobile_view_delete">
+                          <div class="dropdown no-arrow">
+                            <a class="dropdown" href="#" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-v text-black" style="font-size: 20px;"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuButton" style="width: 100px !important; cursor: pointer;">
+                              <a class="dropdown-item" data-toggle="modal" id="remove_div{{obj.id}}"><i class="mr-2 fas fa-trash-alt" style="color: #bb2124;"></i>
+                                <span class="text-black" style="margin-left: 5px; font-weight: 600;">Delete</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <script>
+                           $("#remove_div{{obj.id}}").click(function() {
+                              Swal.fire({
+                                  title: 'Are you sure you want to remove this item?',
+                                  icon: 'question',
+                                  showDenyButton: true,
+                                  showCancelButton: false,
+                                  confirmButtonText: 'Yes',
+                                  denyButtonText: "No",
+                              }
+
+                              ).then((result) => {
+                                  /* Read more about isConfirmed, isDenied below */
+                                  if (result.isConfirmed) {
+                                      remove_order_item('{{csrf_token}}','{{obj.id}}')
+                                  } else if (result.isDenied) {
+                                    //  window.location.href = url;
+                                  }
+                              })
+
+                            });
+                        </script>
+                      </div>
+
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </section>
+
+            <section class="emercado_background_color_2 mb-3 store_section{{store.store_id}}">
+              <div class="_2ElxFV">
+                <div class="exSsxY">
+                  <div class="BNuBXe">
+                    <div class="_4L690l" id="no_item">Total Bill:</div>
+                    <div class="Or93gU" id="total_section"><script>document.write(CurrencyConverter({{total}}))</script></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="emercado_background_color_2 mb-3 store_section{{store.store_id}}">
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-8 col-lg-8 mt-4 p-0">
+                  <h4 class="emercado_color_1 text-center px-5" style="font-size: calc(14px + 100vw * 5/1906);">Please choose what kind of service you want</h4>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mt-4 p-0" style="display: flex; justify-content: center;">
+                  <div class="nav">
+                    <div class="row w-100 m-auto">
+                      <ul>
+                        <li class="pick-up btn-oranges active" id="li_pick_up{{store.store_id}}" >Pick Up</li>
+                        <li class="dine-in btn-oranges" id="li_dine_in{{store.store_id}}" >Dine In</li>
+                        <li class="deliver btn-oranges" id="li_deliver{{store.store_id}}" >Delivery</li>
+                      </ul>
+                    </div>
+
+                    <input type="radio" name="service_flag{{store.store_id}}" id="pick_up_flag{{store.store_id}}" checked hidden value="1">
+                    <input type="radio" name="service_flag{{store.store_id}}" id="dine_in_flag{{store.store_id}}" hidden value="2">
+                    <input type="radio" name="service_flag{{store.store_id}}" id="delivery_flag{{store.store_id}}" hidden value="3">
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="emercado_background_color_2 mb-3 store_section{{store.store_id}}" id="appearSelect{{store.store_id}}">
+              <div class="content">
+                <div  id="pick-up{{store.store_id}}" >
+                    <p id="service_type{{store.store_id}}" class="emercado_color_1" style="text-align: center; font-weight: 600;">PICK UP</p>
+                    <div class="form-group row">
+                      <label for="inputTime" class="col-sm-4 col-form-label">Order Timing</label>
+                      <div class="col-sm-2">
+                        <input type="radio" class="now_btn" id="now{{store.store_id}}" name="order_timing{{store.store_id}}" value="now" onclick="Toggle_Timing{{store.store_id}}()" checked>
+                        <label for="now"> Now</label><br>
+                      </div>
+                      <div class="col-sm-2">
+                        <input type="radio" id="later{{store.store_id}}" name="order_timing{{store.store_id}}" value="later" onclick="Toggle_Timing{{store.store_id}}()" >
+                        <label for="later"> Later</label><br>
+                      </div>
+                    </div>
+
+                      <div class="form-group row" id="time">
+                        <label for="inputTime" class="col-sm-4 col-form-label">Time</label>
+                        <div class="col-sm-8">
+                          <input type="time" class="form-control service_fields" id="inputTime{{store.store_id}}" name="time{{store.store_id}}" onkeyup="validate_order()" onchange="validate_order()" placeholder="Time to deliver...">
+                        </div>
+                      </div>
+                      <div class="form-group row" id="date{{store.store_id}}">
+                        <label for="inputDate" class="col-sm-4 col-form-label">Date</label>
+                        <div class="col-sm-8">
+                          <input type="date" class="form-control service_fields date" id="inputDate{{store.store_id}}" name="date{{store.store_id}}" onkeyup="validate_order()" onchange="validate_order()" placeholder="Date to deliver...">
+                        </div>
+                      </div>
+                      <div class="form-group row" id="instruction" >
+                        <label for="inputInstruction" class="col-sm-4 col-form-label">Special Instruction</label>
+                        <div class="col-sm-8">
+                          <textarea class="form-control" id="inputInstruction{{store.store_id}}" name="instruction{{store.store_id}}" placeholder="Write special instruction here..."></textarea>
+                        </div>
+                      </div>
+
+
+                </div>
+
+              </div>
+              <script>
+               $("#li_pick_up{{store.store_id}}").click(function () {
+                    document.getElementById("pick_up_flag{{store.store_id}}").click();
+                    document.getElementById("service_type{{store.store_id}}").innerHTML = "PICK UP"
+                });
+                $("#li_dine_in{{store.store_id}}").click(function () {
+                    document.getElementById("dine_in_flag{{store.store_id}}").click();
+                    document.getElementById("service_type{{store.store_id}}").innerHTML = "DINE IN"
+                });
+                $("#li_deliver{{store.store_id}}").click(function () {
+                    document.getElementById("delivery_flag{{store.store_id}}").click();
+                    document.getElementById("service_type{{store.store_id}}").innerHTML = "DELIVERY"
+                });
+              </script>
+              <script>
+                function Toggle_Timing{{store.store_id}}() {
+                  var x = document.getElementById("now{{store.store_id}}");
+                  var y = document.getElementById("later{{store.store_id}}");
+                  var z = document.getElementById("date{{store.store_id}}");
+
+                  /*x.addEventListener('change', (event) =>{
+                    if (event.target.checked) {
+                      y.disabled = true;
+                    }else{
+                      y.disabled = false;
+                    }
+                  });
+
+                  y.addEventListener('change', (event) =>{
+                    if (event.target.checked) {
+                      x.disabled = true;
+                    }else{
+                      x.disabled = false;
+                    }
+                  });*/
+
+                  if (x.checked == true){
+                    z.style.display="none";
+                    document.getElementById("inputDate{{store.store_id}}").classList.remove("service_fields");
+                  }else{
+                    z.style.display="block";
+                    document.getElementById("inputDate{{store.store_id}}").classList.add("service_fields");
+                  }
+                  if (y.checked == true){
+                    z.style.display="block";
+                    document.getElementById("inputDate{{store.store_id}}").classList.add("service_fields");
+                  }
+                }
+              </script>
+              <script>
+                function toggle() {
+                  var x = document.getElementById("appearSelect");
+                  if (x.style.display === "block") {
+                    x.style.display = "none";
+                  } else {
+                    x.style.display = "block";
+                  }
+                }
+              </script>
+              
+
+            </section>
+          {%endfor%}
+
+          <section class="emercado_background_color_2 mb-3 store_section{{store.store_id}}" style="position: sticky; bottom: 0;">
+            <div class="_2ElxFV">
+              {% if consumer %}
+                <button style="cursor:pointer" type="submit" class="emercado-button btn-orange" id="placeOrder_btn"  disabled><span class="JEsC7W">Place Order</span></button>
+              {% else %}
+                <button style="cursor:pointer" type="button" class=" emercado-button btn-orange" id="placeOrder_btn" data-toggle="modal" data-target="#myModal"  ><span class="JEsC7W">Place Order</span></button>
+              {% endif  %}
+            </div>
+          </section>
+      </div>
+    </div>
+  </section>
+</main><!-- End #main -->
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <footer class="emercado_color_1" style="border-top: 6px solid;">
+      <section class="container m-auto" id="contacts">
+          <div class="footer_contacts">
+              <div class="row w-100 m-auto">
+                  <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                      <div class="custom_service">
+                          <ul class="list-unstyled">
+                          <h4 class="emercado_color_1">Customer Service</h4>
+                             <li><a class="footer_text text-black" href="#"> Help Centre</a></li>
+                             <li><a class="footer_text text-black" href="#"> Checkout Cash PH</a></li>
+                             <li><a class="footer_text text-black" href="#"> Payment Methods</a></li>
+                             <li><a class="footer_text text-black" href="#"> Checkout Pay</a></li>
+                             <li><a class="footer_text text-black" href="#"> Checkout Coins</a></li>
+                             <li><a class="footer_text text-black" href="#"> Order Tracking</a></li>
+                             <li><a class="footer_text text-black" href="#"> Return and Refund</a></li>
+                             <li><a class="footer_text text-black" href="#"> Checkout Guarantee</a></li>
+                             <li><a class="footer_text text-black" href="#"> Overseas Products</a></li>
+                             <li><a class="footer_text text-black" href="#"> Contact Us</a></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                      <div class="custom_service">
+                          <ul class="list-unstyled">
+                          <h4 class="emercado_color_1">About Checkout</h4>
+                             <li><a class="footer_text text-black" href="#"> Checkout Blog</a></li>
+                             <li><a class="footer_text text-black" href="#"> Checkout Career</a></li>
+                             <li><a class="footer_text text-black" href="#"> Checkout Policies</a></li>
+                             <li><a class="footer_text text-black" href="#"> Privacy Policy</a></li>
+                             <li><a class="footer_text text-black" href="#"> Checkout Mall</a></li>
+                             <li><a class="footer_text text-black" href="#"> Seller Centre</a></li>
+                             <li><a class="footer_text text-black" href="#"> Flash Deals</a></li>
+                             <li><a class="footer_text text-black" href="#"> Media Contact</a></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <div class="custom_service">
+                        <ul class="list-unstyled">
+                        <h4 class="emercado_color_1">Payment</h4>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paymaya.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> PayMaya</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/visa.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Visa</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/gcash.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> GCash</a></li>
+                        <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/paypal.png' %}" alt=""><a class="footer_text text-black" href="#" style="padding-left: 5px;"> Paypal</a></li>
+                        </ul>
+                    </div>
+                  </div>
+                  <div class=" col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                      <div class="custom_service">
+                          <ul class="list-unstyled">
+                          <h4 class="emercado_color_1">Follow Us</h4>
+                          <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/fb.png' %}" alt="">
+                              <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Facebook</a>
+                          </li>
+                          <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/twitter.png' %}" alt="">
+                              <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Twitter</a>
+                          </li>
+                          <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/in.png' %}" alt="">
+                              <a  class="footer_text text-black" href="#" style="padding-left: 5px;">LinkedIn</a>
+                          </li>
+                          <li class="py-2"><img class="footer_img" src="{% static 'img/consumer/insta.jpg' %}" alt="">
+                              <a  class="footer_text text-black" href="#" style="padding-left: 5px;">Instagram</a>
+                          </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+    </footer>
+
+  <!-- Vendor JS Files -->
+
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min..js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min..js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min..js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min..js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate..js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      // Activate tooltip
+      $('[data-toggle="tooltip"]').tooltip();
+
+      // Select/Deselect checkboxes
+      var checkbox = $('table tbody input[type="checkbox"]');
+      var cart_checkbox = $('input[class="checkbox_cart"]');
+      $("#selectAll").click(function(){
+        if(this.checked){
+          checkbox.each(function(){
+            this.checked = true;
+          });
+          cart_checkbox.each(function(){
+            this.checked = true;
+          });
+          select_cart_obj('{{csrf_token}}')
+        } else{
+          checkbox.each(function(){
+            this.checked = false;
+          });
+          cart_checkbox.each(function(){
+            this.checked = false;
+          });
+          select_cart_obj('{{csrf_token}}')
+        }
+      });
+      checkbox.click(function(){
+        if(!this.checked){
+          $("#selectAll").prop("checked", false);
+        }
+      });
+    });
+
+  </script>
+
+<script>
+  var QtyInput = (function () {
+    var $qtyInputs = $(".qty-input");
+
+    if (!$qtyInputs.length) {
+      return;
+    }
+
+    var $inputs = $qtyInputs.find(".product-qty");
+    var $countBtn = $qtyInputs.find(".qty-count");
+    var qtyMin = parseInt($inputs.attr("min"));
+    var qtyMax = parseInt($inputs.attr("max"));
+
+    $inputs.change(function () {
+      var $this = $(this);
+      var $minusBtn = $this.siblings(".qty-count--minus");
+      var $addBtn = $this.siblings(".qty-count--add");
+      var qty = parseInt($this.val());
+
+      if (isNaN(qty) || qty <= qtyMin) {
+        $this.val(qtyMin);
+        $minusBtn.attr("disabled", true);
+      } else {
+        $minusBtn.attr("disabled", false);
+
+        if(qty >= qtyMax){
+          $this.val(qtyMax);
+          $addBtn.attr('disabled', true);
+        } else {
+          $this.val(qty);
+          $addBtn.attr('disabled', false);
+        }
+      }
+    });
+
+    $countBtn.click(function () {
+      var operator = this.dataset.action;
+      var $this = $(this);
+      var $input = $this.siblings(".product-qty");
+      var qty = parseInt($input.val());
+
+      if (operator == "add") {
+        qty += 1;
+        if (qty >= qtyMin + 1) {
+          $this.siblings(".qty-count--minus").attr("disabled", false);
+        }
+
+        if (qty >= qtyMax) {
+          $this.attr("disabled", true);
+        }
+      } else {
+        qty = qty <= qtyMin ? qtyMin : (qty -= 1);
+
+        if (qty == qtyMin) {
+          $this.attr("disabled", true);
+        }
+
+        if (qty < qtyMax) {
+          $this.siblings(".qty-count--add").attr("disabled", false);
+        }
+      }
+
+      $input.val(qty);
+    });
+  })();
+</script>
+
+<!-- highlighting the pickup, dineIn, and delivery button -->
+<script>
+  const serviceButtons = document.querySelectorAll('.btn-oranges');
+
+  serviceButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // remove active class from all buttons
+      serviceButtons.forEach(button => button.classList.remove('active'));
+
+      // add active class to selected button
+      button.classList.add('active');
+    });
+  });
+</script>
+
+    <script>
+      function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+      }
+    </script>
+    
+    <script>
+      var QtyInput = (function () {
+        var $qtyInputs = $(".qty-input");
+
+        if (!$qtyInputs.length) {
+          return;
+        }
+
+        var $inputs = $qtyInputs.find(".product-qty");
+        var $countBtn = $qtyInputs.find(".qty-count");
+        var qtyMin = parseInt($inputs.attr("min"));
+        var qtyMax = parseInt($inputs.attr("max"));
+
+        $inputs.change(function () {
+          var $this = $(this);
+          var $minusBtn = $this.siblings(".qty-count--minus");
+          var $addBtn = $this.siblings(".qty-count--add");
+          var qty = parseInt($this.val());
+
+          if (isNaN(qty) || qty <= qtyMin) {
+            $this.val(qtyMin);
+            $minusBtn.attr("disabled", true);
+          } else {
+            $minusBtn.attr("disabled", false);
+
+            if(qty >= qtyMax){
+              $this.val(qtyMax);
+              $addBtn.attr('disabled', true);
+            } else {
+              $this.val(qty);
+              $addBtn.attr('disabled', false);
+            }
+          }
+        });
+
+        $countBtn.click(function () {
+          var operator = this.dataset.action;
+          var $this = $(this);
+          var $input = $this.siblings(".product-qty");
+          var qty = parseInt($input.val());
+
+          if (operator == "add") {
+            qty += 1;
+            if (qty >= qtyMin + 1) {
+              $this.siblings(".qty-count--minus").attr("disabled", false);
+            }
+
+            if (qty >= qtyMax) {
+              $this.attr("disabled", true);
+            }
+          } else {
+            qty = qty <= qtyMin ? qtyMin : (qty -= 1);
+
+            if (qty == qtyMin) {
+              $this.attr("disabled", true);
+            }
+
+            if (qty < qtyMax) {
+              $this.siblings(".qty-count--add").attr("disabled", false);
+            }
+          }
+
+          $input.val(qty);
+        });
+      })();
+
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $(".now_btn").click();
+
+        var d = new Date(),        
+        h = d.getHours(),
+        m = d.getMinutes();
+        if(h < 10) h = '0' + h; 
+        if(m < 10) m = '0' + m; 
+        $('input[type="time"]').each(function(){ 
+          $(this).attr({'value': h + ':' + m});
+        });
+        var today = moment().format('YYYY-MM-DD');;
+        $(".date").val(today);
+
+        $('#dtHorizontalExample').DataTable({
+          "scrollX": true
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+
+      $(document).ready(function() {
+        unread_notifications('{{csrf_token}}')
+      });
+      $("#notif_dropdown").click(function() {
+        read_notifications('{{csrf_token}}')
+      });
+
+    </script>
+  </form>
+</body>
+
+</html>

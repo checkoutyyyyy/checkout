@@ -1,0 +1,46 @@
+
+
+class ReqParams():
+    firstname = "firstname"
+    lastname = "lastname"
+    account_id = "account_id"
+    email_address = "email_address"
+    user_name = "user_name"
+    password = "password"
+    address = "address"
+    phone_number1 = "phone_number1"
+    phone_number2 = "phone_number2"
+    password= "password"
+    confirm_password= "confirm_password"
+    owner_userid = "owner_userid"
+    store_id = "store_id"
+
+    profile_picture = "profile_picture"
+
+    consumer_userid = "consumer_userid"
+
+    phone_number = "phone_number"
+    business_name = "business_name"
+
+    phonenumber = "phonenumber"
+    profile_pic = "profile_pic"
+    store_name = "store_name"
+    branch_name = "branch_name"
+    address1 = "address1"
+    address2 = "address2"
+    longitude="longitude"
+    latitude="latitude"
+    category = "category"
+    name = "name"
+    sku = "sku"
+    weight = "weight"
+    price = "price"
+    product_images = "product_images"
+    description = "description"
+    available_flag = "available_flag"
+    stocks = "stocks"
+    LOGIN_REDIRECTION = "LOGIN_REDIRECTION"
+    CHECKOUT_ITEMS = "CHECKOUT_ITEMS"
+    ANONYMOUS_KEY = "ANONYMOUS_KEY"
+    admin_userid = "admin_userid"
+
